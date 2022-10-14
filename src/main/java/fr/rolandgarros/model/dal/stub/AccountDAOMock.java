@@ -26,20 +26,4 @@ public class AccountDAOMock implements AccountDAO {
         }
         return null;
     }
-
-    @Override
-    public void createAccount(Account account) {
-        this.accounts.add(account);
-    }
-
-    @Override
-    public void updateAccount(Account account) {
-        this.accounts.remove(account);
-        this.accounts.add(account);
-    }
-
-    @Override
-    public void deleteAccount(Account account) {
-        this.accounts.add(account);
-    }
 }
