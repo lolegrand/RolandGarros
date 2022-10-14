@@ -9,7 +9,10 @@
         <%@ include file="header.jsp" %>
 
         <main class="w-100 row">
-            bouyah blabla
+
+            <%@ include file="CreatePlayer.jsp" %>
+            <%@ include file="ListsPlayers.jsp" %>
+
         </main>
 
         <%@ include file="footer.jsp" %>
