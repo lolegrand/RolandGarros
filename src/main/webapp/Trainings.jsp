@@ -9,7 +9,16 @@
         <%@ include file="header.jsp" %>
 
         <main class="w-100 row">
-            bouyah blabla
+
+            <!-- By default, display the training sessions scheduled -->
+
+
+            <!-- if role == trainer || role == admin -->
+            <%@ include file="CreateTraining.jsp" %>
+
+            <!-- if role == matchEditor || role == admin -->
+            <%@ include file="TrainingValidation.jsp" %>
+
         </main>
 
         <%@ include file="footer.jsp" %>
