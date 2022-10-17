@@ -54,11 +54,12 @@
     <p class="w-50"><% errorMsg; %></p>
 
     <label class="w-25">Entraîneur</label>
-    <select required class="w-75" name="coaches">
-      <% foreach ( coaches as coach ) { %>
-      <option value="<% coach; %>"></option>
-      <% } %>
-    </select>
+    <% String selectCoach = NULL; %>
+    <aui:select class="w-75" name="<%= selectCoach; %>">
+      <c:forEach items="${coaches}" var="coach">
+        <aui:option value="${coach}" selected="${coach==selectCoach ? true : false }">${coach}</aui:option>
+      </c:forEach>
+    </aui:select>
 
     <input required class="btn-blue w-25" type="submit" name="submitFormCreatePlayer">
   </form>

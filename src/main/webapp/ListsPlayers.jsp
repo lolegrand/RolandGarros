@@ -1,5 +1,5 @@
 <article class="scrollable">
-  <% foreach (Players as player) { %>
-    <input class="btn-dark" type="submit" name="see<% player[firstname]player[lastname]; %>" value="<% player[firstname] player[lastname]; %>">
-  <% } %>
+    <c:forEach items="${players}" var="player">
+      <aui:input class="btn-dark" type="submit" name="see${player}" value="${player}"/>
+    </c:forEach>
 </article>
