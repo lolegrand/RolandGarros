@@ -14,13 +14,13 @@ public class Double extends Match {
 
     public Double(String genre,
                   Date startDate,
-                  Courses courses,
+                  Court court,
                   Player teamOnePlayerOne,
                   Player teamOnePlayerTwo,
                   Player teamTwoPlayerOne,
                   Player teamTwoPlayerTwo
     ) {
-        super(genre, startDate, courses);
+        super(genre, startDate, court);
         this.teamOnePlayerOne = teamOnePlayerOne;
         this.teamOnePlayerTwo = teamOnePlayerTwo;
         this.teamTwoPlayerOne = teamTwoPlayerOne;

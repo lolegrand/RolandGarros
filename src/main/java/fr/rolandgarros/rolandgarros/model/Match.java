@@ -16,12 +16,12 @@ public abstract class Match {
 
     private List<Integer> scoreTwo;
 
-    private final Courses courses;
+    private final Court court;
 
-    public Match(String genre, Date startDate, Courses courses) {
+    public Match(String genre, Date startDate, Court court) {
         this.genre = genre;
         this.startDate = startDate;
-        this.courses = courses;
+        this.court = court;
     }
 
     public void endMatch(Date endDate, List<Integer> scoreOne, List<Integer> scoreTwo) {
@@ -63,7 +63,7 @@ public abstract class Match {
         return Collections.unmodifiableList(scoreTwo);
     }
 
-    public Courses getCourses() {
-        return courses;
+    public Court getCourt() {
+        return court;
     }
 }

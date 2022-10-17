@@ -1,10 +1,10 @@
 package fr.rolandgarros.rolandgarros.model;
 
-public class Courses {
+public class Court {
 
     private final String name;
 
-    public Courses(String name) {
+    public Court(String name) {
         this.name = name;
     }
 
