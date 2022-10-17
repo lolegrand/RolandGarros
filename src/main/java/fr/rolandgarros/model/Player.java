@@ -6,17 +6,19 @@ public class Player extends Person {
 
     private Integer ranking;
 
-    private String nationality;
+    private Integer bestRanking;
+
+    private final String nationality;
 
     private Float height;
 
     private Float weight;
 
-    private Date startCareer;
+    private final Date startCareer;
 
-    private Hand hand;
+    private final Hand hand;
 
-    private Person trainer;
+    private final Person trainer;
 
     public Player(
             String lastname,
@@ -24,6 +26,7 @@ public class Player extends Person {
             Date birthDate,
             String birthPlace,
             Integer ranking,
+            Integer bestRanking,
             String nationality,
             Float height,
             Float weight,
@@ -38,6 +41,7 @@ public class Player extends Person {
         this.startCareer = startCareer;
         this.hand = hand;
         this.trainer = trainer;
+        this.bestRanking = bestRanking;
     }
 
     public Integer getRanking() {
@@ -66,5 +70,24 @@ public class Player extends Person {
 
     public Person getTrainer() {
         return trainer;
+    }
+
+    public Integer getBestRanking() {
+        return bestRanking;
+    }
+
+    public void setRanking(Integer newRanking) {
+        this.ranking = newRanking;
+        if (bestRanking < newRanking) {
+            this.bestRanking = newRanking;
+        }
+    }
+
+    public void setHeight(Float height) {
+        this.height = height;
+    }
+
+    public void setWeight(Float weight) {
+        this.weight = weight;
     }
 }
