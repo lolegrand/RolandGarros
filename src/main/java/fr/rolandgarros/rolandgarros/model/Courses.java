@@ -2,7 +2,7 @@ package fr.rolandgarros.rolandgarros.model;
 
 public class Courses {
 
-    private String name;
+    private final String name;
 
     public Courses(String name) {
         this.name = name;

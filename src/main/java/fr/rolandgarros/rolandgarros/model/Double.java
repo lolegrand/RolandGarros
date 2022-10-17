@@ -4,13 +4,13 @@ import java.sql.Date;
 
 public class Double extends Match {
 
-    private Player teamOnePlayerOne;
+    private final Player teamOnePlayerOne;
 
-    private Player teamOnePlayerTwo;
+    private final Player teamOnePlayerTwo;
 
-    private Player teamTwoPlayerOne;
+    private final Player teamTwoPlayerOne;
 
-    private Player teamTwoPlayerTwo;
+    private final Player teamTwoPlayerTwo;
 
     public Double(String genre,
                   Date startDate,

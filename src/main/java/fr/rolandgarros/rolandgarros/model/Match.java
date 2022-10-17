@@ -6,9 +6,9 @@ import java.util.List;
 
 public abstract class Match {
 
-    private String genre;
+    private final String genre;
 
-    private Date startDate;
+    private final Date startDate;
 
     private Date endDate;
 
