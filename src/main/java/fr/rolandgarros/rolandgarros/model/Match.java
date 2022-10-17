@@ -27,6 +27,10 @@ public abstract class Match {
         this.scoreTwo = scoreTwo;
     }
 
+    public Boolean isMatchPassed() {
+        return endDate == null;
+    }
+
     public String getGenre() {
         return genre;
     }
@@ -36,14 +40,23 @@ public abstract class Match {
     }
 
     public Date getEndDate() {
+        if (!isMatchPassed()) {
+            throw new RuntimeException("Match has not been passed yet");
+        }
         return endDate;
     }
 
     public List<Integer> getScoreOne() {
+        if (!isMatchPassed()) {
+            throw new RuntimeException("Match has not been passed yet");
+        }
         return Collections.unmodifiableList(scoreOne);
     }
 
     public List<Integer> getScoreTwo() {
+        if (!isMatchPassed()) {
+            throw new RuntimeException("Match has not been passed yet");
+        }
         return Collections.unmodifiableList(scoreTwo);
     }
 }
