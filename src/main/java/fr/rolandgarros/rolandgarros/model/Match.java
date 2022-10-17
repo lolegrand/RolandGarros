@@ -62,4 +62,8 @@ public abstract class Match {
         }
         return Collections.unmodifiableList(scoreTwo);
     }
+
+    public Courses getCourses() {
+        return courses;
+    }
 }
