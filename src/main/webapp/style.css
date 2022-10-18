@@ -41,8 +41,13 @@ footer {
     height: 5rem;
 }
 
-header {
+header,
+nav {
     margin-bottom: 2.5rem;
+}
+
+nav {
+    padding: 0 1rem;
 }
 
 footer {
@@ -72,18 +77,25 @@ ul {
     list-style-type: none;
 }
 
-li,
-a {
+li, a {
     text-decoration: none;
-    color: #00503C;
-    padding: 1.55rem;
+    align-items: stretch;
+    padding: 1.5rem;
 }
 
 a:hover {
     color: #C85A19;
+
+    background-color: #F2F2F2;
+
+    padding: 1.75rem 1.5rem 1.55rem 1.5rem;
+
+    z-index: 100;
+
     border-top: solid 0.5rem #C85A19;
     border-bottom: solid 0.5rem #C85A19;
 }
+
 
 footer img {
     max-width: 100%;
@@ -97,6 +109,10 @@ footer img {
 
     align-self: center;
     font-variant: small-caps;
+
+    border-top: solid 0.5rem #00503C;
+    border-bottom: solid 0.5rem #00503C;
+
 }
 
 .scrollable {
