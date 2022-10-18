@@ -1,10 +1,12 @@
 package fr.rolandgarros.rolandgarros.model;
 
 import java.sql.Date;
+import java.sql.SQLTimeoutException;
 import java.time.Year;
 
 public class Player extends Person {
 
+    private String gender;
     private Integer ranking;
 
     private Integer bestRanking;
@@ -24,6 +26,7 @@ public class Player extends Person {
     public Player(
             String lastname,
             String firstname,
+            String gender,
             Date birthDate,
             String birthPlace,
             Integer ranking,
@@ -35,6 +38,7 @@ public class Player extends Person {
             Hand hand,
             Person trainer) {
         super(lastname, firstname, birthDate, birthPlace);
+        this.gender = gender;
         this.ranking = ranking;
         this.nationality = nationality;
         this.height = height;
@@ -44,6 +48,8 @@ public class Player extends Person {
         this.trainer = trainer;
         this.bestRanking = bestRanking;
     }
+
+    public String getGender(){ return gender; }
 
     public Integer getRanking() {
         return ranking;

@@ -8,7 +8,7 @@ public class AccountService {
 
     private final AccountDAO accountDAO = new AccountDAOMock();
 
-    private Account getAccount(String login, String password) {
+    public Account getAccount(String login, String password) {
         return accountDAO.findAccountByLoginPassword(login, password);
     }
 
