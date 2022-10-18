@@ -10,5 +10,5 @@ public interface PlayerDAO {
 
     void modifyPlayer(Player player);
 
-    void getPlayerByName(String firstName, String lastName);
+    Player getPlayerByName(String firstName, String lastName);
 }

@@ -1,6 +1,7 @@
 package fr.rolandgarros.rolandgarros.model;
 
 import java.sql.Date;
+import java.time.Year;
 
 public class Player extends Person {
 
@@ -14,7 +15,7 @@ public class Player extends Person {
 
     private Float weight;
 
-    private final Date startCareer;
+    private final Integer startCareer;
 
     private final Hand hand;
 
@@ -30,7 +31,7 @@ public class Player extends Person {
             String nationality,
             Float height,
             Float weight,
-            Date startCareer,
+            Integer startCareer,
             Hand hand,
             Person trainer) {
         super(lastname, firstname, birthDate, birthPlace);
@@ -60,7 +61,7 @@ public class Player extends Person {
         return weight;
     }
 
-    public Date getStartCareer() {
+    public Integer getStartCareer() {
         return startCareer;
     }
 
