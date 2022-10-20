@@ -9,7 +9,7 @@
     <!-- if Genre == Female : select all female player for following select-->
 
     <!-- if post SimpleDouble == Simple -->
-    <% if (){ %>
+    <% %>
 
     <% String selectPlayer1 = "selectPlayer1"; %>
     <% String selectPlayer2 = "selectPlayer2"; %>
@@ -28,10 +28,10 @@
       </c:forEach>
     </aui:select>
 
-    <% } %>
+    <% %>
 
     <!-- if post SimpleDouble == Double -->
-    <% if (){ %>
+    <%  %>
 
     <% String selectTeam1Player1 = "selectTeam1Player1"; %>
     <% String selectTeam1Player2 = "selectTeam1Player2"; %>
@@ -70,7 +70,7 @@
       </c:forEach>
     </aui:select>
 
-    <% } %>
+    <% %>
 
     <input required class="btn-blue w-25" type="submit" name="submitFormCreateMatchPlayers" value="Enregistrer">
   </form>

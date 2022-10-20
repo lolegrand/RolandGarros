@@ -38,11 +38,15 @@
 
                 </div>
 
-                <!-- if role == matchEditor || role == admin -->
-                <aui:input class="w-25 btn-dark" type="submit" name="update${match}" value="Modifier"/>
+                <% if( request.getSession().getAttribute("role").equals("MatchEditor")
+                        || request.getSession().getAttribute("role").equals("Admin") )
+                { %>
+                    <aui:input class="w-25 btn-dark" type="submit" name="update${match}" value="Modifier"/>
+                <% } %>
 
-                <!-- if role == admin -->
-                <aui:input class="w-25 btn-red" type="submit" name="delete${match}" value="Supprimer"/>
+                <% if( request.getSession().getAttribute("role").equals("Admin") ){ %>
+                    <aui:input class="w-25 btn-red" type="submit" name="delete${match}" value="Supprimer"/>
+                <% } %>
 
             </c:foreach>
 
@@ -51,9 +55,12 @@
                     - be able to create a match
                     - be able to validate a training request
             -->
-            <%@ include file="CreateMatch.jsp" %>
-            <%@ include file="TrainingValidation.jsp" %>
-
+            <% if( request.getSession().getAttribute("role").equals("MatchEditor")
+                    || request.getSession().getAttribute("role").equals("Admin") )
+            { %>
+                <%@ include file="CreateMatch.jsp" %>
+                <%@ include file="TrainingValidation.jsp" %>
+            <% } %>
 
         </main>
 

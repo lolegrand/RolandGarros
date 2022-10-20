@@ -14,10 +14,18 @@
 
 
             <!-- if role == trainer || role == admin -->
-            <%@ include file="CreateTraining.jsp" %>
+            <% if( request.getSession().getAttribute("role").equals("Trainer")
+                    || request.getSession().getAttribute("role").equals("Admin") )
+            { %>
+                <%@ include file="CreateTraining.jsp" %>
+            <% } %>
 
             <!-- if role == matchEditor || role == admin -->
-            <%@ include file="TrainingValidation.jsp" %>
+            <% if( request.getSession().getAttribute("role").equals("MatchEditor")
+                || request.getSession().getAttribute("role").equals("Admin") )
+                { %>
+                <%@ include file="TrainingValidation.jsp" %>
+            <% } %>
 
         </main>
 
