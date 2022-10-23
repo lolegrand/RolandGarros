@@ -1,4 +1,4 @@
-package fr.rolandgarros.rolandgarros.model;
+package fr.rolandgarros.model;
 
 import java.sql.Date;
 import java.sql.SQLTimeoutException;

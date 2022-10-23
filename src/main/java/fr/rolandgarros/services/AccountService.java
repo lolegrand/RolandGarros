@@ -1,8 +1,8 @@
-package fr.rolandgarros.rolandgarros.services;
+package fr.rolandgarros.services;
 
-import fr.rolandgarros.rolandgarros.model.Account;
-import fr.rolandgarros.rolandgarros.model.dal.AccountDAO;
-import fr.rolandgarros.rolandgarros.model.dal.stub.AccountDAOMock;
+import fr.rolandgarros.model.Account;
+import fr.rolandgarros.model.dal.AccountDAO;
+import fr.rolandgarros.model.dal.stub.AccountDAOMock;
 
 public class AccountService {
 

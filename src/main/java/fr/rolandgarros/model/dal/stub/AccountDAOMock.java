@@ -1,8 +1,8 @@
-package fr.rolandgarros.rolandgarros.model.dal.stub;
+package fr.rolandgarros.model.dal.stub;
 
-import fr.rolandgarros.rolandgarros.model.Account;
-import fr.rolandgarros.rolandgarros.model.Role;
-import fr.rolandgarros.rolandgarros.model.dal.AccountDAO;
+import fr.rolandgarros.model.dal.AccountDAO;
+import fr.rolandgarros.model.Account;
+import fr.rolandgarros.model.Role;
 
 import java.util.LinkedList;
 import java.util.List;

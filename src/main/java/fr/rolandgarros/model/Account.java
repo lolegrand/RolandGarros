@@ -1,4 +1,4 @@
-package fr.rolandgarros.rolandgarros.model;
+package fr.rolandgarros.model;
 
 public class Account {
     private final String password;

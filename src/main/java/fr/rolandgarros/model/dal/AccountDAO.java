@@ -1,7 +1,6 @@
-package fr.rolandgarros.rolandgarros.model.dal;
+package fr.rolandgarros.model.dal;
 
-import fr.rolandgarros.rolandgarros.model.Account;
-import fr.rolandgarros.rolandgarros.model.Role;
+import fr.rolandgarros.model.Account;
 
 public interface AccountDAO {
 

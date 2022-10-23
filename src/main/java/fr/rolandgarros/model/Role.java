@@ -1,4 +1,4 @@
-package fr.rolandgarros.rolandgarros.model;
+package fr.rolandgarros.model;
 
 public enum Role {
     MATCH_EDITOR,

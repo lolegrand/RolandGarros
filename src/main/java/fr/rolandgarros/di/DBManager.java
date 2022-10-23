@@ -1,4 +1,4 @@
-package fr.rolandgarros.rolandgarros.di;
+package fr.rolandgarros.di;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
