@@ -63,7 +63,7 @@
       </c:forEach>
     </aui:select>
 
-    <input required class="btn-blue w-25" type="submit" name="submitFormCreatePlayer">
+    <input class="btn-blue w-25" type="submit" name="submitFormCreatePlayer" value="Nouveau Joueur">
   </form>
 
 </article>

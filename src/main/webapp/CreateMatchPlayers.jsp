@@ -72,7 +72,7 @@
 
     <% %>
 
-    <input required class="btn-blue w-25" type="submit" name="submitFormCreateMatchPlayers" value="Enregistrer">
+    <input class="btn-blue w-25" type="submit" name="submitFormCreateMatchPlayers" value="Enregistrer">
   </form>
 
 </article>

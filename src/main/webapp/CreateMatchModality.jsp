@@ -36,7 +36,7 @@
       </c:forEach>
     </aui:select>
 
-    <input required class="btn-blue w-25" type="submit" name="submitFormCreateMatchModality" value="Suivant">
+    <input class="btn-blue w-25" type="submit" name="submitFormCreateMatchModality" value="Suivant">
   </form>
 
 </article>

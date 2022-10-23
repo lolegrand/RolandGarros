@@ -20,7 +20,7 @@
       </c:forEach>
     </aui:select>
 
-    <input required class="btn-blue w-25" type="submit" name="submitFormCreateTraining">
+    <input class="btn-blue w-25" type="submit" name="submitFormCreateTraining" value="Nouvel Entrainement">
   </form>
 
 </article>
