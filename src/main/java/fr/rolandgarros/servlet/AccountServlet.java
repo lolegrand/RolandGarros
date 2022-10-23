@@ -25,8 +25,10 @@ public class AccountServlet extends HttpServlet {
 
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) {
         String page;
+
         String login = req.getParameter("Login");
         String password = req.getParameter("Password");
+
         if (login != null && password != null) {
             try {
 
