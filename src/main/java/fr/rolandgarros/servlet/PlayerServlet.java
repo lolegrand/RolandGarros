@@ -1,5 +1,6 @@
 package fr.rolandgarros.servlet;
 
+import fr.rolandgarros.services.PlayerService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -9,6 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class PlayerServlet extends HttpServlet {
+
+    // final PlayerService playerService = new PlayerService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
@@ -22,7 +25,19 @@ public class PlayerServlet extends HttpServlet {
 
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) {
         String page = "/PlayerCard.jsp";
+/*
+        if ( req.getParameter("submitFormCreatePlayer").equals("Nouveau Joueur") ){
+            playerService.createPlayer();
+        }
 
+        if ( req.getParameter("submitFormCreatePlayer").equals("Nouveau Joueur") ){
+            playerService.createPlayer();
+        }
+
+        if ( req.getParameter("submitFormCreatePlayer").equals("Nouveau Joueur") ){
+            playerService.createPlayer();
+        }
+*/
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         try {
             dispatcher.forward(req, resp);

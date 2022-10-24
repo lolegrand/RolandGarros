@@ -1,36 +1,32 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
+<%@ include file="head.jsp" %>
 
-    <%@ include file="head.jsp" %>
+<body class="w-100 row">
 
-    <body class="w-100 row">
+<%@ include file="header.jsp" %>
 
-        <%@ include file="header.jsp" %>
+<main class="w-100 row">
 
-        <main class="w-100 row">
-
-            <!-- By default, display the training sessions scheduled -->
+    <!-- By default, display the training sessions scheduled -->
 
 
-            <!-- if role == trainer || role == admin -->
-            <% if( request.getSession().getAttribute("role").equals("Trainer")
-                    || request.getSession().getAttribute("role").equals("Admin") )
-            { %>
-                <%@ include file="CreateTraining.jsp" %>
-            <% } %>
+    <!-- if role == trainer || role == admin -->
+    <% if( request.getSession().getAttribute("role").equals("Trainer")
+            || request.getSession().getAttribute("role").equals("Admin") )
+    { %>
+    <%@ include file="CreateTraining.jsp" %>
+    <% } %>
 
-            <!-- if role == matchEditor || role == admin -->
-            <% if( request.getSession().getAttribute("role").equals("MatchEditor")
-                || request.getSession().getAttribute("role").equals("Admin") )
-                { %>
-                <%@ include file="TrainingValidation.jsp" %>
-            <% } %>
+    <!-- if role == matchEditor || role == admin -->
+    <% if( request.getSession().getAttribute("role").equals("MatchEditor")
+            || request.getSession().getAttribute("role").equals("Admin") )
+    { %>
+    <%@ include file="TrainingValidation.jsp" %>
+    <% } %>
 
-        </main>
+</main>
 
-        <%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp" %>
 
-    </body>
+</body>
 
 </html>
