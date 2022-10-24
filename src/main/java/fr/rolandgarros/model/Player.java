@@ -1,24 +1,37 @@
 package fr.rolandgarros.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
 import java.sql.Date;
 
+@Entity
+@Table(name = "player")
 public class Player extends Person {
 
     private Integer ranking;
 
     private Integer bestRanking;
 
-    private final String nationality;
+    private  String nationality;
 
     private Float height;
 
     private Float weight;
 
-    private final Date startCareer;
+    private  Date startCareer;
 
-    private final Hand hand;
+    private  Hand hand;
 
-    private final Person trainer;
+    @OneToOne
+    @JoinColumn(name = "trainerId")
+    private  Person trainer;
+
+    public void setTrainer(Person trainer) {
+        this.trainer = trainer;
+    }
 
     public Player(
             String lastname,
@@ -42,6 +55,10 @@ public class Player extends Person {
         this.hand = hand;
         this.trainer = trainer;
         this.bestRanking = bestRanking;
+    }
+
+    public Player() {
+
     }
 
     public Integer getRanking() {
