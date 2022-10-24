@@ -24,7 +24,7 @@ public class PlayerServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) {
-        String page = "/PlayerCard.jsp";
+        String page = "/ViewPlayer/Players.jsp";
 /*
         if ( req.getParameter("submitFormCreatePlayer").equals("Nouveau Joueur") ){
             playerService.createPlayer();

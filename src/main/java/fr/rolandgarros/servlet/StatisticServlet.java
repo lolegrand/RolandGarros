@@ -21,7 +21,7 @@ public class StatisticServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) {
-        String page = "/Statistics.jsp";
+        String page = "/ViewStatistic/Statistics.jsp";
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         try {

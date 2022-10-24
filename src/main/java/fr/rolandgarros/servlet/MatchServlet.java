@@ -21,7 +21,7 @@ public class MatchServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) {
-        String page = "/Matchs.jsp";
+        String page = "/ViewMatch/Matchs.jsp";
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         try {

@@ -38,7 +38,7 @@ public class AccountServlet extends HttpServlet {
             }
             return;
         } else {
-            page = "/Connection.jsp";
+            page = "/ViewAccount/Connection.jsp";
         }
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);

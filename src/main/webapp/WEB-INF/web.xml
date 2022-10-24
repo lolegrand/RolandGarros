@@ -35,12 +35,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>PlayerCard</servlet-name>
+        <servlet-name>Players</servlet-name>
         <servlet-class>fr.rolandgarros.servlet.PlayerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PlayerCard</servlet-name>
-        <url-pattern>/PlayerCard</url-pattern>
+        <servlet-name>Players</servlet-name>
+        <url-pattern>/Players</url-pattern>
     </servlet-mapping>
 
     <servlet>

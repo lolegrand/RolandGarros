@@ -21,7 +21,7 @@ public class TrainingServlet extends HttpServlet {
     }
 
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) {
-        String page = "/Trainings.jsp";
+        String page = "/ViewTraining/Trainings.jsp";
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         try {

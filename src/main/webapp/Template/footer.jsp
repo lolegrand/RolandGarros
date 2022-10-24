@@ -1,8 +1,8 @@
 <footer class="w-100 row">
 
   <div class="w-25 row space-around">
-    <img src="./img/ENSSAT.png">
-    <img src="./img/UR1.png">
+    <img src="../img/ENSSAT.png">
+    <img src="../img/UR1.png">
   </div>
 
   <div class="w-50 row space-around">
@@ -13,8 +13,8 @@
   </div>
 
   <div class="w-25 row space-around">
-    <img src="./img/RL.png">
-    <img src="./img/FFT.png">
+    <img src="../img/RL.png">
+    <img src="../img/FFT.png">
   </div>
 
 </footer>

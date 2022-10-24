@@ -13,40 +13,44 @@
         <h2 class="w-100 txt-center">Mise à jour d'une fiche joueur</h2>
 
         <label class="w-25">Prénom</label>
-        <input readonly class="w-75" name="firstname" value="${player.getFirstname()}">
+        <input readonly class="w-75" value="${player.getFirstname()}">
 
         <label class="w-25">Nom</label>
-        <input readonly class="w-75" name="lastname" value="${player.getLastname()}">
+        <input readonly class="w-75" value="${player.getLastname()}">
 
         <label class="w-25">Date de naissance</label>
-        <input readonly class="w-75" name="birthday">
+        <input readonly class="w-75" value="${player.getBirthdate()}">
 
         <label class="w-25">Lieu de naissance</label>
-        <input readonly class="w-75" name="birthplace" value="${player.getBirthplace()}">
+        <input readonly class="w-75" value="${player.getBirthplace()}">
 
         <label class="w-25">Nationalité</label>
-        <input readonly class="w-75" name="nationality" value="${player.getNationality()}">
+        <input readonly class="w-75" value="${player.getNationality()}">
+
+        <!-- To update -->
 
         <label class="w-25">Taille</label>
-        <input readonly class="w-25" type="number" min="050" max="500" name="size" value="${player.getHeight()}">
+        <input required class="w-25" type="number" min="050" max="500" name="size" value="${player.getHeight()}">
         <p class="w-50"><%= errorMsg %></p>
 
         <label class="w-25">Poids</label>
-        <input readonly class="w-25" type="number" min="0.0" max="500.0" name="pound" value="${player.getWeight()}">
+        <input required class="w-25" type="number" min="0.0" max="500.0" name="pound" value="${player.getWeight()}">
         <p class="w-50"><%= errorMsg %></p>
 
         <label class="w-25">Classement en Simple</label>
         <input required class="w-25" type="number" min="0" name="ranking" value="${player.getRanking()}">
         <p class="w-50"><%= errorMsg %></p>
 
+        <!--  -->
+
         <label class="w-25">Classement en Simple</label>
-        <input readonly class="w-75" name="hand" value="${player.getHand()}">
+        <input readonly class="w-75" value="${player.getHand()}">
 
         <label class="w-25">Début de carrière</label>
-        <input readonly class="w-75" name="careerStart">
+        <input readonly class="w-75" value="${player.getCareerStart()}">
 
         <label class="w-25">Entraîneur</label>
-        <input readonly class="w-75" name="hand" value="${player.getTrainer()}">
+        <input readonly class="w-75" value="${player.getTrainer()}">
 
         <input class="btn-blue w-25" type="submit" name="submitFormUpdatePlayer" value="Mettre à jour">
     </form>

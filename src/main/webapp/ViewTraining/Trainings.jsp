@@ -1,8 +1,8 @@
-<%@ include file="head.jsp" %>
+<%@ include file="../Template/head.jsp" %>
 
 <body class="w-100 row">
 
-<%@ include file="header.jsp" %>
+<%@ include file="../Template/header.jsp" %>
 
 <main class="w-100 row">
 
@@ -25,7 +25,7 @@
 
 </main>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../Template/footer.jsp" %>
 
 </body>
 
