@@ -1,6 +1,5 @@
 package fr.rolandgarros.servlet;
 
-import fr.rolandgarros.services.AccountService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
