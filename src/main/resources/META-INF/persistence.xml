@@ -1,0 +1,24 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                   http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+			 version="2.0">
+
+	<persistence-unit name="RolandGarros">
+
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<properties>
+			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://vps817240.ovh.net:3306/IMR_team05_schema?.useSSL=false" />
+			<property name="jakarta.persistence.jdbc.user" value="IMR_team05" />
+			<property name="jakarta.persistence.jdbc.password" value="3Ym7G3;Y94" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.format_sql" value="false" />
+
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

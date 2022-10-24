@@ -1,33 +1,41 @@
 package fr.rolandgarros.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
 import java.sql.Date;
-import java.sql.SQLTimeoutException;
-import java.time.Year;
 
+@Entity
+@Table(name = "player")
 public class Player extends Person {
-
-    private String gender;
 
     private Integer ranking;
 
     private Integer bestRanking;
 
-    private final String nationality;
+    private  String nationality;
 
     private Float height;
 
     private Float weight;
 
-    private final Integer startCareer;
+    private  Date startCareer;
 
-    private final Hand hand;
+    private  Hand hand;
 
-    private final Person trainer;
+    @OneToOne
+    @JoinColumn(name = "trainerId")
+    private  Person trainer;
+
+    public void setTrainer(Person trainer) {
+        this.trainer = trainer;
+    }
 
     public Player(
             String lastname,
             String firstname,
-            String gender,
             Date birthDate,
             String birthPlace,
             Integer ranking,
@@ -35,11 +43,10 @@ public class Player extends Person {
             String nationality,
             Float height,
             Float weight,
-            Integer startCareer,
+            Date startCareer,
             Hand hand,
             Person trainer) {
         super(lastname, firstname, birthDate, birthPlace);
-        this.gender = gender;
         this.ranking = ranking;
         this.nationality = nationality;
         this.height = height;
@@ -50,7 +57,9 @@ public class Player extends Person {
         this.bestRanking = bestRanking;
     }
 
-    public String getGender(){ return gender; }
+    public Player() {
+
+    }
 
     public Integer getRanking() {
         return ranking;
@@ -68,7 +77,7 @@ public class Player extends Person {
         return weight;
     }
 
-    public Integer getStartCareer() {
+    public Date getStartCareer() {
         return startCareer;
     }
 
