@@ -2,8 +2,8 @@
 DROP TABLE IF EXISTS account;
 CREATE TABLE account (
                          idAccount INT NOT NULL AUTO_INCREMENT,
-                         login VARCHAR(20) NOT NULL,
-                         password VARCHAR(20) NOT NULL,
+                         login VARCHAR(20) NOT NULL UNIQUE,
+                         password VARCHAR(255) NOT NULL,
                          role VARCHAR(30) NOT NULL,
                          PRIMARY KEY (idAccount,login)
 );
@@ -11,18 +11,19 @@ CREATE TABLE account (
 DROP TABLE IF EXISTS player CASCADE;
 DROP TABLE IF EXISTS person;
 CREATE TABLE person (
-                        idP INT NOT NULL AUTO_INCREMENT,
+                        idP INT NOT NULL,
                         lastname VARCHAR(40) NOT NULL,
                         firstname VARCHAR(30) NOT NULL,
                         birthDate DATE NOT NULL,
                         birthPlace VARCHAR(20) NOT NULL,
+                        gender VARCHAR(10) NOT NULL,
                         PRIMARY KEY (idP)
 );
 
 DROP TABLE IF EXISTS player CASCADE;
 CREATE TABLE player
 (
-    idP    INT         NOT NULL AUTO_INCREMENT references person(idP),
+    idP    INT         NOT NULL references person(idP),
     ranking     INT         NOT NULL,
     bestRanking INT         NOT NULL,
     nationality VARCHAR(20) NOT NULL,
@@ -85,14 +86,14 @@ CREATE TABLE court
     PRIMARY KEY (idT)
 );
 
-DROP TABLE IF EXISTS SEQUENCE;
-CREATE TABLE SEQUENCE (
-                          next_val INT NOT NULL default 1,
-                          sequence_name VARCHAR(255) NOT NULL,
-                          PRIMARY KEY (sequence_name)
+DROP TABLE IF EXISTS sequences;
+CREATE TABLE sequences (
+                           next_val INT NOT NULL default 1,
+                           sequence_name VARCHAR(255) NOT NULL,
+                           PRIMARY KEY (sequence_name)
 );
 
-truncate table SEQUENCE;
+truncate table sequences;
 truncate table account;
 truncate table person;
 truncate table player;
