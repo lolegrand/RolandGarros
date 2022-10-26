@@ -17,7 +17,7 @@ public class Main {
         //Get all players from bd with JPA entity manager
 
         try {
-            entityManagerFactory = Persistence.createEntityManagerFactory("test");
+            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
             entityManager = entityManagerFactory.createEntityManager();
 //
 //
