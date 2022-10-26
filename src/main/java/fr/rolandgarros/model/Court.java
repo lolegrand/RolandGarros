@@ -1,10 +1,17 @@
 package fr.rolandgarros.model;
 
-import java.util.Objects;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "court")
 public class Court {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idT;
 
-    private final String name;
+    private  String name;
+
+    public Court() {}
 
     public Court(String name) {
         this.name = name;
@@ -14,16 +21,7 @@ public class Court {
         return name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Court court = (Court) o;
-        return Objects.equals(name, court.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+    public Integer getIdT() {
+        return idT;
     }
 }

@@ -1,5 +1,6 @@
 package fr.rolandgarros.services;
 
+import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Hand;
 import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;

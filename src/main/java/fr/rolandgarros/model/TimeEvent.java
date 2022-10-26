@@ -10,16 +10,17 @@ import javax.persistence.TableGenerator;
 import java.sql.Timestamp;
 import java.sql.Date;
 import java.util.Random;
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class TimeEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE , generator = "timeEventId")
-    @TableGenerator(table = "SEQUENCE", name = "timeEventId" ,allocationSize = 1)
+    @TableGenerator(table = "sequences", name = "timeEventId" ,allocationSize = 1)
     private Integer idT;
 
-    protected final Date startDate;
     protected  Timestamp startDate;
 
     protected Timestamp endDate;
@@ -58,6 +59,4 @@ public abstract class TimeEvent {
     public Integer getIdT() {
         return idT;
     }
-}
-
 }

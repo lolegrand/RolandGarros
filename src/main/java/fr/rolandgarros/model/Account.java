@@ -11,6 +11,7 @@ public class Account {
 
     private  String password;
 
+    @Column(unique = true)
     private  String login;
 
     @Enumerated(EnumType.STRING)
@@ -38,5 +39,9 @@ public class Account {
 
     public Role getRole() {
         return role;
+    }
+
+    public Integer getIdAccount() {
+        return idAccount;
     }
 }

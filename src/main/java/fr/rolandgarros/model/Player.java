@@ -1,11 +1,6 @@
 package fr.rolandgarros.model;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
@@ -43,8 +38,9 @@ public class Player extends Person {
             Float weight,
             Date startCareer,
             Hand hand,
-            Person trainer) {
-        super(lastname, firstname, birthDate, birthPlace);
+            Person trainer,
+            Gender gender) {
+        super(lastname, firstname, birthDate, birthPlace,gender);
         this.ranking = ranking;
         this.nationality = nationality;
         this.height = height;
@@ -58,14 +54,6 @@ public class Player extends Person {
     public Player() {
 
     }
-
-
-
-
-
-
-
-
 
     public Integer getRanking() {
         return ranking;

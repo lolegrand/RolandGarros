@@ -9,16 +9,19 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "person")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Person {
+public class Person {//@Todo: faut trouver un moyen d'avoir une contrainte unique composé pour rentre unique des joueurs
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE , generator = "player_person_id")
+    @TableGenerator(table = "sequences", name = "player_person_id",allocationSize = 1)
     @Column(name = "idP")
     private Integer id;
+
 
     private  String lastname;
 
@@ -28,13 +31,15 @@ public class Person {
 
     private  String birthPlace;
 
-
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     public Person(String lastname, String firstname, Date birthDate, String birthPlace) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.birthDate = birthDate;
         this.birthPlace = birthPlace;
+        this.gender = gender;
     }
 
     public Person() {
@@ -67,5 +72,17 @@ public class Person {
     }
     public void setBirthPlace(String birthPlace) {
         this.birthPlace = birthPlace;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }
