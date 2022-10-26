@@ -57,7 +57,7 @@ public abstract class Match extends TimeEvent {
         }
         //parse scoreOne and return it as list of integers
         List<Integer> scoreTwo = Collections.emptyList();
-        for (String s : this.scoreOne.split(",")) {
+        for (String s : this.scoreTwo.split(",")) {
             scoreTwo.add(Integer.parseInt(s));
         }
         return scoreTwo;
