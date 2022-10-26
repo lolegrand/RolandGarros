@@ -1,5 +1,4 @@
 # syntaxe mysql
-# Account(login,password,role)
 DROP TABLE IF EXISTS account;
 CREATE TABLE account (
                          idAccount INT NOT NULL AUTO_INCREMENT,
@@ -9,7 +8,7 @@ CREATE TABLE account (
                          PRIMARY KEY (idAccount,login)
 );
 
-# PERSON(lastname,firstname,birthDate,birthPlace)
+DROP TABLE IF EXISTS player CASCADE;
 DROP TABLE IF EXISTS person;
 CREATE TABLE person (
                         idP INT NOT NULL AUTO_INCREMENT,
@@ -20,9 +19,6 @@ CREATE TABLE person (
                         PRIMARY KEY (idP)
 );
 
-
-
-#Player (ranking, bestRanking, nationality, height, weight, startCareer, hand, trainer)
 DROP TABLE IF EXISTS player CASCADE;
 CREATE TABLE player
 (
@@ -39,68 +35,70 @@ CREATE TABLE player
 );
 
 
-
-#DoubleGame (teamOnePlayerOne, teamOnePlayerTwo, teamTwoPlayerOne, teamTwoPlayerTwo, scoreOne, scoreTwo, genre, court,endDate, startDate)
 DROP TABLE IF EXISTS doubleGame CASCADE;
 CREATE TABLE doubleGame
 (
-    idGame        INT               NOT NULL ,
+    idT        INT               NOT NULL auto_increment,
     teamOnePlayerOneId  INT         NOT NULL references player(idP),
     teamOnePlayerTwoId  INT         NOT NULL references player(idP),
     teamTwoPlayerOneId  INT         NOT NULL references player(idP),
     teamTwoPlayerTwoId  INT         NOT NULL references player(idP),
-    scoreOne            VARCHAR(50) NOT NULL,
-    scoreTwo            VARCHAR(50) NOT NULL,
+    scoreOne            VARCHAR(50) ,
+    scoreTwo            VARCHAR(50) ,
     genre               VARCHAR(30) NOT NULL,
-    court               INT         NOT NULL references court(idT),
-    endDate             DATE        NOT NULL,
-    startDate           DATE        NOT NULL,
-    PRIMARY KEY (idGame)
+    courtId             INT         NOT NULL references court(idT),
+    endDate             TIMESTAMP        ,
+    startDate           TIMESTAMP        NOT NULL,
+    PRIMARY KEY (idT)
 );
 
-#SingleGame (PlayerOne, PlayerTwo, scoreOne, scoreTwo, genre, court,endDate, startDate)
 DROP TABLE IF EXISTS singleGame CASCADE;
 CREATE TABLE singleGame
 (
-    idGame        INT                   NOT NULL,
+    idT        INT                   NOT NULL auto_increment,
     playerOneId         INT             NOT NULL references player(idP),
     playerTwoId         INT             NOT NULL references player(idP),
-    scoreOne            VARCHAR(50)     NOT NULL,
-    scoreTwo            VARCHAR(50)     NOT NULL,
+    scoreOne            VARCHAR(50)     ,
+    scoreTwo            VARCHAR(50)     ,
     genre               VARCHAR(30)     NOT NULL,
-    court               VARCHAR(30)     NOT NULL references court(idT),
-    endDate             DATE            NOT NULL,
-    startDate           DATE            NOT NULL,
-    PRIMARY KEY (idGame)
+    courtId             INT     NOT NULL references court(idT),
+    endDate             TIMESTAMP            ,
+    startDate           TIMESTAMP            NOT NULL,
+    PRIMARY KEY (idT)
 );
 
-#TrainingGame (booker, endDate, startDate)
 DROP TABLE IF EXISTS trainingGame CASCADE;
 CREATE TABLE trainingGame
 (
-    idTrainingGame  INT         NOT NULL AUTO_INCREMENT,
+    idT  INT         NOT NULL auto_increment,
     bookerId        INT         NOT NULL references person(idP),
-    endDate         DATE        NOT NULL,
-    startDate       DATE        NOT NULL,
-    PRIMARY KEY (idTrainingGame)
+    endDate         TIMESTAMP ,
+    startDate       TIMESTAMP not null,
+    PRIMARY KEY (idT)
 );
 
-#Court (name)
 DROP TABLE IF EXISTS court CASCADE;
 CREATE TABLE court
 (
-    idT     INT         NOT NULL,
+    idT     INT         NOT NULL auto_increment,
     name    VARCHAR(30) NOT NULL,
     PRIMARY KEY (idT)
 );
 
-# # # insert trainer as person
-INSERT INTO person (idP,lastname, firstname, birthDate, birthPlace) VALUES (1,'Fefe', 'the trainer', '1987-05-22', 'Algerie');
+DROP TABLE IF EXISTS SEQUENCE;
+CREATE TABLE SEQUENCE (
+                          next_val INT NOT NULL default 1,
+                          sequence_name VARCHAR(255) NOT NULL,
+                          PRIMARY KEY (sequence_name)
+);
 
-insert into person (idP, lastname, firstname, birthDate, birthPlace) values (2, 'la gazelle', 'the player', '1987-05-22', 'Algerie');
-# # # insert trainer as player
-insert into player (idP,ranking, bestRanking, nationality, height, weight,startCareer, hand, trainerId) values (2, 1, 1, 'Algerie', 1, 1,'2019-05-22', 'right', 1);
-
-
+truncate table SEQUENCE;
+truncate table account;
+truncate table person;
+truncate table player;
+truncate table doubleGame;
+truncate table singleGame;
+truncate table trainingGame;
+truncate table court;
 
 

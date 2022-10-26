@@ -1,10 +1,11 @@
 package fr.rolandgarros.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.sql.Date;
 
 @Entity
@@ -22,16 +23,13 @@ public class Player extends Person {
     private Float weight;
 
     private  Date startCareer;
-
+    @Enumerated(EnumType.STRING)
     private  Hand hand;
 
     @OneToOne
     @JoinColumn(name = "trainerId")
     private  Person trainer;
 
-    public void setTrainer(Person trainer) {
-        this.trainer = trainer;
-    }
 
     public Player(
             String lastname,
@@ -61,38 +59,17 @@ public class Player extends Person {
 
     }
 
+
+
+
+
+
+
+
+
     public Integer getRanking() {
         return ranking;
     }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public Float getHeight() {
-        return height;
-    }
-
-    public Float getWeight() {
-        return weight;
-    }
-
-    public Date getStartCareer() {
-        return startCareer;
-    }
-
-    public Hand getHand() {
-        return hand;
-    }
-
-    public Person getTrainer() {
-        return trainer;
-    }
-
-    public Integer getBestRanking() {
-        return bestRanking;
-    }
-
     public void setRanking(Integer newRanking) {
         this.ranking = newRanking;
         if (bestRanking < newRanking) {
@@ -100,11 +77,51 @@ public class Player extends Person {
         }
     }
 
+    public String getNationality() {
+        return nationality;
+    }
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public Float getHeight() {
+        return height;
+    }
     public void setHeight(Float height) {
         this.height = height;
     }
 
+    public Float getWeight() {
+        return weight;
+    }
     public void setWeight(Float weight) {
         this.weight = weight;
     }
+
+    public Date getStartCareer() {
+        return startCareer;
+    }
+    public void setStartCareer(Date startCareer) {
+        this.startCareer = startCareer;
+    }
+
+    public Hand getHand() {
+        return hand;
+    }
+    public void setHand(Hand hand) {
+        this.hand = hand;
+    }
+
+    public Person getTrainer() {
+        return trainer;
+    }
+    public void setTrainer(Person trainer) {
+        this.trainer = trainer;
+    }
+
+    public Integer getBestRanking() {
+        return bestRanking;
+    }
+
+
 }

@@ -1,20 +1,35 @@
 package fr.rolandgarros.model;
 
-import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import java.sql.Timestamp;
 
+@Entity
+@Table(name = "doubleGame")
 public class Double extends Match {
 
-    private final Player teamOnePlayerOne;
 
-    private final Player teamOnePlayerTwo;
+    @OneToOne
+    @JoinColumn(name = "teamOnePlayerOneId")
+    private  Player teamOnePlayerOne;
 
-    private final Player teamTwoPlayerOne;
+    @OneToOne
+    @JoinColumn(name = "teamOnePlayerTwoId")
+    private  Player teamOnePlayerTwo;
 
-    private final Player teamTwoPlayerTwo;
+    @OneToOne
+    @JoinColumn(name = "teamTwoPlayerOneId")
+    private  Player teamTwoPlayerOne;
+
+    @OneToOne
+    @JoinColumn(name = "teamTwoPlayerTwoId")
+    private  Player teamTwoPlayerTwo;
+
 
     public Double(String genre,
-                  String type,
-                  Date startDate,
+                  Timestamp startDate,
                   Court court,
                   Player teamOnePlayerOne,
                   Player teamOnePlayerTwo,
@@ -28,19 +43,30 @@ public class Double extends Match {
         this.teamTwoPlayerTwo = teamTwoPlayerTwo;
     }
 
+    public Double() {}
+
     public Player getTeamOnePlayerOne() {
         return teamOnePlayerOne;
     }
-
+    public void setTeamOnePlayerOne(Player teamOnePlayerOne) {
+        this.teamOnePlayerOne = teamOnePlayerOne;
+    }
     public Player getTeamOnePlayerTwo() {
         return teamOnePlayerTwo;
     }
-
+    public void setTeamOnePlayerTwo(Player teamOnePlayerTwo) {
+        this.teamOnePlayerTwo = teamOnePlayerTwo;
+    }
     public Player getTeamTwoPlayerOne() {
         return teamTwoPlayerOne;
     }
-
+    public void setTeamTwoPlayerOne(Player teamTwoPlayerOne) {
+        this.teamTwoPlayerOne = teamTwoPlayerOne;
+    }
     public Player getTeamTwoPlayerTwo() {
         return teamTwoPlayerTwo;
+    }
+    public void setTeamTwoPlayerTwo(Player teamTwoPlayerTwo) {
+        this.teamTwoPlayerTwo = teamTwoPlayerTwo;
     }
 }

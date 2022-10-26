@@ -1,16 +1,31 @@
 package fr.rolandgarros.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "account")
 public class Account {
-    private final String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idAccount;
 
-    private final String login;
+    private  String password;
 
-    private final Role role;
+    private  String login;
+
+    @Enumerated(EnumType.STRING)
+    private  Role role;
+
+
 
     public Account(String login, String password, Role role) {
         this.login = login;
         this.password = password;
         this.role = role;
+    }
+
+    public Account() {
+
     }
 
     public String getPassword() {
