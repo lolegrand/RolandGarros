@@ -1,8 +1,8 @@
 <!--
-Update of:
-- date
-- place
-No more, everything else is considered as true so to read only
+    End match:
+        - display all information about the match
+        - fill scores to terminate the match
+            -> the winner will be defined by the controller according to scores
 -->
 <article class="w-50 row self-center space-around" id="articleEndMatch">
 
