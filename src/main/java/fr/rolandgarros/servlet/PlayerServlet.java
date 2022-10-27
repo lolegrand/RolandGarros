@@ -30,12 +30,12 @@ public class PlayerServlet extends HttpServlet {
             playerService.createPlayer();
         }
 
-        if ( req.getParameter("submitFormCreatePlayer").equals("Nouveau Joueur") ){
-            playerService.createPlayer();
+        if ( req.getParameter("submitFormUpdatePlayer").equals("Mettre à jour") ){
+            playerService.updatePlayer();
         }
 
-        if ( req.getParameter("submitFormCreatePlayer").equals("Nouveau Joueur") ){
-            playerService.createPlayer();
+        if ( req.getParameter("deletePlayer").equals("Supprimer") ){
+            playerService.deletePlayer();
         }
 */
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);

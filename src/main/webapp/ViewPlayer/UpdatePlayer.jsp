@@ -13,19 +13,19 @@
         <h2 class="w-100 txt-center">Mise à jour d'une fiche joueur</h2>
 
         <label class="w-25">Prénom</label>
-        <input readonly class="w-75" value="${player.getFirstname()}">
+        <p class="w-75">${player.getFirstname()}</p>
 
         <label class="w-25">Nom</label>
-        <input readonly class="w-75" value="${player.getLastname()}">
+        <p class="w-75">${player.getLastname()}</p>
 
         <label class="w-25">Date de naissance</label>
-        <input readonly class="w-75" value="${player.getBirthdate()}">
+        <p class="w-75">${player.getBirthdate()}</p>
 
         <label class="w-25">Lieu de naissance</label>
-        <input readonly class="w-75" value="${player.getBirthplace()}">
+        <p class="w-75">${player.getBirthplace()}</p>
 
         <label class="w-25">Nationalité</label>
-        <input readonly class="w-75" value="${player.getNationality()}">
+        <p class="w-75">${player.getNationality()}</p>
 
         <!-- To update -->
 
@@ -44,13 +44,13 @@
         <!--  -->
 
         <label class="w-25">Classement en Simple</label>
-        <input readonly class="w-75" value="${player.getHand()}">
+        <p class="w-75">${player.getHand()}</p>
 
         <label class="w-25">Début de carrière</label>
-        <input readonly class="w-75" value="${player.getCareerStart()}">
+        <p class="w-75">${player.getCareerStart()}</p>
 
         <label class="w-25">Entraîneur</label>
-        <input readonly class="w-75" value="${player.getTrainer()}">
+        <p class="w-75">${player.getTrainer()}</p>
 
         <input class="btn-blue w-25" type="submit" name="submitFormUpdatePlayer" value="Mettre à jour">
     </form>
