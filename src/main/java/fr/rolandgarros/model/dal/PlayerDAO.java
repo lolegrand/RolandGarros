@@ -1,8 +1,9 @@
-package fr.rolandgarros.rolandgarros.model.dal;
+package fr.rolandgarros.model.dal;
 
 import fr.rolandgarros.rolandgarros.model.Hand;
 import fr.rolandgarros.rolandgarros.model.Person;
 import fr.rolandgarros.rolandgarros.model.Player;
+import fr.rolandgarros.model.Player;
 
 import java.util.ArrayList;
 

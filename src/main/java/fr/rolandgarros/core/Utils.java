@@ -1,4 +1,4 @@
-package fr.rolandgarros.rolandgarros.core;
+package fr.rolandgarros.core;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

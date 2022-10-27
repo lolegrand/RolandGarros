@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class PlayerServlet extends HttpServlet {
 
-    // final PlayerService playerService = new PlayerService();
+    final PlayerService playerService = new PlayerService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {

@@ -1,8 +1,8 @@
-package fr.rolandgarros.rolandgarros.model.dal.stub;
+package fr.rolandgarros.model.dal.stub;
 
-import fr.rolandgarros.rolandgarros.core.Utils;
-import fr.rolandgarros.rolandgarros.model.Person;
-import fr.rolandgarros.rolandgarros.model.dal.PersonDAO;
+import fr.rolandgarros.core.Utils;
+import fr.rolandgarros.model.Person;
+import fr.rolandgarros.model.dal.PersonDAO;
 
 import java.sql.Date;
 import java.text.DateFormat;

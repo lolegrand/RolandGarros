@@ -1,6 +1,6 @@
-package fr.rolandgarros.rolandgarros.model.dal;
+package fr.rolandgarros.model.dal;
 
-import fr.rolandgarros.rolandgarros.model.Person;
+import fr.rolandgarros.model.Person;
 
 public interface PersonDAO {
 
