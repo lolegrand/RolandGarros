@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
-			 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
-    		 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" >
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+			 version="3.0">
 	<persistence-unit name="RolandGarros">
+
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>fr.rolandgarros.model.Account</class>
+		<class>fr.rolandgarros.model.Court</class>
+		<class>fr.rolandgarros.model.Double</class>
+		<class>fr.rolandgarros.model.Match</class>
+		<class>fr.rolandgarros.model.Person</class>
+		<class>fr.rolandgarros.model.Player</class>
+		<class>fr.rolandgarros.model.Single</class>
+		<class>fr.rolandgarros.model.TimeEvent</class>
+		<class>fr.rolandgarros.model.Training</class>
+
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />

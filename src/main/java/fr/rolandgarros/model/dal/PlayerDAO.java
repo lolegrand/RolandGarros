@@ -24,6 +24,7 @@ public interface PlayerDAO {
 
     void updatePlayer(Player player);
 
+    ArrayList<Player> getPlayers();
     Player getPlayerByName(String firstName, String lastName);
 
     List<Player> getPlayerByGender(String gender);

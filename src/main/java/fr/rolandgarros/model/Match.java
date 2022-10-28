@@ -44,7 +44,7 @@ public abstract class Match extends TimeEvent {
         if (!isTimeEventPassed()) {
             throw new RuntimeException("Match has not been passed yet");
         }
-        //parse scoreOne and return it as list of integers
+        //parse scoreOne AND return it as list of integers
         List<Integer> scoreOne = Collections.emptyList();
         for (String s : this.scoreOne.split(",")) {
             scoreOne.add(Integer.parseInt(s));
@@ -56,7 +56,7 @@ public abstract class Match extends TimeEvent {
         if (!isTimeEventPassed()) {
             throw new RuntimeException("Match has not been passed yet");
         }
-        //parse scoreOne and return it as list of integers
+        //parse scoreOne AND return it as list of integers
         List<Integer> scoreTwo = Collections.emptyList();
         for (String s : this.scoreTwo.split(",")) {
             scoreTwo.add(Integer.parseInt(s));

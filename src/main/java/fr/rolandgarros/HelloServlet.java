@@ -1,5 +1,7 @@
 package fr.rolandgarros;
 
+import fr.rolandgarros.model.Person;
+import fr.rolandgarros.services.PersonService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,9 +13,11 @@ import java.io.PrintWriter;
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
+    private Person person;
 
     public void init() {
         message = "Hello World!";
+        person = PersonService.getPersonByName("fefe", "trainer");
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,6 +27,7 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
+        out.println("<h1>"+person.getLastname()+ ", "+ person.getFirstname() +"</h1>");
         out.println("</body></html>");
     }
 

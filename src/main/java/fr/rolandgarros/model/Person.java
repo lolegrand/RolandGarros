@@ -11,6 +11,18 @@ import javax.persistence.Table;
 
 import javax.persistence.*;
 import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+import jakarta.persistence.TableGenerator;
+
 import java.sql.Date;
 
 @Entity
@@ -24,14 +36,19 @@ public class Person {//@Todo: faut trouver un moyen d'avoir une contrainte uniqu
     private Integer id;
 
 
+    @Column(name = "lastname", nullable = false)
     private  String lastname;
 
+    @Column(name = "firstname", nullable = false)
     private  String firstname;
 
+    @Column(name = "birthdate", nullable = false)
     private  Date birthDate;
 
+    @Column(name = "birthPlace", nullable = false)
     private  String birthPlace;
 
+    @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
