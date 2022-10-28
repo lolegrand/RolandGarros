@@ -1,6 +1,16 @@
-<%@ page import="java.util.List,fr.rolandgarros.model.Player" %>
 <%
-    List<Player> players = (List<Player>) request.getAttribute("players");
+    String role = (String) request.getSession().getAttribute("role");
+
+    boolean isPlayerEditor = role != null && (role.equals("PlayerEditor") || role.equals("Admin"));
+
+    String display = request.getParameter("displayPlayer");
+    String create = request.getParameter("createPlayer");
+    String update = request.getParameter("updatePlayer");
+
+    boolean displayMore = display != null && display.equals("Détails");
+    boolean formToCreatePlayer = create != null && create.equals("Nouveau Joueur");
+    boolean formToUpdatePlayer = update != null && update.equals("Modifier");
+
 %>
 
 <%@ include file="../Template/head.jsp" %>
@@ -10,53 +20,28 @@
 <%@ include file="../Template/header.jsp" %>
 
 <main class="w-100 row">
-    <%
-        String role = (String) request.getSession().getAttribute("role");
-        boolean isPlayerEditor = role != null && (role.equals("PlayerEditor") || role.equals("Admin"));
-        boolean isAdmin = role != null && role.equals("Admin");
-    %>
 
-    <!--
-        By default, display the player
-        - if there is a session, then a role playerEditor or admin, display an update button
-        - if there is a session, then a role admin, display a delete button
-    -->
-    <%
-        for (Player player: players) {
-    %>
-        <input class="w-50" name="see<%=player.getLastname()%>" value="<%=player.getFirstname()%> <%=player.getLastname()%>"/>
-        <%
-            if ( isPlayerEditor ) {
-        %>
-        <input class="w-25 btn-dark" type="submit" name="update${player}" value="Modifier"/>
-        <% } %>
-
-        <% if( isAdmin ){ %>
-        <input class="w-25 btn-red" type="submit" name="delete${player}" value="Supprimer"/>
-        <% } %>
-    <%
-        }
-    %>
-
-    <!--
-        if role == playerEditor || role == admin :
-            - be able to create a player
-    -->
-    <%
-        if( isPlayerEditor ) {
-    %>
-    <%@ include file="/ViewPlayer/CreatePlayer.jsp" %>
+    <% if ( isPlayerEditor ){ %>
+    <nav class="nav w-100 row space-between">
+        <form method="post" name="formNavPlayer">
+            <input class="" type="submit" name="FormToCreatePlayer" value="Nouveau Joueur">
+        </form>
+    </nav>
     <% } %>
 
-    <!--
-        if updatePlayer:
-            - be able to update a player
-    -->
-    <%
-        String updatePlayer = (String) request.getAttribute("updatePlayer");
-        if( updatePlayer != null && updatePlayer.equals("PlayerName") ) {
-    %>
-    <%@ include file="/ViewPlayer/UpdatePlayer.jsp" %>
+    <% if( !formToCreatePlayer && !formToUpdatePlayer){ %>
+        <%@ include file="DisplayPlayers.jsp" %>
+        <% if( displayMore ){ %>
+            <%@ include file="InfoPlayer.jsp" %>
+        <% } %>
+    <% } %>
+
+    <% if( formToCreatePlayer ) { %>
+        <%@ include file="CreatePlayer.jsp" %>
+    <% } %>
+
+    <% if( formToUpdatePlayer) { %>
+        <%@ include file="UpdatePlayer.jsp" %>
     <% } %>
 
 </main>

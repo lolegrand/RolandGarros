@@ -2,6 +2,8 @@ package fr.rolandgarros.model.dal;
 
 import fr.rolandgarros.model.Person;
 
+import java.util.List;
+
 public interface PersonDAO {
 
     void createPerson(Person person);
@@ -11,4 +13,5 @@ public interface PersonDAO {
     void modifyPerson(Person person);
 
     Person getPersonByName(String firstName, String lastName);
+
 }

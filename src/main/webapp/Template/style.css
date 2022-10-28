@@ -127,10 +127,6 @@ footer img {
     top: 33%;
 }
 
-
-
-
-
 #AccueilBody {
     background-image: url("../img/AccueilBG.png");
     background-origin: content-box;
@@ -303,6 +299,11 @@ th {
     background-color: transparent;
     border-style: hidden;
     border-left: solid 1px #000;
+}
+
+td>form{
+    margin: 1rem;
+    padding: 0;
 }
 
 td>input {
