@@ -28,7 +28,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "person")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Person {//@Todo: faut trouver un moyen d'avoir une contrainte unique composé pour rentre unique des joueurs
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE , generator = "player_person_id")
     @TableGenerator(table = "sequences", name = "player_person_id",allocationSize = 1)

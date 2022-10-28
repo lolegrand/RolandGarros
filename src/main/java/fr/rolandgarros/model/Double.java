@@ -28,7 +28,7 @@ public class Double extends Match {
     private  Player teamTwoPlayerTwo;
 
 
-    public Double(String genre,
+    public Double(Gender gender,
                   Timestamp startDate,
                   Court court,
                   Player teamOnePlayerOne,

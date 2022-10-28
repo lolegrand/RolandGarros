@@ -9,7 +9,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Match extends TimeEvent {
 
-    private  String genre;
+    private  Gender gender;
 
     private String scoreOne;
 
@@ -19,9 +19,9 @@ public abstract class Match extends TimeEvent {
     @JoinColumn(name = "courtId")
     private  Court court;
 
-    public Match(String genre, Timestamp startDate, Court court) {
+    public Match(Gender gender, Timestamp startDate, Court court) {
         super(startDate);
-        this.genre = genre;
+        this.gender = gender;
         this.court = court;
     }
 
@@ -35,8 +35,8 @@ public abstract class Match extends TimeEvent {
         this.scoreTwo = scoreTwo;
     }
 
-    public String getGenre() {
-        return genre;
+    public Gender getGender() {
+        return gender;
     }
     public String getType() { return type; }
 

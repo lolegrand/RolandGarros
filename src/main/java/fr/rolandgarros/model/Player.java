@@ -6,7 +6,11 @@ import java.sql.Date;
 @Entity
 @Table(name = "player")
 public class Player extends Person {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE , generator = "player_person_id")
+    @TableGenerator(table = "sequences", name = "player_person_id",allocationSize = 1)
+    @Column(name = "idP")
+    private Integer id;
     private Integer ranking;
 
     private Integer bestRanking;
