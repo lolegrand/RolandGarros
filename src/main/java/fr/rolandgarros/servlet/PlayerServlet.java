@@ -22,6 +22,18 @@ public class PlayerServlet extends HttpServlet {
     Person trainer = null;
     String errorMsg = null;
 
+    String lastname = null;
+    String firstname = null;
+    String gender = null;
+    String nationality = null;
+    Integer ranking = null;
+    Integer bestRanking = null;
+    Integer startCareer = null;
+    Float height = null;
+    Float weight = null;
+    Hand hand = null;
+
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp){
@@ -39,19 +51,35 @@ public class PlayerServlet extends HttpServlet {
 
         // Get all information possible from request
 
-        String lastname = req.getParameter("playerLastname");
-        String firstname = req.getParameter("playerFirstname");
-        String gender = req.getParameter("gender");
-        String nationality = req.getParameter("nationality");
-        Integer ranking = Integer.valueOf(req.getParameter("ranking"));
-        Integer bestRanking = Integer.valueOf(req.getParameter("bestRanking"));
-        Integer startCareer = Integer.valueOf(req.getParameter("startCareer"));
-        Float height = Float.valueOf(req.getParameter("height"));
-        Float weight = Float.valueOf(req.getParameter("weight"));
-        Hand hand = Hand.valueOf(req.getParameter("hand"));
-        // String trainerLastname = req.getParameter("trainer");
-        // String trainerFirstname = req.getParameter("trainer");
-        // trainer = personService.getPersonByName( trainerLastname, trainerFirstname );
+        if ( req.getParameter("playerLastname") != null )
+            lastname = req.getParameter("playerLastname");
+
+        if ( req.getParameter("playerFirstname") != null )
+            firstname = req.getParameter("playerFirstname");
+
+        if ( req.getParameter("gender") != null )
+            gender = req.getParameter("gender");
+
+        if ( req.getParameter("nationality") != null )
+            nationality = req.getParameter("nationality");
+
+        if ( req.getParameter("ranking") != null )
+            ranking = Integer.valueOf(req.getParameter("ranking"));
+
+        if ( req.getParameter("bestRanking") != null )
+            bestRanking = Integer.valueOf(req.getParameter("bestRanking"));
+
+        if ( req.getParameter("startCareer") != null )
+            startCareer = Integer.valueOf(req.getParameter("startCareer"));
+
+        if ( req.getParameter("height") != null )
+            height = Float.valueOf(req.getParameter("height"));
+
+        if ( req.getParameter("weight") != null )
+            weight = Float.valueOf(req.getParameter("weight"));
+
+        if ( req.getParameter("hand") != null )
+            hand = Hand.valueOf(req.getParameter("hand"));
 
 
         // Get what the user wants to do
