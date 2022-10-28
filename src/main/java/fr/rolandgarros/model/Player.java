@@ -7,6 +7,7 @@ import java.time.Year;
 public class Player extends Person {
 
     private String gender;
+
     private Integer ranking;
 
     private Integer bestRanking;

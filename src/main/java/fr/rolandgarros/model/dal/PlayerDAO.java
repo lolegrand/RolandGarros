@@ -1,11 +1,12 @@
 package fr.rolandgarros.model.dal;
 
-import fr.rolandgarros.rolandgarros.model.Hand;
-import fr.rolandgarros.rolandgarros.model.Person;
-import fr.rolandgarros.rolandgarros.model.Player;
+import fr.rolandgarros.model.Hand;
+import fr.rolandgarros.model.Person;
+import fr.rolandgarros.model.Player;
 import fr.rolandgarros.model.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface PlayerDAO {
 
@@ -17,21 +18,22 @@ public interface PlayerDAO {
 
     Player getPlayerByName(String firstName, String lastName);
 
-    ArrayList<Player> getPlayerByGender(String gender);
+    List<Player> getPlayerByGender(String gender);
 
-    ArrayList<Player> getPlayerByRank(Integer rank);
+    List<Player> getPlayerByRank(Integer rank);
 
-    ArrayList<Player> getPlayerByNationality(String nationality);
+    List<Player> getPlayerByNationality(String nationality);
 
-    ArrayList<Player> getPlayerByHeight(Float height);
+    List<Player> getPlayerByHeight(Float height);
 
-    ArrayList<Player> getPlayerByWeight(Float weight);
+    List<Player> getPlayerByWeight(Float weight);
 
-    ArrayList<Player> getPlayerByStartCareer(Integer startCareer);
+    List<Player> getPlayerByStartCareer(Integer startCareer);
 
-    ArrayList<Player> getPlayerByHand(Hand hand);
+    List<Player> getPlayerByHand(Hand hand);
 
-    ArrayList<Player> getPlayerByTrainer(Person trainer);
+    List<Player> getPlayerByTrainer(Person trainer);
 
+    List<Player> getAllPlayer();
 
 }

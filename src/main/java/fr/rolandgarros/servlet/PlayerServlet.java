@@ -1,5 +1,6 @@
 package fr.rolandgarros.servlet;
 
+import fr.rolandgarros.model.Player;
 import fr.rolandgarros.services.PlayerService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 public class PlayerServlet extends HttpServlet {
 
@@ -25,20 +27,27 @@ public class PlayerServlet extends HttpServlet {
 
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) {
         String page = "/ViewPlayer/Players.jsp";
-/*
+
+        /*
         if ( req.getParameter("submitFormCreatePlayer").equals("Nouveau Joueur") ){
-            playerService.createPlayer();
+            //playerService.createPlayer();
         }
 
         if ( req.getParameter("submitFormUpdatePlayer").equals("Mettre à jour") ){
-            playerService.updatePlayer();
+            //playerService.updatePlayer();
         }
 
         if ( req.getParameter("deletePlayer").equals("Supprimer") ){
-            playerService.deletePlayer();
+            //playerService.deletePlayer();
         }
-*/
+         */
+
+        List<Player> players = playerService.getAllPlayer();
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+        req.setAttribute("players", players);
+        //req.getSession().setAttribute("role", "Admin");
+
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException | IOException e) {
