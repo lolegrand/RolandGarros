@@ -11,7 +11,7 @@
         <% if ( session.getAttribute("login") == null ) { %>
         <li><a href="/Connection">Connexion</a></li>
         <% } else { %>
-        <li><a href="/Deconnexion">Déconnexion</a></li>
+        <li><a href="/Disconnection">Déconnexion</a></li>
         <% } %>
     </ul>
 

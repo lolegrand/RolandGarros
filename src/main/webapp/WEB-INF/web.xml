@@ -11,7 +11,6 @@
         </jsp-property-group>
     </jsp-config>
 
-
     <welcome-file-list>
         <welcome-file>index</welcome-file>
     </welcome-file-list>
@@ -70,5 +69,13 @@
         <url-pattern>/Statistics</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Disconnection</servlet-name>
+        <servlet-class>fr.rolandgarros.servlet.DisconnectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Disconnection</servlet-name>
+        <url-pattern>/Disconnection</url-pattern>
+    </servlet-mapping>
 
 </web-app>
