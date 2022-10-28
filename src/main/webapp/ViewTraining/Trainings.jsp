@@ -1,3 +1,12 @@
+<%@ page import="fr.rolandgarros.model.Training" %>
+<%@ page import="fr.rolandgarros.model.Role" %>
+
+<%
+    Role role = (Role) request.getSession().getAttribute("role");
+    Boolean isTrainer = role == Role.TRAINER || role == Role.ADMINISTRATOR;
+    Boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
+%>
+
 <%@ include file="../Template/head.jsp" %>
 
 <body class="w-100 row">
@@ -8,19 +17,16 @@
 
     <!-- By default, display the training sessions scheduled -->
 
-
     <!-- if role == trainer || role == admin -->
-    <% if( request.getSession().getAttribute("role").equals("Trainer")
-            || request.getSession().getAttribute("role").equals("Admin") )
+    <% if( isTrainer )
     { %>
-    <%@ include file="CreateTraining.jsp" %>
+    <%@ include file="/ViewTraining/CreateTraining.jsp" %>
     <% } %>
 
     <!-- if role == matchEditor || role == admin -->
-    <% if( request.getSession().getAttribute("role").equals("MatchEditor")
-            || request.getSession().getAttribute("role").equals("Admin") )
+    <% if( isMatchEditor )
     { %>
-    <%@ include file="TrainingValidation.jsp" %>
+    <%@ include file="/ViewTraining/TrainingValidation.jsp" %>
     <% } %>
 
 </main>

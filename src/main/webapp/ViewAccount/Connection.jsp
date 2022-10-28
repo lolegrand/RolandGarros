@@ -16,7 +16,7 @@
         <form class="row space-around" method="post" name="formConnection">
             <h2 class="w-100 txt-center">Connexion</h2>
             <input class="w-100" type="text" name="Login" placeholder="Login">
-            <input class="w-100" type="password" name="Password" placeholder="PassWord">
+            <input class="w-100" type="password" name="Password" placeholder="Password">
 
             <input class="w-25 btn-blue" type="submit" name="submitFormConnection">
 

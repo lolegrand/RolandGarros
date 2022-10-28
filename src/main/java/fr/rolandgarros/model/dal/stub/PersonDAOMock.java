@@ -61,4 +61,9 @@ public class PersonDAOMock implements PersonDAO {
         }
         return null;
     }
+
+    @Override
+    public List<Person> getAllPerson() {
+        return persons;
+    }
 }

@@ -14,4 +14,6 @@ public interface PersonDAO {
 
     Person getPersonByName(String firstName, String lastName);
 
+
+    List<Person> getAllPerson();
 }
