@@ -127,6 +127,42 @@ footer img {
     top: 33%;
 }
 
+
+
+
+
+#AccueilBody {
+    background-image: url("../img/AccueilBG.png");
+    background-origin: content-box;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 110%;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 992px) {
+    #AccueilBody {
+        background-size: 200%;
+    }
+}
+
+@media (max-width: 500px) {
+    #AccueilBody {
+        background-position: center;
+        left: 10%;
+        background-size: 400%;
+    }
+}
+
+#AccueilMain h1 {
+    position: absolute;
+    top: 33%;
+    padding: 5rem;
+    color: white;
+    border: dashed white;
+    border-width: 5px 0
+}
+
 /************************************
 
        Titles global definition
