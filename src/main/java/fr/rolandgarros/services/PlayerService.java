@@ -15,39 +15,39 @@ public class PlayerService {
 
         private final PlayerDAO playerDAO = new PlayerDAOMock();
 
-        public Player getPlayerByName(String lastName, String firstName) {
-                return playerDAO.getPlayerByName(firstName, lastName);
-        }
+    public static  void createPlayer(Player player){
+        playerDAO.createPlayer(player);
+    }
+    public static  void deletePlayer(Player player){
+        playerDAO.deletePlayer(player);
+    }
+    public static  void modifyPlayer(Player player){
+        playerDAO.modifyPlayer(player);
+    }
+    public static  Player getPlayerByName(String lastName, String firstName){
+        return playerDAO.getPlayerByName(lastName, firstName);
+    }
+    public static ArrayList<Player> getALLPlayers(){
+        return playerDAO.getAllPlayers();
+    }
+    public static ArrayList<Player> getPlayersByGender(Gender gender) {
+        return playerDAO.getPlayersByGender(gender);
+    }
+    public static ArrayList<Player> getPlayersByRank(Integer rank) {
+       return playerDAO.getPlayersByRank(rank);
+    }
+    public static ArrayList<Player> getPlayersByNationality(String nationality) {
+        return playerDAO.getPlayersByNationality(nationality);
+    }
+    public static ArrayList<Player> getPlayersByHeight(Float height) {
 
-        public List<Player> getAllPlayer() {
-                return playerDAO.getAllPlayer();
-        }
+      return playerDAO.getPlayersByHeight(height);
+    }
+    public static ArrayList<Player> getPlayersByWeight(Float weight) {
 
-
-        public void create(Player player){ playerDAO.createPlayer( player ); }
-
-        public void update(Player player){ playerDAO.updatePlayer( player );}
-
-        public void delete(Player player){ playerDAO.deletePlayer( player ); }
-
-
-        public boolean checkGender( String gender ){
-                return gender.equals("Male") || gender.equals("Female");
-        }
-
-        public boolean checkBirthDate( Date birthdate ){
-                Date fifteenYearsAgo = new Date((System.currentTimeMillis()/1000/3600/24/365) - 15);
-                return !birthdate.before(fifteenYearsAgo);
-        }
-
-        public boolean checkBirthPlace( String birthplace ){
-                return !birthplace.isEmpty();
-        }
-
-        public boolean checkRanking( Integer ranking ){
-                return ranking.compareTo(0) != -1 && ranking.compareTo(0) != 0;
-        }
-
+      return playerDAO.getPlayersByWeight(weight);
+    }
+    public static ArrayList<Player> getPlayersByStartCareer(Date startCareer) {
         public boolean checkBestRanking( Integer bestRanking ){
                 return bestRanking.compareTo(0) != -1 && bestRanking.compareTo(0) != 0;
         }
@@ -60,6 +60,14 @@ public class PlayerService {
                 return height.compareTo(150f) != -1 && height.compareTo(150f) != 0 ;
         }
 
+       return playerDAO.getPlayersByStartCareer(startCareer);
+    }
+    public static ArrayList<Player> getPlayersByHand(Hand hand) {
+         return playerDAO.getPlayersByHand(hand);
+    }
+    public static ArrayList<Player> getPlayersByTrainer(Person trainer) {
+       return playerDAO.getPlayersByTrainer(trainer);
+    }
         public boolean checkWeight( Float weight ){
                 return weight.compareTo(40f) != -1 && weight.compareTo(40f) != 0 ;
         }

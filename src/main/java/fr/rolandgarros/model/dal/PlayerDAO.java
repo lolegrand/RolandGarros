@@ -15,16 +15,15 @@ import fr.rolandgarros.model.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.List;
 
 public interface PlayerDAO {
 
     void createPlayer(Player player);
-
     void deletePlayer(Player player);
 
     void updatePlayer(Player player);
 
-    ArrayList<Player> getPlayers();
     Player getPlayerByName(String firstName, String lastName);
 
     List<Player> getPlayerByGender(String gender);

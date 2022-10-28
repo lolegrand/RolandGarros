@@ -1,4 +1,3 @@
-# syntaxe mysql
 DROP TABLE IF EXISTS account;
 CREATE TABLE account (
                          idAccount INT NOT NULL AUTO_INCREMENT,
@@ -93,13 +92,13 @@ CREATE TABLE sequences (
                            PRIMARY KEY (sequence_name)
 );
 
-truncate table sequences;
-truncate table account;
-truncate table person;
-truncate table player;
-truncate table doubleGame;
-truncate table singleGame;
-truncate table trainingGame;
-truncate table court;
+# truncate table sequences;
+# truncate table account;
+# truncate table person;
+# truncate table player;
+# truncate table doubleGame;
+# truncate table singleGame;
+# truncate table trainingGame;
+# truncate table court;
 
 
