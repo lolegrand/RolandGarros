@@ -1,6 +1,6 @@
 package fr.rolandgarros.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
