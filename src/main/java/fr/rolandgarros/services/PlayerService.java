@@ -14,77 +14,76 @@ import java.util.List;
 
 public class PlayerService {
 
-        private final PlayerDAO playerDAO = new PlayerDAOMock();
+    private static final PlayerDAO playerDAO = new PlayerDAOMock();
 
-    public static  void createPlayer(Player player){
+    public  void createPlayer(Player player){
         playerDAO.createPlayer(player);
     }
-    public static  void deletePlayer(Player player){
+    public  void deletePlayer(Player player){
         playerDAO.deletePlayer(player);
     }
-    public static  void modifyPlayer(Player player){
-        playerDAO.modifyPlayer(player);
+    public  void modifyPlayer(Player player){
+        playerDAO.updatePlayer(player);
     }
-    public static  Player getPlayerByName(String lastName, String firstName){
-        return playerDAO.getPlayerByName(lastName, firstName);
+    public  Player getPlayerByName(String lastName, String firstName){
+        return playerDAO.getPlayerByName(firstName, lastName);
     }
-    public static ArrayList<Player> getALLPlayers(){
-        return playerDAO.getAllPlayers();
+    public List<Player> getAllPlayers(){
+        return playerDAO.getAllPlayer();
     }
-    public static ArrayList<Player> getPlayersByGender(Gender gender) {
-        return playerDAO.getPlayersByGender(gender);
+    public List<Player> getPlayersByGender(Gender gender) {
+        return playerDAO.getPlayerByGender(gender);
     }
-    public static ArrayList<Player> getPlayersByRank(Integer rank) {
-       return playerDAO.getPlayersByRank(rank);
+    public List<Player> getPlayersByRank(Integer rank) {
+       return playerDAO.getPlayerByRank(rank);
     }
-    public static ArrayList<Player> getPlayersByNationality(String nationality) {
-        return playerDAO.getPlayersByNationality(nationality);
+    public List<Player> getPlayersByNationality(String nationality) {
+        return playerDAO.getPlayerByNationality(nationality);
     }
-    public static ArrayList<Player> getPlayersByHeight(Float height) {
+    public List<Player> getPlayersByHeight(Float height) {
+      return playerDAO.getPlayerByHeight(height);
+    }
+    public List<Player> getPlayersByWeight(Float weight) {
+      return playerDAO.getPlayerByWeight(weight);
+    }
+    public List<Player> getPlayersByStartCareer(Date startCareer) {
+        return playerDAO.getPlayerByStartCareer(startCareer);
+    }
 
-      return playerDAO.getPlayersByHeight(height);
+    public List<Player> getPlayersByHand(Hand hand) {
+        return playerDAO.getPlayerByHand(hand);
     }
-    public static ArrayList<Player> getPlayersByWeight(Float weight) {
-
-      return playerDAO.getPlayersByWeight(weight);
+    public List<Player> getPlayersByTrainer(Person trainer) {
+        return playerDAO.getPlayerByTrainer(trainer);
     }
-    public static ArrayList<Player> getPlayersByStartCareer(Date startCareer) {
-        public boolean checkBestRanking( Integer bestRanking ){
-                return bestRanking.compareTo(0) != -1 && bestRanking.compareTo(0) != 0;
-        }
 
-        public boolean checkNationality( String nationality ){
-                return !nationality.isEmpty();
-        }
-
-        public boolean checkHeight( Float height ){
-                return height.compareTo(150f) != -1 && height.compareTo(150f) != 0 ;
-        }
-
-       return playerDAO.getPlayersByStartCareer(startCareer);
+    public boolean checkBestRanking( Integer bestRanking ){
+        return bestRanking.compareTo(0) != -1 && bestRanking.compareTo(0) != 0;
     }
-    public static ArrayList<Player> getPlayersByHand(Hand hand) {
-         return playerDAO.getPlayersByHand(hand);
+
+    public boolean checkNationality( String nationality ){
+        return !nationality.isEmpty();
     }
-    public static ArrayList<Player> getPlayersByTrainer(Person trainer) {
-       return playerDAO.getPlayersByTrainer(trainer);
+
+    public boolean checkHeight( Float height ){
+        return height.compareTo(150f) != -1 && height.compareTo(150f) != 0 ;
     }
-        public boolean checkWeight( Float weight ){
-                return weight.compareTo(40f) != -1 && weight.compareTo(40f) != 0 ;
-        }
 
-        public boolean checkStartCareer( Date birthdate, Integer startCareer ){
-                Date sc = new Date(startCareer);
-                return birthdate.compareTo(sc) != 0 && birthdate.compareTo(sc) != 1;
-        }
+    public boolean checkWeight( Float weight ){
+        return weight.compareTo(40f) != -1 && weight.compareTo(40f) != 0 ;
+    }
 
-        public boolean checkHand( Hand hand ){
-                return hand.equals(Hand.LEFT_HANDED)
-                        || hand.equals(Hand.RIGHT_HANDED)
-                        || hand.equals(Hand.AMBIDEXTROUS);
-        }
+    public boolean checkStartCareer( Date birthdate, Date startCareer ){
+        return birthdate.compareTo(startCareer) != 0 && birthdate.compareTo(startCareer) != 1;
+    }
 
-        public boolean checkTrainer( Person trainer ){
+    public boolean checkHand( Hand hand ){
+        return hand.equals(Hand.LEFT_HANDED)
+                || hand.equals(Hand.RIGHT_HANDED)
+                || hand.equals(Hand.AMBIDEXTROUS);
+    }
+
+    public boolean checkTrainer( Person trainer ){
                 return trainer != null;
         }
 }

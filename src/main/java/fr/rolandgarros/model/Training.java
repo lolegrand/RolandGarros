@@ -1,29 +1,35 @@
 package fr.rolandgarros.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import java.sql.Timestamp;
 
-@Entity
-@Table(name = "trainingGame")
-public class Training extends TimeEvent{
-    @OneToOne
-    @JoinColumn(name = "bookerId")
+public class Training extends TimeEvent {
+
     private Person booker;
 
-    public Training(Timestamp startDate, Person booker) {
+    private Court court;
+
+    private Boolean isValidated = null;
+
+    public Training(Timestamp startDate, Person booker, Court court) {
         super(startDate);
         this.booker = booker;
+        this.court = court;
     }
-
-    public Training() {}
 
     public Person getBooker() {
         return booker;
     }
-    public void setBooker(Person booker) {
-        this.booker = booker;
+
+    public Court getCourt() {
+        return court;
     }
+
+    public Boolean getValidated() {
+        return isValidated;
+    }
+
+    public void setValidated(Boolean validated) {
+        isValidated = validated;
+    }
+
 }

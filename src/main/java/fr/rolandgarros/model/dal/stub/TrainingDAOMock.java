@@ -1,5 +1,6 @@
 package fr.rolandgarros.model.dal.stub;
 
+import fr.rolandgarros.core.Utils;
 import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Training;
@@ -8,11 +9,15 @@ import fr.rolandgarros.model.dal.PersonDAO;
 import fr.rolandgarros.model.dal.TrainingDAO;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class TrainingDAOMock implements TrainingDAO {
+
+    private final DateFormat df = Utils.dateFormat;
 
     private final List<Training> trainings = new ArrayList<>();
 
@@ -23,28 +28,28 @@ public class TrainingDAOMock implements TrainingDAO {
         List<Person> persons = personDAO.getAllPerson();
         trainings.add(
                 new Training(
-                        Date.valueOf("2022-01-14"),
+                        Timestamp.valueOf("2022-01-14 01:01:01.0"),
                         persons.get(0),
                         courts.get(1)
                 )
         );
         trainings.add(
                 new Training(
-                        Date.valueOf("2022-01-15"),
+                        Timestamp.valueOf("2022-01-15 01:01:01.0"),
                         persons.get(0),
                         courts.get(1)
                 )
         );
         trainings.add(
                 new Training(
-                        Date.valueOf("2022-01-16"),
+                        Timestamp.valueOf("2022-01-16 01:01:01.0"),
                         persons.get(2),
                         courts.get(3)
                 )
         );
         trainings.add(
                 new Training(
-                        Date.valueOf("2022-01-13"),
+                        Timestamp.valueOf("2022-01-13 01:01:01.0"),
                         persons.get(2),
                         courts.get(3)
                 ) {{

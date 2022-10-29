@@ -26,7 +26,7 @@ public interface PlayerDAO {
 
     Player getPlayerByName(String firstName, String lastName);
 
-    List<Player> getPlayerByGender(String gender);
+    List<Player> getPlayerByGender(Gender gender);
 
     List<Player> getPlayerByRank(Integer rank);
 
@@ -36,7 +36,7 @@ public interface PlayerDAO {
 
     List<Player> getPlayerByWeight(Float weight);
 
-    List<Player> getPlayerByStartCareer(Integer startCareer);
+    List<Player> getPlayerByStartCareer(Date startCareer);
 
     List<Player> getPlayerByHand(Hand hand);
 

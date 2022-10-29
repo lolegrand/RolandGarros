@@ -26,4 +26,19 @@ public class AccountDAOMock implements AccountDAO {
         }
         return null;
     }
+
+    @Override
+    public void createAccount(Account account) {
+        accounts.add(account);
+    }
+
+    @Override
+    public void updateAccount(Account account) {
+        // Not implemented in Mock class.
+    }
+
+    @Override
+    public void deleteAccount(Account account) {
+        accounts.remove(account);
+    }
 }

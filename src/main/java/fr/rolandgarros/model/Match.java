@@ -41,7 +41,6 @@ public abstract class Match extends TimeEvent {
     public Gender getGender() {
         return gender;
     }
-    public String getType() { return type; }
 
     public List<Integer> getScoreOne() {
         if (!isTimeEventPassed()) {

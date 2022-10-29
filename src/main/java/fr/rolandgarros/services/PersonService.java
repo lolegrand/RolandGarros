@@ -9,27 +9,22 @@ import java.util.ArrayList;
 
 public class PersonService {
 
-//    private static final PersonDAO PersonDAO = new PersonDAOMock();
-    private static final PersonDAO PersonDAO = new PersonDAOImpl();
+    private static final PersonDAO personDAO = new PersonDAOMock();
 
     public void createPerson(Person person){
-        PersonDAO.createPerson(person);
+        personDAO.createPerson(person);
     }
 
     public void deletePerson(Person person){
-        PersonDAO.deletePerson(person);
+        personDAO.deletePerson(person);
     }
 
     public void modifyPerson(Person person){
-        PersonDAO.modifyPerson(person);
+        personDAO.modifyPerson(person);
     }
 
     public Person getPersonByName(String lastName, String firstName){
-        return PersonDAO.getPersonByName(lastName, firstName);
-    }
-
-    public Person getPersonByName(String lastName, String firstName) {
-        return personDAO.getPersonByName(firstName, lastName);
+        return personDAO.getPersonByName(lastName, firstName);
     }
 
 }

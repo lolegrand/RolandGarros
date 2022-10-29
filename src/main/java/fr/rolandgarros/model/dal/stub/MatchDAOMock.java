@@ -1,7 +1,10 @@
 package fr.rolandgarros.model.dal.stub;
 
 import fr.rolandgarros.model.Court;
+import fr.rolandgarros.model.Double;
+import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Match;
+import fr.rolandgarros.model.Single;
 import fr.rolandgarros.model.dal.MatchDAO;
 
 import java.sql.Date;
@@ -58,8 +61,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getSimpleMen() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Simple" )
-                    && match.getGenre().equals( "Male" )
+            if ( match instanceof Single
+                    && match.getGender().equals( Gender.MALE )
             ) {
                 matches.add( match );
             }
@@ -70,8 +73,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getDoubleMen() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Double" )
-                    && match.getGenre().equals( "Male" )
+            if ( match instanceof Double
+                    && match.getGender().equals( Gender.MALE )
             ) {
                 matches.add( match );
             }
@@ -82,8 +85,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getSimpleWomen() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Simple" )
-                    && match.getGenre().equals( "Female" )
+            if ( match instanceof Single
+                    && match.getGender().equals( Gender.FEMALE )
             ) {
                 matches.add( match );
             }
@@ -94,8 +97,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getDoubleWomen() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Double" )
-                    && match.getGenre().equals( "Female" )
+            if ( match instanceof Double
+                    && match.getGender().equals( Gender.FEMALE )
             ) {
                 matches.add( match );
             }
@@ -106,8 +109,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getSimpleMenToCome() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Simple" )
-                    && match.getGenre().equals( "Male" )
+            if ( match instanceof Single
+                    && match.getGender().equals( Gender.MALE )
                     && match.getStartDate().after( today )
             ) {
                 matches.add( match );
@@ -119,8 +122,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getDoubleMenToCome() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Double" )
-                    && match.getGenre().equals( "Male" )
+            if ( match instanceof Double
+                    && match.getGender().equals( Gender.MALE )
                     && match.getStartDate().after( today )
             ) {
                 matches.add( match );
@@ -132,8 +135,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getSimpleWomenToCome() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Simple" )
-                    && match.getGenre().equals( "Female" )
+            if ( match instanceof Single
+                    && match.getGender().equals( Gender.FEMALE )
                     && match.getStartDate().after( today )
             ) {
                 matches.add( match );
@@ -145,8 +148,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getDoubleWomenToCome() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Double" )
-                    && match.getGenre().equals( "Female" )
+            if ( match instanceof Double
+                    && match.getGender().equals( Gender.FEMALE )
                     && match.getStartDate().after( today )
             ) {
                 matches.add( match );
@@ -158,8 +161,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getSimpleMenPast() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Simple" )
-                    && match.getGenre().equals( "Male" )
+            if ( match instanceof Single
+                    && match.getGender().equals( Gender.MALE )
                     && match.getStartDate().before( today )
             ) {
                 matches.add( match );
@@ -171,8 +174,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getDoubleMenPast() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Double" )
-                    && match.getGenre().equals( "Male" )
+            if ( match instanceof Double
+                    && match.getGender().equals( Gender.MALE )
                     && match.getStartDate().before( today )
             ) {
                 matches.add( match );
@@ -184,8 +187,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getSimpleWomenPast() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Simple" )
-                    && match.getGenre().equals( "Female" )
+            if ( match instanceof Single
+                    && match.getGender().equals( Gender.FEMALE )
                     && match.getStartDate().before( today )
             ) {
                 matches.add( match );
@@ -197,8 +200,8 @@ public class MatchDAOMock implements MatchDAO {
     @Override
     public List<Match> getDoubleWomenPast() {
         for ( Match match : allMatches ) {
-            if ( match.getType().equals( "Double" )
-                    && match.getGenre().equals( "Female" )
+            if ( match instanceof Double
+                    && match.getGender().equals( Gender.FEMALE )
                     && match.getStartDate().before( today )
             ) {
                 matches.add( match );

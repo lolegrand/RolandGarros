@@ -1,5 +1,7 @@
 package fr.rolandgarros.servlet;
 
+import com.sun.tools.javac.jvm.Gen;
+import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Hand;
 import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;
@@ -28,11 +30,11 @@ public class PlayerServlet extends HttpServlet {
     String firstname = null;
     Date birthdate = null;
     String birthplace = null;
-    String gender = null;
+    Gender gender = null;
     String nationality = null;
     Integer ranking = null;
     Integer bestRanking = null;
-    Integer startCareer = null;
+    Date startCareer = null;
     Float height = null;
     Float weight = null;
     Hand hand = null;
@@ -55,35 +57,52 @@ public class PlayerServlet extends HttpServlet {
 
         // Get all information possible from request
 
-        if ( req.getParameter("playerLastname") != null )
+        if ( req.getParameter("playerLastname") != null ) {
             lastname = req.getParameter("playerLastname");
+        }
 
-        if ( req.getParameter("playerFirstname") != null )
+        if ( req.getParameter("playerFirstname") != null ) {
             firstname = req.getParameter("playerFirstname");
+        }
 
-        if ( req.getParameter("gender") != null )
-            gender = req.getParameter("gender");
+        if ( req.getParameter("gender") != null ) {
+            String genderStr = req.getParameter("gender");
+            if (genderStr.equals("Male")) {
+                gender = Gender.MALE;
+            } else {
+                gender = Gender.FEMALE;
+            }
 
-        if ( req.getParameter("nationality") != null )
+        }
+
+        if ( req.getParameter("nationality") != null ) {
             nationality = req.getParameter("nationality");
+        }
 
-        if ( req.getParameter("ranking") != null )
+        if ( req.getParameter("ranking") != null ) {
             ranking = Integer.valueOf(req.getParameter("ranking"));
+        }
 
-        if ( req.getParameter("bestRanking") != null )
+        if ( req.getParameter("bestRanking") != null ) {
             bestRanking = Integer.valueOf(req.getParameter("bestRanking"));
+        }
 
-        if ( req.getParameter("startCareer") != null )
-            startCareer = Integer.valueOf(req.getParameter("startCareer"));
+        if ( req.getParameter("startCareer") != null ) {
+            int startCareerInt = Integer.parseInt(req.getParameter("startCareer"));
+            startCareer = new Date(startCareerInt);
+        }
 
-        if ( req.getParameter("height") != null )
+        if ( req.getParameter("height") != null ) {
             height = Float.valueOf(req.getParameter("height"));
+        }
 
-        if ( req.getParameter("weight") != null )
+        if ( req.getParameter("weight") != null ) {
             weight = Float.valueOf(req.getParameter("weight"));
+        }
 
-        if ( req.getParameter("hand") != null )
+        if ( req.getParameter("hand") != null ) {
             hand = Hand.valueOf(req.getParameter("hand"));
+        }
 
 
         // Get what the user wants to do
@@ -123,7 +142,7 @@ public class PlayerServlet extends HttpServlet {
         boolean formCreatePlayer = req.getParameter("submitFormCreatePlayer") != null;
 
         if ( formCreatePlayer ){
-
+/*
             if ( !playerService.checkBirthDate( birthdate ) ){
                 errorMsg = "Date de naissance invalide.";
             }
@@ -139,7 +158,7 @@ public class PlayerServlet extends HttpServlet {
             if ( !playerService.checkRanking( ranking ) ){
                 errorMsg = "Classement invalide.";
             }
-
+*/
             if ( !playerService.checkBestRanking( bestRanking ) ){
                 errorMsg = "Meilleur rang invalide.";
             }
@@ -173,9 +192,9 @@ public class PlayerServlet extends HttpServlet {
             }
             else {
                 player = new Player(
-                        lastname, firstname, gender, birthdate, birthplace, ranking, bestRanking,
-                        nationality, height, weight, startCareer, hand, trainer);
-                playerService.create(player);
+                        lastname, firstname, birthdate, birthplace, ranking, bestRanking,
+                        nationality, height, weight, startCareer, hand, trainer, gender);
+                playerService.createPlayer(player);
 
                 successMsg = "Création réussie.";
                 req.setAttribute("CreatePlayerSuccess", successMsg);
@@ -185,11 +204,11 @@ public class PlayerServlet extends HttpServlet {
         boolean formUpdatePlayer = req.getParameter("submitFormUpdatePlayer") != null;
 
         if ( formUpdatePlayer ){
-
+/*
             if ( !playerService.checkRanking( ranking ) ){
                 errorMsg = "Classement invalide.";
             }
-
+*/
             if ( !playerService.checkWeight( weight ) ){
                 errorMsg = "Poids invalide.";
             }
@@ -203,7 +222,7 @@ public class PlayerServlet extends HttpServlet {
                 player.setWeight( weight );
                 player.setRanking( ranking );
 
-                playerService.update(player);
+                playerService.modifyPlayer(player);
 
                 successMsg = "Mise à jour réussie.";
                 req.setAttribute("UpdatePlayerSuccess", successMsg);
@@ -215,18 +234,17 @@ public class PlayerServlet extends HttpServlet {
 
         if ( formDeletePlayer ){
             player = playerService.getPlayerByName(lastname, firstname);
-            playerService.delete(player);
+            playerService.deletePlayer(player);
 
             successMsg = "Suppression réussie.";
             req.setAttribute("DeletePlayerSuccess", successMsg);
         }
 
 
-        List<Player> players = playerService.getAllPlayer();
+        List<Player> players = playerService.getAllPlayers();
         req.setAttribute("players", players);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException | IOException e){

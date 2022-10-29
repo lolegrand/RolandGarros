@@ -1,29 +1,10 @@
 package fr.rolandgarros.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-
-import javax.persistence.*;
-import jakarta.persistence.*;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.Table;
 import jakarta.persistence.TableGenerator;
 
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
@@ -53,7 +34,7 @@ public class Person {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    public Person(String lastname, String firstname, Date birthDate, String birthPlace) {
+    public Person(String lastname, String firstname, Date birthDate, String birthPlace, Gender gender) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.birthDate = birthDate;

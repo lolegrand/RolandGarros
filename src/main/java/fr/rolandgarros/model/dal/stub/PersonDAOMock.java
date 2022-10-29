@@ -1,6 +1,7 @@
 package fr.rolandgarros.model.dal.stub;
 
 import fr.rolandgarros.core.Utils;
+import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.dal.PersonDAO;
 
@@ -20,17 +21,23 @@ public class PersonDAOMock implements PersonDAO {
                     "Benhabiles",
                     "Arik ",
                     new Date(df.parse("05-02-1965 00:00").getTime()),
-                    "Alger"));
+                    "Alger",
+                    Gender.MALE
+                    ));
             add(new Person(
                     "Béranger",
                     "Olivier ",
                     new Date(df.parse("25-07-1967 00:00").getTime()),
-                    "Tour"));
+                    "Tour",
+                    Gender.MALE
+            ));
             add(new Person(
                     "Contet",
                     "Daniel ",
                     new Date(df.parse("03-11-1943 00:00").getTime()),
-                    "Tour"));
+                    "Tour",
+                    Gender.FEMALE
+            ));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }

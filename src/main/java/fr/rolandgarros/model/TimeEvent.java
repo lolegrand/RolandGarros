@@ -12,6 +12,8 @@ import java.sql.Date;
 import java.util.Random;
 import javax.persistence.*;
 import jakarta.persistence.*;
+import jakarta.persistence.Column;
+
 import java.sql.Timestamp;
 
 @Entity

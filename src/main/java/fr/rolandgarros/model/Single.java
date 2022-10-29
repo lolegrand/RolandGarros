@@ -18,8 +18,8 @@ public class Single extends Match {
     @JoinColumn(name = "playerTwoId")
     private Player playerTwo;
 
-    public Single(String genre, String type, Date startDate, Court court, Player playerOne, Player playerTwo) {
-        super(genre, startDate, type, court);
+    public Single(Gender gender, Timestamp startDate, Court court, Player playerOne, Player playerTwo) {
+        super(gender, startDate, court);
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
     }

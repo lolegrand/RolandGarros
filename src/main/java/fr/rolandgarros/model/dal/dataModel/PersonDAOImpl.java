@@ -9,6 +9,7 @@ import jakarta.persistence.Persistence;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PersonDAOImpl implements PersonDAO {
 
@@ -74,7 +75,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public ArrayList<Person> getAllTrainers() {
+    public List<Person> getAllPerson() {
         ArrayList<Person> trainers = new ArrayList<Person>();
         try{
             entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");

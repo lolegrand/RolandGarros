@@ -36,7 +36,7 @@ public class Double extends Match {
                   Player teamTwoPlayerOne,
                   Player teamTwoPlayerTwo
     ) {
-        super(genre, startDate, type, court);
+        super(gender, startDate, court);
         this.teamOnePlayerOne = teamOnePlayerOne;
         this.teamOnePlayerTwo = teamOnePlayerTwo;
         this.teamTwoPlayerOne = teamTwoPlayerOne;

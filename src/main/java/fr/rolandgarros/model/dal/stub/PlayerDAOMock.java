@@ -1,5 +1,6 @@
 package fr.rolandgarros.model.dal.stub;
 
+import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Hand;
 import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;
@@ -22,15 +23,72 @@ public class PlayerDAOMock implements PlayerDAO {
     Date P3Birth = Date.valueOf("1998-12-22");
     Date P4Birth = Date.valueOf("1996-02-11");
 
-    Person P1Coach = new Person("FERRERO", "Juan Carlos", C1Birth,"BOUYAH");
-    Person P2Coach = new Person("MOYA", "Carlos", C2Birth,"BOUYAH");
-    Person P3Coach = new Person("RUUD", "Christian", C3Birth,"BOUYAH");
-    Person P4Coach = new Person("CERVARA", "Gilles", C4Birth,"BOUYAH");
+    Person P1Coach = new Person("FERRERO", "Juan Carlos", C1Birth,"BOUYAH", Gender.MALE);
+    Person P2Coach = new Person("MOYA", "Carlos", C2Birth,"BOUYAH", Gender.FEMALE);
+    Person P3Coach = new Person("RUUD", "Christian", C3Birth,"BOUYAH", Gender.MALE);
+    Person P4Coach = new Person("CERVARA", "Gilles", C4Birth,"BOUYAH", Gender.FEMALE);
 
-    Player p1 = new Player("ALCARNAZ", "Carlos", "Male", P1Birth, "ElPalmar, Murcia, Spain", 1, 1, "Spanish", 182f, 74f, 2018, Hand.RIGHT_HANDED, P1Coach);
-    Player p2 = new Player("NADAL", "Rafael", "Male", P2Birth, "Manacor, Mallorca, Spain", 2, 1, "Spanish", 185f, 84f, 2001, Hand.LEFT_HANDED, P2Coach);
-    Player p3 = new Player("RUUD", "Casper", "Male", P3Birth, "Oslo, Norway", 3, 2, "Norwegian", 182f, 77f, 2015, Hand.RIGHT_HANDED, P3Coach);
-    Player p4 = new Player("MEDVEDEV", "Daniil", "Male", P4Birth, "Moscow, Russia", 4, 3, "Russian", 198f, 82f, 2014, Hand.RIGHT_HANDED, P4Coach);
+    Player p1 = new Player(
+            "ALCARNAZ",
+            "Carlos",
+            P1Birth,
+            "ElPalmar, Murcia, Spain",
+            1,
+            1,
+            "Spanish",
+            182f,
+            74f,
+            Date.valueOf("2018-01-01"),
+            Hand.RIGHT_HANDED,
+            P1Coach,
+            Gender.MALE
+            );
+    Player p2 = new Player(
+            "NADAL",
+            "Rafael",
+
+            P2Birth,
+            "Manacor, Mallorca, Spain",
+            2,
+            1,
+            "Spanish",
+            185f,
+            84f,
+            Date.valueOf("2001-01-01"),
+            Hand.LEFT_HANDED,
+            P2Coach,
+            Gender.MALE
+            );
+    Player p3 = new Player(
+            "RUUD",
+            "Casper",
+            P3Birth,
+            "Oslo, Norway",
+            3,
+            2,
+            "Norwegian",
+            182f,
+            77f,
+            Date.valueOf("2015-01-01"),
+            Hand.RIGHT_HANDED,
+            P3Coach,
+            Gender.MALE
+    );
+    Player p4 = new Player(
+            "MEDVEDEV",
+            "Daniil",
+            P4Birth,
+            "Moscow, Russia",
+            4,
+            3,
+            "Russian",
+            198f,
+            82f,
+            Date.valueOf("2014-01-01"),
+            Hand.RIGHT_HANDED,
+            P4Coach,
+            Gender.MALE
+    );
 
     public PlayerDAOMock() {
         players.add(p1);
@@ -67,7 +125,7 @@ public class PlayerDAOMock implements PlayerDAO {
     }
 
     @Override
-    public ArrayList<Player> getPlayerByGender(String gender) {
+    public ArrayList<Player> getPlayerByGender(Gender gender) {
 
         ArrayList<Player> playersRet = new ArrayList<>();
 
@@ -137,7 +195,7 @@ public class PlayerDAOMock implements PlayerDAO {
     }
 
     @Override
-    public ArrayList<Player> getPlayerByStartCareer(Integer startCareer) {
+    public ArrayList<Player> getPlayerByStartCareer(Date startCareer) {
 
         ArrayList<Player> playersRet = new ArrayList<>();
 

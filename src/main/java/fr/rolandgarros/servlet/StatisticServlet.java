@@ -15,7 +15,6 @@ import java.util.List;
 public class StatisticServlet extends HttpServlet {
 
     final PlayerService playerService = new PlayerService();
-    // final MatchService matchService = new MatchService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
@@ -31,7 +30,7 @@ public class StatisticServlet extends HttpServlet {
         String page = "/ViewStatistic/Statistics.jsp";
 
 
-        List<Player> players = playerService.getAllPlayer();
+        List<Player> players = playerService.getAllPlayers();
         req.setAttribute("players", players);
 
 

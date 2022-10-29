@@ -10,12 +10,14 @@ import fr.rolandgarros.services.PlayerService;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
 
     public static void main(String[] args) {
-
+        PlayerService playerService = new PlayerService();
+        PersonService personService = new PersonService();
 
         Date C1Birth = Date.valueOf("1970-01-01");
         Date C2Birth = Date.valueOf("1970-01-01");
@@ -36,24 +38,22 @@ public class Main {
         Player p3 = new Player("RUUD", "Casper", P3Birth, "Oslo, Norway", 3, 2, "Norwegian", 182f, 77f, Date.valueOf("2015-02-11"), Hand.RIGHT_HANDED, P3Coach,Gender.MALE);
         Player p4 = new Player("MEDVEDEV", "Daniil", P4Birth, "Moscow, Russia", 4, 3, "Russian", 198f, 82f, Date.valueOf("2014-02-11"), Hand.RIGHT_HANDED, P4Coach,Gender.MALE);
 
-        PersonService.createPerson(P1Coach);
-        PersonService.createPerson(P2Coach);
-        PersonService.createPerson(P3Coach);
-        PersonService.createPerson(P4Coach);
+        personService.createPerson(P1Coach);
+        personService.createPerson(P2Coach);
+        personService.createPerson(P3Coach);
+        personService.createPerson(P4Coach);
 
-        PlayerService.createPlayer(p1);
-        PlayerService.createPlayer(p2);
-        PlayerService.createPlayer(p3);
-        PlayerService.createPlayer(p4);
+        playerService.createPlayer(p1);
+        playerService.createPlayer(p2);
+        playerService.createPlayer(p3);
+        playerService.createPlayer(p4);
 
 
-        ArrayList<Person> players = PersonService.getAllTrainers();
+        List<Player> players = playerService.getAllPlayers();
         for (Person player : players) {
             System.out.println( "Player : Name :  " + player.getLastname()
                      + ", " + player.getFirstname() + "\n");
         }
-
-
 
     }
 }
