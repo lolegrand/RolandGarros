@@ -25,4 +25,8 @@ public class TrainingService {
     public void completeTrainingDemand(Training training) {
         trainingDAO.completeTrainingDemand(training);
     }
+
+    public Training getTrainingById(int trainingId) {
+        return trainingDAO.getTrainingById(trainingId);
+    }
 }

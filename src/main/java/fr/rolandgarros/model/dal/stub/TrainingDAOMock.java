@@ -10,6 +10,7 @@ import fr.rolandgarros.model.dal.TrainingDAO;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TrainingDAOMock implements TrainingDAO {
 
@@ -59,7 +60,11 @@ public class TrainingDAOMock implements TrainingDAO {
 
     @Override
     public void completeTrainingDemand(Training training) {
-
+        for (Training training1 : trainings) {
+            if (Objects.equals(training1.getIdT(), training.getIdT())) {
+                training1.setValidated(training.getValidated());
+            }
+        }
     }
 
     @Override
@@ -70,5 +75,15 @@ public class TrainingDAOMock implements TrainingDAO {
     @Override
     public List<Training> getAllTraining() {
         return trainings;
+    }
+
+    @Override
+    public Training getTrainingById(int trainingId) {
+        for (Training training : trainings) {
+            if (training.getIdT() == trainingId) {
+                return training;
+            }
+        }
+        return null;
     }
 }

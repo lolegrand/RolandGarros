@@ -1,8 +1,11 @@
 package fr.rolandgarros.model;
 
 import java.sql.Date;
+import java.util.Random;
 
 public abstract class TimeEvent {
+
+    private Integer idT = new Random().nextInt();
 
     protected final Date startDate;
 
@@ -29,5 +32,9 @@ public abstract class TimeEvent {
             throw new RuntimeException("Match has not been passed yet");
         }
         return endDate;
+    }
+
+    public Integer getIdT() {
+        return idT;
     }
 }

@@ -28,17 +28,22 @@ public class TrainingServlet extends HttpServlet {
     private void doProcess(HttpServletRequest req, HttpServletResponse resp) {
         String page = "/ViewTraining/Trainings.jsp";
 
-        Training acceptedTraining = (Training) req.getAttribute("Accepter");
-        Training refusedTraining = (Training) req.getAttribute("refused");
+        String demandState = req.getParameter("state");
 
-        if (acceptedTraining != null) {
-            acceptedTraining.setValidated(true);
-            service.completeTrainingDemand(acceptedTraining);
-        }
-        
-        if (refusedTraining != null) {
-            refusedTraining.setValidated(false);
-            service.completeTrainingDemand(refusedTraining);
+        if (demandState != null) {
+            if (demandState.equals("Accepter")) {
+                int trainingId = Integer.parseInt(req.getParameter("training"));
+                Training training = service.getTrainingById(trainingId) ;
+                training.setValidated(true);
+                service.completeTrainingDemand(training);
+            }
+
+            if (demandState.equals("Refuser")) {
+                int trainingId = Integer.parseInt(req.getParameter("training"));
+                Training training = service.getTrainingById(trainingId) ;
+                training.setValidated(false);
+                service.completeTrainingDemand(training);
+            }
         }
 
         List<Training> trainings = service.getAllTraining();
