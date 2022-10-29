@@ -21,6 +21,7 @@
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
 <!--			<property name="hibernate.hbm2ddl.auto" value="create" />-->
+			<property name="jakarta.persistence.schema-generation.create-script-source" value="META-INF/sql/create.sql"/>
 			<property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://vps817240.ovh.net:3306/IMR_team05_schema?useSSL=false" />
 			<property name="hibernate.connection.username" value="IMR_team05" />
