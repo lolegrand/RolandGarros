@@ -1,5 +1,6 @@
 <%
-    String role = (String) request.getSession().getAttribute("role");
+    // String role = (String) request.getSession().getAttribute("role");
+    String role = "PlayerEditor";
 
     boolean isPlayerEditor = role != null && (role.equals("PlayerEditor") || role.equals("Admin"));
 
@@ -19,7 +20,7 @@
 
 <%@ include file="../Template/header.jsp" %>
 
-<main class="w-100 row">
+<main class="w-100 row space-around">
 
     <% if ( isPlayerEditor ){ %>
     <nav class="nav w-100 row space-between">

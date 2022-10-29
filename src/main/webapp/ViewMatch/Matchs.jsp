@@ -1,61 +1,47 @@
+<%
+    String role = (String) request.getSession().getAttribute("role");
+
+    boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+
+    String display = request.getParameter("displayMatch");
+    String create = request.getParameter("createMatch");
+    String update = request.getParameter("updateMatch");
+
+    boolean displayMore = display != null && display.equals("Détails");
+    boolean formToCreateMatch = create != null && create.equals("Nouveau Joueur");
+    boolean formToUpdateMatch = update != null && update.equals("Modifier");
+
+%>
+
 <%@ include file="../Template/head.jsp" %>
 
 <body class="w-100 row">
 
 <%@ include file="../Template/header.jsp" %>
 
-<main class="w-100 row">
+<main class="w-100 row space-around">
 
-    <!--
-        By default, display the match sessions scheduled
-        - if there is a session, then a role matchEditor or admin, display an update button
-        - if there is a session, then a role admin, display a delete button
-    -->
-    <c:foreach items="${matches}" var="match">
+    <% if ( isMatchEditor ){ %>
+    <nav class="nav w-100 row space-between">
+        <form method="post" name="formNavMatch">
+            <input class="" type="submit" name="FormToCreateMatch" value="Nouveau Joueur">
+        </form>
+    </nav>
+    <% } %>
 
-        <div class="w-50">
+    <% if( !formToCreateMatch && !formToUpdateMatch){ %>
+    <%@ include file="DisplayMatches.jsp" %>
+    <% if( displayMore ){ %>
+    <%@ include file="InfoMatch.jsp" %>
+    <% } %>
+    <% } %>
 
-            <!-- Where -->
-            <aui:input class="w-100"
-                    <!-- readonly="\${role!=matchEditor && role!=admin ? true : false }" -->
-            type="text" name="${match.getCourt()}" value="${match.getCourt()}"/>
-
-            <!-- When -->
-            <aui:input class="w-100"
-                    <!-- readonly="\${role!=matchEditor && role!=admin ? true : false }" -->
-            type="date" name="${match.getDate()}" value="${match.getDate()}"/>
-
-            <!-- Who -->
-            <ul>
-                <c:foreach items="${match.getPlayers()}" var="player">
-                    <li>${player}</li>
-                </c:foreach>
-            </ul>
-
-        </div>
-
-        <% if( request.getSession().getAttribute("role").equals("MatchEditor")
-                || request.getSession().getAttribute("role").equals("Admin") )
-        { %>
-        <aui:input class="w-25 btn-dark" type="submit" name="update${match}" value="Modifier"/>
-        <% } %>
-
-        <% if( request.getSession().getAttribute("role").equals("Admin") ){ %>
-        <aui:input class="w-25 btn-red" type="submit" name="delete${match}" value="Supprimer"/>
-        <% } %>
-
-    </c:foreach>
-
-    <!--
-        if role == matchEditor || role == admin :
-            - be able to create a match
-            - be able to validate a training request
-    -->
-    <% if( request.getSession().getAttribute("role").equals("MatchEditor")
-            || request.getSession().getAttribute("role").equals("Admin") )
-    { %>
+    <% if( formToCreateMatch ) { %>
     <%@ include file="CreateMatch.jsp" %>
-    <%@ include file="../ViewTraining/TrainingValidation.jsp" %>
+    <% } %>
+
+    <% if( formToUpdateMatch) { %>
+    <%@ include file="UpdateMatch.jsp" %>
     <% } %>
 
 </main>

@@ -50,7 +50,7 @@ public class PlayerDAOMock implements PlayerDAO {
     }
 
     @Override
-    public void modifyPlayer(Player player) {
+    public void updatePlayer(Player player) {
         this.players.remove(player);
         this.players.add(player);
     }

@@ -1,3 +1,7 @@
+<%@ page import="java.util.List,fr.rolandgarros.model.Player" %>
+
+<% List<Player> players = (List<Player>) request.getAttribute("players"); %>
+
 <%@ include file="../Template/head.jsp" %>
 
 <body class="w-100 row">
@@ -49,7 +53,7 @@
 
   <article class="w-75 row">
 
-    <table>
+    <table class="w-100">
       <tr>
         <th>Nom</th>
         <th>Prénom</th>
@@ -58,13 +62,20 @@
         <th>Nombre de Victoire</th>
         <th>Classement</th>
       </tr>
-      <c:foreach items="players" var="player">
+
+      <% for (Player player: players) { %>
+
         <tr class="tr-hover">
-          <c:foreach items="items" var="item">
-            <td>${item}</td>
-          </c:foreach>
+          <td><%=player.getLastname()%></td>
+          <td><%=player.getFirstname()%></td>
+          <td><%=player.getGender()%></td>
+          <td>xxx</td>
+          <td>xxx</td>
+          <td><%=player.getRanking()%></td>
         </tr>
-      </c:foreach>
+
+      <% } %>
+
     </table>
 
   </article>

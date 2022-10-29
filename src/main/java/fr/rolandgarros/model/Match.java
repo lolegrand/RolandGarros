@@ -7,6 +7,7 @@ import java.util.List;
 public abstract class Match extends TimeEvent {
 
     private final String genre;
+    private final String type;
 
     private List<Integer> scoreOne;
 
@@ -14,9 +15,10 @@ public abstract class Match extends TimeEvent {
 
     private final Court court;
 
-    public Match(String genre, Date startDate, Court court) {
+    public Match(String genre, Date startDate, String type, Court court) {
         super(startDate);
         this.genre = genre;
+        this.type = type;
         this.court = court;
     }
 
@@ -29,6 +31,7 @@ public abstract class Match extends TimeEvent {
     public String getGenre() {
         return genre;
     }
+    public String getType() { return type; }
 
     public List<Integer> getScoreOne() {
         if (!isTimeEventPassed()) {

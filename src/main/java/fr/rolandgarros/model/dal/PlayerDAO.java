@@ -14,7 +14,7 @@ public interface PlayerDAO {
 
     void deletePlayer(Player player);
 
-    void modifyPlayer(Player player);
+    void updatePlayer(Player player);
 
     Player getPlayerByName(String firstName, String lastName);
 

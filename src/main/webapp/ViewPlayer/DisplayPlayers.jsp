@@ -7,58 +7,52 @@
   boolean isAdmin = role != null && role.equals("Admin");
 
 %>
+<article class="w-50 row scrollable space-around self-center">
 
-<table class="w-100">
+  <h1 class="w-100 txt-center">Liste des joueurs participants au tournois</h1>
 
-  <tr>
+  <table class="w-100">
 
-    <th>Nom</th>
-    <th>Prénom</th>
-    <th class="td-none"></th>
-    <% if ( isPlayerEditor ) { %><th class="td-none"></th><% } %>
-    <% if ( isAdmin ) { %><th class="td-none"></th><% } %>
+    <% for (Player player: players) { %>
 
-  </tr>
+    <tr class="tr-noBorder tr-hover">
 
-  <% for (Player player: players) { %>
+      <td class="td-none"><%=player.getLastname()%></td>
+      <td class="td-none"><%=player.getFirstname()%></td>
+      <td class="td-none">
+        <form method="post" name="FormToSeePlayer">
+          <input type="hidden" name="playerLastname" value="<%=player.getLastname()%>"/>
+          <input type="hidden" name="playerFirstname" value="<%=player.getFirstname()%>"/>
+          <input class="btn-dark" type="submit" name="displayPlayer" value="Détails"/>
+        </form>
+      </td>
 
-  <tr class="tr-hover">
+      <% if ( isPlayerEditor ) { %>
 
-    <td><%=player.getLastname()%></td>
-    <td><%=player.getFirstname()%></td>
-    <td class="td-none">
-      <form method="post" name="FormToSeePlayer">
-        <input type="hidden" name="playerLastname" value="<%=player.getLastname()%>"/>
-        <input type="hidden" name="playerFirstname" value="<%=player.getFirstname()%>"/>
-        <input class="btn-dark" type="submit" name="displayPlayer" value="Détails"/>
-      </form>
-    </td>
+      <td class="td-none">
+        <form method="post" name="FormToUpdatePlayer">
+          <input type="hidden" name="playerLastname" value="<%=player.getLastname()%>"/>
+          <input type="hidden" name="playerFirstname" value="<%=player.getFirstname()%>"/>
+          <input class="btn-blue" type="submit" name="updatePlayer" value="Modifier"/>
+        </form>
+      </td>
 
-    <% if ( isPlayerEditor ) { %>
+      <% } %>
 
-    <td class="td-none">
-      <form method="post" name="FormToUpdatePlayer">
-        <input type="hidden" name="playerLastname" value="<%=player.getLastname()%>"/>
-        <input type="hidden" name="playerFirstname" value="<%=player.getFirstname()%>"/>
-        <input class="btn-blue" type="submit" name="updatePlayer" value="Modifier"/>
-      </form>
-    </td>
+      <% if( isAdmin ){ %>
 
+      <td class="td-none">
+        <form method="post" name="FormToDeletePlayer">
+          <input type="hidden" name="playerLastname" value="<%=player.getLastname()%>"/>
+          <input type="hidden" name="playerFirstname" value="<%=player.getFirstname()%>"/>
+          <input class="btn-red" type="submit" name="deletePlayer" value="Supprimer"/>
+        </form>
+      </td>
+
+      <% } %>
+
+    </tr>
     <% } %>
+  </table>
 
-    <% if( isAdmin ){ %>
-
-    <td class="td-none">
-      <form method="post" name="FormToDeletePlayer">
-        <input type="hidden" name="playerLastname" value="<%=player.getLastname()%>"/>
-        <input type="hidden" name="playerFirstname" value="<%=player.getFirstname()%>"/>
-        <input class="btn-red" type="submit" name="deletePlayer" value="Supprimer"/>
-      </form>
-    </td>
-
-    <% } %>
-
-  </tr>
-
-  <% } %>
-</table>
+</article>

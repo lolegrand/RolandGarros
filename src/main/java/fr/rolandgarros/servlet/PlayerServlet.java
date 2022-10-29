@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 public class PlayerServlet extends HttpServlet {
@@ -21,9 +22,12 @@ public class PlayerServlet extends HttpServlet {
     Player player = null;
     Person trainer = null;
     String errorMsg = null;
+    String successMsg = null;
 
     String lastname = null;
     String firstname = null;
+    Date birthdate = null;
+    String birthplace = null;
     String gender = null;
     String nationality = null;
     Integer ranking = null;
@@ -119,6 +123,14 @@ public class PlayerServlet extends HttpServlet {
 
         if ( formCreatePlayer ){
 
+            if ( !playerService.checkBirthDate( birthdate ) ){
+                errorMsg = "Date de naissance invalide.";
+            }
+
+            if ( !playerService.checkBirthPlace( birthplace ) ){
+                errorMsg = "Lieu de naissance invalide.";
+            }
+
             if ( !playerService.checkGender( gender ) ){
                 errorMsg = "Genre invalide.";
             }
@@ -157,6 +169,9 @@ public class PlayerServlet extends HttpServlet {
 
             if ( errorMsg != null )
                 req.setAttribute("CreatePlayerError", errorMsg);
+            else
+                player = new Player(lastname, firstname, gender, birthdate, birthplace, ranking, bestRanking, nationality, height, weight, startCareer, hand, trainer);
+                playerService.create( player );
         }
 
         boolean formUpdatePlayer = req.getParameter("submitFormUpdatePlayer") != null;
@@ -165,23 +180,29 @@ public class PlayerServlet extends HttpServlet {
 
             if ( !playerService.checkRanking( ranking ) ){
                 errorMsg = "Classement invalide.";
+            } else {
+                player.setRanking( ranking );
             }
 
             if ( !playerService.checkWeight( weight ) ){
                 errorMsg = "Poids invalide.";
+            } else {
+                player.setWeight( weight );
             }
 
             if ( errorMsg != null )
                 req.setAttribute("UpdatePlayerError", errorMsg);
+            else {
+                successMsg = "Mise à jour réussie.";
+                req.setAttribute("UpdatePlayerSuccess", successMsg);
+            }
         }
 
 
-
-
         List<Player> players = playerService.getAllPlayer();
+        req.setAttribute("players", players);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-        req.setAttribute("players", players);
 
         try {
             dispatcher.forward(req, resp);

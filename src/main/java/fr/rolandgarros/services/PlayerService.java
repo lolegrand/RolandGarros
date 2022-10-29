@@ -6,6 +6,7 @@ import fr.rolandgarros.model.Player;
 import fr.rolandgarros.model.dal.PlayerDAO;
 import fr.rolandgarros.model.dal.stub.PlayerDAOMock;
 
+import java.sql.Date;
 import java.util.List;
 
 public class PlayerService {
@@ -21,10 +22,37 @@ public class PlayerService {
         }
 
 
+        void create(Player player){ playerDAO.createPlayer( player ); }
+
+        void update(Player player){ playerDAO.updatePlayer( player );}
+
+        void delete(Player player){ playerDAO.deletePlayer( player ); }
+
+
         public boolean checkGender( String gender ){
                 boolean checked = false;
 
                 if ( gender != null ){
+                        checked = true;
+                }
+
+                return checked;
+        }
+
+        public boolean checkBirthDate( Date birthdate ){
+                boolean checked = false;
+
+                if ( birthdate != null ){
+                        checked = true;
+                }
+
+                return checked;
+        }
+
+        public boolean checkBirthPlace( String birthplace ){
+                boolean checked = false;
+
+                if ( birthplace != null ){
                         checked = true;
                 }
 

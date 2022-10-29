@@ -9,8 +9,8 @@ public class Single extends Match {
 
     private Player playerTwo;
 
-    public Single(String genre, Date startDate, Court court, Player playerOne, Player playerTwo) {
-        super(genre, startDate, court);
+    public Single(String genre, String type, Date startDate, Court court, Player playerOne, Player playerTwo) {
+        super(genre, startDate, type, court);
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
     }

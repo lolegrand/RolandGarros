@@ -1,4 +1,4 @@
-<footer class="w-100 row">
+<article class="footer w-100 row">
 
   <div class="w-25 row space-around">
     <img src="../img/ENSSAT.png">
@@ -17,4 +17,4 @@
     <img src="../img/FFT.png">
   </div>
 
-</footer>
+</article>
