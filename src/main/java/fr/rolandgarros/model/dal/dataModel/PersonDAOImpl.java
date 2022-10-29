@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 
 public class PersonDAOImpl implements PersonDAO {
 
@@ -70,5 +71,21 @@ public class PersonDAOImpl implements PersonDAO {
         }
 
      return person;
+    }
+
+    @Override
+    public ArrayList<Person> getAllTrainers() {
+        ArrayList<Person> trainers = new ArrayList<Person>();
+        try{
+            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManager = entityManagerFactory.createEntityManager();
+
+            trainers = (ArrayList<Person>) entityManager.createQuery( "FROM Person p WHERE p NOT IN (From Player)", Person.class )
+                    .getResultList();
+    }finally {
+            if (entityManager != null) entityManager.close();
+            if (entityManagerFactory != null) entityManagerFactory.close();
+        }
+        return trainers;
     }
 }

@@ -6,22 +6,25 @@ import java.sql.Date;
 @Entity
 @Table(name = "player")
 public class Player extends Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE , generator = "player_person_id")
-    @TableGenerator(table = "sequences", name = "player_person_id",allocationSize = 1)
-    @Column(name = "idP")
-    private Integer id;
+    @Column(name = "ranking", nullable = false)
     private Integer ranking;
 
+    @Column(name = "bestRanking", nullable = false)
     private Integer bestRanking;
 
+    @Column(name = "nationality", nullable = false)
     private  String nationality;
 
+    @Column(name = "height", nullable = false)
     private Float height;
 
+    @Column(name = "weight", nullable = false)
     private Float weight;
 
+    @Column(name = "startCareer", nullable = false)
     private  Date startCareer;
+
+    @Column(name = "hand", nullable = false)
     @Enumerated(EnumType.STRING)
     private  Hand hand;
 

@@ -20,10 +20,12 @@ public abstract class TimeEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE , generator = "timeEventId")
     @TableGenerator(table = "sequences", name = "timeEventId" ,allocationSize = 1)
-    private Integer idT;
+    private Integer idT = 0;
 
+    @Column(name = "startDate", nullable = false)
     protected  Timestamp startDate;
 
+    @Column(name = "endDate")
     protected Timestamp endDate;
 
     public TimeEvent(Timestamp startDate) {

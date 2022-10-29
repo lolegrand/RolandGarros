@@ -9,10 +9,13 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Match extends TimeEvent {
 
+    @Column(name = "gender", nullable = false)
     private  Gender gender;
 
+    @Column(name = "scoreOne")
     private String scoreOne;
 
+    @Column(name = "scoreTwo")
     private String scoreTwo;
 
     @OneToOne

@@ -1,4 +1,12 @@
-DROP TABLE IF EXISTS account;
+DROP TABLE IF EXISTS account CASCADE;
+DROP TABLE IF EXISTS person CASCADE;
+DROP TABLE IF EXISTS doubleGame CASCADE;
+DROP TABLE IF EXISTS player CASCADE;
+DROP TABLE IF EXISTS singleGame CASCADE;
+DROP TABLE IF EXISTS trainingGame CASCADE;
+DROP TABLE IF EXISTS court CASCADE;
+DROP TABLE IF EXISTS sequences CASCADE;
+
 CREATE TABLE account (
                          idAccount INT NOT NULL AUTO_INCREMENT,
                          login VARCHAR(20) NOT NULL UNIQUE,
@@ -6,20 +14,15 @@ CREATE TABLE account (
                          role VARCHAR(30) NOT NULL,
                          PRIMARY KEY (idAccount,login)
 );
-
-DROP TABLE IF EXISTS player CASCADE;
-DROP TABLE IF EXISTS person;
 CREATE TABLE person (
                         idP INT NOT NULL,
                         lastname VARCHAR(40) NOT NULL,
                         firstname VARCHAR(30) NOT NULL,
                         birthDate DATE NOT NULL,
-                        birthPlace VARCHAR(20) NOT NULL,
+                        birthPlace VARCHAR(100) NOT NULL,
                         gender VARCHAR(10) NOT NULL,
                         PRIMARY KEY (idP)
 );
-
-DROP TABLE IF EXISTS player CASCADE;
 CREATE TABLE player
 (
     idP    INT         NOT NULL references person(idP),
@@ -33,9 +36,6 @@ CREATE TABLE player
     trainerId   INT         NOT NULL references person(idP),
     PRIMARY KEY (idP)
 );
-
-
-DROP TABLE IF EXISTS doubleGame CASCADE;
 CREATE TABLE doubleGame
 (
     idT        INT               NOT NULL auto_increment,
@@ -45,14 +45,18 @@ CREATE TABLE doubleGame
     teamTwoPlayerTwoId  INT         NOT NULL references player(idP),
     scoreOne            VARCHAR(50) ,
     scoreTwo            VARCHAR(50) ,
-    genre               VARCHAR(30) NOT NULL,
-    courtId             INT         NOT NULL references court(idT),
+    gender               VARCHAR(10) NOT NULL,
+    courtId             INT         NOT NULL references court(idC),
     endDate             TIMESTAMP        ,
     startDate           TIMESTAMP        NOT NULL,
     PRIMARY KEY (idT)
 );
-
-DROP TABLE IF EXISTS singleGame CASCADE;
+CREATE TABLE court
+(
+    idC     INT         NOT NULL auto_increment,
+    name    VARCHAR(30) NOT NULL,
+    PRIMARY KEY (idC)
+);
 CREATE TABLE singleGame
 (
     idT        INT                   NOT NULL auto_increment,
@@ -60,14 +64,12 @@ CREATE TABLE singleGame
     playerTwoId         INT             NOT NULL references player(idP),
     scoreOne            VARCHAR(50)     ,
     scoreTwo            VARCHAR(50)     ,
-    genre               VARCHAR(30)     NOT NULL,
-    courtId             INT     NOT NULL references court(idT),
+    gender               VARCHAR(10)     NOT NULL,
+    courtId             INT     NOT NULL references court(idC),
     endDate             TIMESTAMP            ,
     startDate           TIMESTAMP            NOT NULL,
     PRIMARY KEY (idT)
 );
-
-DROP TABLE IF EXISTS trainingGame CASCADE;
 CREATE TABLE trainingGame
 (
     idT  INT         NOT NULL auto_increment,
@@ -77,28 +79,11 @@ CREATE TABLE trainingGame
     PRIMARY KEY (idT)
 );
 
-DROP TABLE IF EXISTS court CASCADE;
-CREATE TABLE court
-(
-    idT     INT         NOT NULL auto_increment,
-    name    VARCHAR(30) NOT NULL,
-    PRIMARY KEY (idT)
-);
-
-DROP TABLE IF EXISTS sequences;
 CREATE TABLE sequences (
                            next_val INT NOT NULL default 1,
                            sequence_name VARCHAR(255) NOT NULL,
                            PRIMARY KEY (sequence_name)
 );
 
-# truncate table sequences;
-# truncate table account;
-# truncate table person;
-# truncate table player;
-# truncate table doubleGame;
-# truncate table singleGame;
-# truncate table trainingGame;
-# truncate table court;
 
 

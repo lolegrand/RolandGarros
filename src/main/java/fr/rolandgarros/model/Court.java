@@ -7,8 +7,10 @@ import jakarta.persistence.*;
 public class Court {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idT;
+    @Column(name = "idC")
+    private Integer idC = 0;
 
+    @Column(name = "name", nullable = false)
     private  String name;
 
     public Court() {}
@@ -21,7 +23,7 @@ public class Court {
         return name;
     }
 
-    public Integer getIdT() {
-        return idT;
+    public Integer getIdC() {
+        return idC;
     }
 }

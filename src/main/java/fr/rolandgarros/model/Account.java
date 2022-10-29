@@ -6,15 +6,17 @@ import jakarta.persistence.*;
 @Table(name = "account")
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idAccount;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idAccount = 0;
 
+    @Column(name = "password", nullable = false)
     private  String password;
 
-    @Column(unique = true)
+    @Column(name = "login",unique = true)
     private  String login;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
     private  Role role;
 
 

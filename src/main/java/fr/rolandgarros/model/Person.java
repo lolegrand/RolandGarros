@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import javax.persistence.*;
 import jakarta.persistence.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,7 +34,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.TABLE , generator = "player_person_id")
     @TableGenerator(table = "sequences", name = "player_person_id",allocationSize = 1)
     @Column(name = "idP")
-    private Integer id;
+    private Integer id = 0;
 
 
     @Column(name = "lastname", nullable = false)
