@@ -31,18 +31,18 @@
     <% } %>
 
     <% if( !formToCreatePlayer && !formToUpdatePlayer){ %>
-        <%@ include file="DisplayPlayers.jsp" %>
+        <%@ include file="/ViewPlayer/DisplayPlayers.jsp" %>
         <% if( displayMore ){ %>
-            <%@ include file="InfoPlayer.jsp" %>
+            <%@ include file="/ViewPlayer/InfoPlayer.jsp" %>
         <% } %>
     <% } %>
 
     <% if( formToCreatePlayer ) { %>
-        <%@ include file="CreatePlayer.jsp" %>
+        <%@ include file="/ViewPlayer/CreatePlayer.jsp" %>
     <% } %>
 
     <% if( formToUpdatePlayer) { %>
-        <%@ include file="UpdatePlayer.jsp" %>
+        <%@ include file="/ViewPlayer/UpdatePlayer.jsp" %>
     <% } %>
 
 </main>

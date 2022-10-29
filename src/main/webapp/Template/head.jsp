@@ -13,5 +13,5 @@
   <link rel="icon" type="image/x-icon" href="../img/RL.png" />
   <title>Roland Garros</title>
 
-  <link rel="stylesheet" href="Template/style.css" type="text/css" />
+  <link rel="stylesheet" href="/Template/style.css" type="text/css" />
 </head>
