@@ -7,6 +7,7 @@ import fr.rolandgarros.model.dal.PlayerDAO;
 import fr.rolandgarros.model.dal.stub.PlayerDAOMock;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class PlayerService {
@@ -22,120 +23,58 @@ public class PlayerService {
         }
 
 
-        void create(Player player){ playerDAO.createPlayer( player ); }
+        public void create(Player player){ playerDAO.createPlayer( player ); }
 
-        void update(Player player){ playerDAO.updatePlayer( player );}
+        public void update(Player player){ playerDAO.updatePlayer( player );}
 
-        void delete(Player player){ playerDAO.deletePlayer( player ); }
+        public void delete(Player player){ playerDAO.deletePlayer( player ); }
 
 
         public boolean checkGender( String gender ){
-                boolean checked = false;
-
-                if ( gender != null ){
-                        checked = true;
-                }
-
-                return checked;
+                return gender.equals("Male") || gender.equals("Female");
         }
 
         public boolean checkBirthDate( Date birthdate ){
-                boolean checked = false;
-
-                if ( birthdate != null ){
-                        checked = true;
-                }
-
-                return checked;
+                Date fifteenYearsAgo = new Date((System.currentTimeMillis()/1000/3600/24/365) - 15);
+                return !birthdate.before(fifteenYearsAgo);
         }
 
         public boolean checkBirthPlace( String birthplace ){
-                boolean checked = false;
-
-                if ( birthplace != null ){
-                        checked = true;
-                }
-
-                return checked;
+                return !birthplace.isEmpty();
         }
 
         public boolean checkRanking( Integer ranking ){
-                boolean checked = false;
-
-                if ( ranking != null ){
-                        checked = true;
-                }
-
-                return checked;
+                return ranking.compareTo(0) != -1 && ranking.compareTo(0) != 0;
         }
 
         public boolean checkBestRanking( Integer bestRanking ){
-                boolean checked = false;
-
-                if ( bestRanking != null ){
-                        checked = true;
-                }
-
-                return checked;
+                return bestRanking.compareTo(0) != -1 && bestRanking.compareTo(0) != 0;
         }
 
         public boolean checkNationality( String nationality ){
-                boolean checked = false;
-
-                if ( nationality != null ){
-                        checked = true;
-                }
-
-                return checked;
+                return !nationality.isEmpty();
         }
 
         public boolean checkHeight( Float height ){
-                boolean checked = false;
-
-                if ( height != null ){
-                        checked = true;
-                }
-
-                return checked;
+                return height.compareTo(150f) != -1 && height.compareTo(150f) != 0 ;
         }
 
         public boolean checkWeight( Float weight ){
-                boolean checked = false;
-
-                if ( weight != null ){
-                        checked = true;
-                }
-
-                return checked;
+                return weight.compareTo(40f) != -1 && weight.compareTo(40f) != 0 ;
         }
 
-        public boolean checkStartCareer( Integer startCareer ){
-                boolean checked = false;
-
-                if ( startCareer != null ){
-                        checked = true;
-                }
-
-                return checked;
+        public boolean checkStartCareer( Date birthdate, Integer startCareer ){
+                Date sc = new Date(startCareer);
+                return birthdate.compareTo(sc) != 0 && birthdate.compareTo(sc) != 1;
         }
 
         public boolean checkHand( Hand hand ){
-                boolean checked = false;
-
-                if ( hand != null ){
-                        checked = true;
-                }
-
-                return checked;
+                return hand.equals(Hand.LEFT_HANDED)
+                        || hand.equals(Hand.RIGHT_HANDED)
+                        || hand.equals(Hand.AMBIDEXTROUS);
         }
 
         public boolean checkTrainer( Person trainer ){
-                boolean checked = false;
-
-                if ( trainer != null ){
-                        checked = true;
-                }
-
-                return checked;
+                return trainer != null;
         }
 }

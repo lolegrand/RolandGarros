@@ -18,7 +18,7 @@ import java.util.List;
 public class PlayerServlet extends HttpServlet {
 
     final PlayerService playerService = new PlayerService();
-    final PersonService personService = new PersonService();
+
     Player player = null;
     Person trainer = null;
     String errorMsg = null;
@@ -115,8 +115,9 @@ public class PlayerServlet extends HttpServlet {
         }
 
         /*
-         * If there is a request for validation of a form:
-         * Check parameters
+         * If there is a request for validation of a form: do check parameters
+         * If is not verified, set an error message
+         * Else, set a success message and do the corresponding function call (create for formCreate, ...)
          */
 
         boolean formCreatePlayer = req.getParameter("submitFormCreatePlayer") != null;
@@ -155,7 +156,7 @@ public class PlayerServlet extends HttpServlet {
                 errorMsg = "Poids invalide.";
             }
 
-            if ( !playerService.checkStartCareer( startCareer ) ){
+            if ( !playerService.checkStartCareer( birthdate, startCareer ) ){
                 errorMsg = "Début de carrière invalide.";
             }
 
@@ -167,11 +168,18 @@ public class PlayerServlet extends HttpServlet {
                 errorMsg = "Entraineur invalide.";
             }
 
-            if ( errorMsg != null )
+            if ( errorMsg != null ) {
                 req.setAttribute("CreatePlayerError", errorMsg);
-            else
-                player = new Player(lastname, firstname, gender, birthdate, birthplace, ranking, bestRanking, nationality, height, weight, startCareer, hand, trainer);
-                playerService.create( player );
+            }
+            else {
+                player = new Player(
+                        lastname, firstname, gender, birthdate, birthplace, ranking, bestRanking,
+                        nationality, height, weight, startCareer, hand, trainer);
+                playerService.create(player);
+
+                successMsg = "Création réussie.";
+                req.setAttribute("CreatePlayerSuccess", successMsg);
+            }
         }
 
         boolean formUpdatePlayer = req.getParameter("submitFormUpdatePlayer") != null;
@@ -180,22 +188,37 @@ public class PlayerServlet extends HttpServlet {
 
             if ( !playerService.checkRanking( ranking ) ){
                 errorMsg = "Classement invalide.";
-            } else {
-                player.setRanking( ranking );
             }
 
             if ( !playerService.checkWeight( weight ) ){
                 errorMsg = "Poids invalide.";
-            } else {
-                player.setWeight( weight );
             }
 
-            if ( errorMsg != null )
+            if ( errorMsg != null ) {
                 req.setAttribute("UpdatePlayerError", errorMsg);
+            }
             else {
+                player = playerService.getPlayerByName(lastname, firstname);
+
+                player.setWeight( weight );
+                player.setRanking( ranking );
+
+                playerService.update(player);
+
                 successMsg = "Mise à jour réussie.";
                 req.setAttribute("UpdatePlayerSuccess", successMsg);
             }
+        }
+
+
+        boolean formDeletePlayer = req.getParameter("submitFormDeletePlayer") != null;
+
+        if ( formDeletePlayer ){
+            player = playerService.getPlayerByName(lastname, firstname);
+            playerService.delete(player);
+
+            successMsg = "Suppression réussie.";
+            req.setAttribute("DeletePlayerSuccess", successMsg);
         }
 
 
