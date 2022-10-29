@@ -1,0 +1,449 @@
+/************************************
+
+   Global elements' style definition
+
+ ************************************/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 100%;
+    max-height: fit-content;
+
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.85rem;
+
+    text-align: justify;
+}
+
+h1, h2, h3, h4, h5, h6, a {
+    font-family: "Keraleeyam", sans-serif;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+/************************************
+
+   Main elements' style definition
+
+ ************************************/
+
+header,
+nav,
+main,
+footer {
+    position: fixed;
+}
+
+header,
+.footer {
+    background-color: #00503C;
+    color: #F2F2F2;
+}
+
+header{
+    top: 0;
+    z-index: 10;
+}
+
+header,
+nav {
+    margin-bottom: 2.5rem;
+}
+
+nav {
+    top: 7%;
+    z-index: 1;
+    padding: 0 1rem;
+}
+
+main{
+    top: 15%;
+    height: 70%;
+}
+
+.footer {
+    height: 10%;
+
+    position: fixed;
+    bottom: 0;
+}
+
+main,
+section,
+article,
+form,
+div,
+table {
+    margin: 5rem 0;
+    padding: 0.25rem;
+}
+
+article {
+    background-color: #F5F5F5;
+
+    padding: 0.05rem 0.5rem;
+    box-shadow: 0 0 0.5rem #999;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li,
+a {
+    text-decoration: none;
+    align-items: stretch;
+    padding: 1.5rem;
+}
+
+a:hover {
+    color: #C85A19;
+
+    background-color: #F2F2F2;
+
+    padding: 1.75rem 1.5rem 1.55rem 1.5rem;
+
+    z-index: 100;
+
+    border-top: solid 0.5rem #C85A19;
+    border-bottom: solid 0.5rem #C85A19;
+}
+
+
+.footer img {
+    max-width: 100%;
+    height: 4rem;
+    margin: 0.25rem 0;
+}
+/************************************/
+
+.nav {
+    background-color: #F2F2F2;
+
+    align-self: center;
+    font-variant: small-caps;
+
+    border-top: solid 0.5rem #00503C;
+    border-bottom: solid 0.5rem #00503C;
+
+}
+
+.nav form {
+    margin: 0.5rem;
+}
+
+.scrollable {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    max-height: 100%;
+}
+
+#articleConnection {
+    position: fixed;
+    top: 33%;
+}
+
+#AccueilBody {
+    background-image: url("../img/AccueilBG.png");
+    background-origin: content-box;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 110%;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 992px) {
+    #AccueilBody {
+        background-size: 200%;
+    }
+}
+
+@media (max-width: 500px) {
+    #AccueilBody {
+        background-position: center;
+        left: 10%;
+        background-size: 400%;
+    }
+}
+
+#AccueilMain h1 {
+    position: absolute;
+    top: 33%;
+    padding: 5rem;
+    color: white;
+    border: dashed white;
+    border-width: 5px 0
+}
+
+/************************************
+
+       Titles global definition
+
+ ************************************/
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.55rem;
+}
+
+h4 {
+    font-size: 1.45rem;
+}
+
+h5 {
+    font-size: 1.35rem;
+}
+
+h6 {
+    font-size: 1.25rem;
+}
+
+
+/************************************
+
+       Width global definition
+
+ ************************************/
+
+.w-25 {
+    width: 24%;
+}
+
+.w-33 {
+    width: 32%;
+}
+
+.w-50 {
+    width: 49%;
+}
+
+.w-66 {
+    width: 65%;
+}
+
+.w-75 {
+    width: 74%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/************************************
+
+   Texts characteristics definition
+
+ ************************************/
+
+.txt-justify {
+    text-align: justify;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.txt-left {
+    text-align: left;
+}
+
+.txt-right {
+    text-align: right;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/************************************
+
+      Vertical align definition
+
+ ************************************/
+
+.items-center {
+    align-items: center;
+}
+
+.items-baseline {
+    align-items: baseline;
+}
+
+.items-stretch {
+    align-items: stretch;
+}
+
+.self-center {
+    align-self: center;
+}
+
+.self-baseline {
+    align-self: baseline;
+}
+
+.self-stretch {
+    align-self: stretch;
+}
+
+/************************************
+
+       Space global definition
+
+ ************************************/
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+/************************************
+
+       Table stuff definition
+
+ ************************************/
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+table, tr, td, th {
+    border-collapse: collapse;
+    border: solid 1px;
+}
+
+th {
+    font-variant: small-caps;
+    background-color: #ccc;
+}
+
+.td-none {
+    background-color: inherit;
+    border-style: hidden;
+    border-left: solid 1px #000;
+}
+
+td>form{
+    margin: 1rem;
+    padding: 0;
+}
+
+td>input {
+    width: 99%;
+}
+
+.tr-noBorder>th,
+.tr-noBorder>td {
+    border-style: hidden;
+}
+
+.tr-hover:hover,
+.tr-hover td:hover {
+    background-color: #999;
+}
+
+/************************************
+
+    Form's items global definition
+
+ ************************************/
+
+label {
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    border-radius: 0.25rem;
+    border: solid 1px #ccc;
+    font-family: inherit;
+    font-size: inherit;
+    padding: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #6bbef2;
+    box-shadow: 0 0 3px #6bbef2;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border: solid 1px #333;
+}
+
+/************************************
+
+     Btn style global definition
+
+ ************************************/
+
+.btn-red {
+    padding: 0.5rem;
+    background-color: #f43352;
+    border-color: #cb0b2a;
+}
+
+.btn-red:hover {
+    background-color: #cb0b2a;
+    border-color: #f43352;
+}
+
+.btn-green {
+    padding: 0.5rem;
+    background-color: #c0f433;
+    border-color: #8fbe0e;
+}
+
+.btn-green:hover {
+    background-color: #8fbe0e;
+    border-color: #c0f433;
+}
+
+.btn-blue {
+    padding: 0.5rem;
+    background-color: #33c0f4;
+    border-color: #0291c6;
+}
+
+.btn-blue:hover {
+    background-color: #0291c6;
+    border-color: #33c0f4;
+}
+
+.btn-dark {
+    padding: 0.5rem;
+    background-color: #8e8d8d;
+    border-color: #313030;
+}
+
+.btn-dark:hover {
+    color: #fff;
+    background-color: #313030;
+    border-color: #8e8d8d;
+}

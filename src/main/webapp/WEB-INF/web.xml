@@ -3,4 +3,79 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>fr.rolandgarros.servlet.IndexServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Connection</servlet-name>
+        <servlet-class>fr.rolandgarros.servlet.AccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Connection</servlet-name>
+        <url-pattern>/Connection</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Players</servlet-name>
+        <servlet-class>fr.rolandgarros.servlet.PlayerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Players</servlet-name>
+        <url-pattern>/Players</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Matchs</servlet-name>
+        <servlet-class>fr.rolandgarros.servlet.MatchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Matchs</servlet-name>
+        <url-pattern>/Matchs</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Trainings</servlet-name>
+        <servlet-class>fr.rolandgarros.servlet.TrainingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Trainings</servlet-name>
+        <url-pattern>/Trainings</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Statistics</servlet-name>
+        <servlet-class>fr.rolandgarros.servlet.StatisticServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Statistics</servlet-name>
+        <url-pattern>/Statistics</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Disconnection</servlet-name>
+        <servlet-class>fr.rolandgarros.servlet.DisconnectionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Disconnection</servlet-name>
+        <url-pattern>/Disconnection</url-pattern>
+    </servlet-mapping>
+
 </web-app>
