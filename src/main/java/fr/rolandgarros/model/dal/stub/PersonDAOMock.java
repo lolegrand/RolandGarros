@@ -19,7 +19,7 @@ public class PersonDAOMock implements PersonDAO {
         try {
             add(new Person(
                     "Benhabiles",
-                    "Arik ",
+                    "Arik",
                     new Date(df.parse("05-02-1965 00:00").getTime()),
                     "Alger",
                     Gender.MALE

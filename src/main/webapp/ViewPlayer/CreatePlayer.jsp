@@ -126,8 +126,7 @@
     <p class="w-50 error"><%= errorStartCareer %></p>
 
     <label class="w-25">Entraîneur</label>
-    <% String selectCoach = "selectedTrainer"; %>
-    <select class="w-75" name="<%= selectCoach %>">
+    <select class="w-75" name="selectTrainer">
       <% for ( Person trainer : trainers ){ %>
         <option value="<%= trainer.getFirstname() %> <%= trainer.getLastname() %>">
           <%= trainer.getFirstname() %> <%= trainer.getLastname() %>

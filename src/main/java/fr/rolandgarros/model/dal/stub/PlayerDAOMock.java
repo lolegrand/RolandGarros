@@ -38,7 +38,7 @@ public class PlayerDAOMock implements PlayerDAO {
             "Spanish",
             182f,
             74f,
-            Date.valueOf("2018-01-01"),
+            2018,
             Hand.RIGHT_HANDED,
             P1Coach,
             Gender.MALE
@@ -54,7 +54,7 @@ public class PlayerDAOMock implements PlayerDAO {
             "Spanish",
             185f,
             84f,
-            Date.valueOf("2001-01-01"),
+            2001,
             Hand.LEFT_HANDED,
             P2Coach,
             Gender.MALE
@@ -69,7 +69,7 @@ public class PlayerDAOMock implements PlayerDAO {
             "Norwegian",
             182f,
             77f,
-            Date.valueOf("2015-01-01"),
+            2015,
             Hand.RIGHT_HANDED,
             P3Coach,
             Gender.MALE
@@ -84,7 +84,7 @@ public class PlayerDAOMock implements PlayerDAO {
             "Russian",
             198f,
             82f,
-            Date.valueOf("2014-01-01"),
+            2014,
             Hand.RIGHT_HANDED,
             P4Coach,
             Gender.MALE

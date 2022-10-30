@@ -23,7 +23,7 @@ public class Player extends Person {
     private Float weight;
 
     @Column(name = "startCareer", nullable = false)
-    private  Date startCareer;
+    private Integer startCareer;
 
     @Column(name = "hand", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -48,7 +48,7 @@ public class Player extends Person {
             String nationality,
             Float height,
             Float weight,
-            Date startCareer,
+            Integer startCareer,
             Hand hand,
             Person trainer,
             Gender gender) {
@@ -98,10 +98,10 @@ public class Player extends Person {
         this.weight = weight;
     }
 
-    public Date getStartCareer() {
+    public Integer getStartCareer() {
         return startCareer;
     }
-    public void setStartCareer(Date startCareer) {
+    public void setStartCareer(Integer startCareer) {
         this.startCareer = startCareer;
     }
 
