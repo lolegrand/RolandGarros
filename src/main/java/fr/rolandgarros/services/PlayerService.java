@@ -9,7 +9,6 @@ import fr.rolandgarros.model.dal.dataModel.PlayerDAOImpl;
 import fr.rolandgarros.model.dal.stub.PlayerDAOMock;
 
 import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 
 public class PlayerService {
@@ -84,20 +83,25 @@ public class PlayerService {
                 || hand.equals(Hand.AMBIDEXTROUS);
     }
 
-    public boolean checkTrainer( Person trainer ){
-                return trainer != null;
-        }
-    public boolean checkPlayerExsist( Player player ){
-        List<Player> players = getAllPlayers();
-        for (Player p : players) {
-            if (p.equals(player)) {
-                return true;
-            }
-        }
-        return false;
+    public boolean checkBirthDate( Date birthdate ){
+        Date fifteenYearsAgo = new Date((System.currentTimeMillis()/1000/3600/24/365) - 15);
+        return !birthdate.before(fifteenYearsAgo);
     }
 
-    public Player getPlayerById(int id) {
-        return playerDAO.getPlayerById(id);
+    public boolean checkBirthPlace( String birthplace ){
+        return !birthplace.isEmpty();
+    }
+
+    public boolean checkRanking( Integer ranking ){
+        return ranking.compareTo(0) != -1 && ranking.compareTo(0) != 0;
+    }
+
+    public boolean checkGender( String gender ){
+        return gender.equals("Male") || gender.equals("Female");
+    }
+
+
+    public boolean checkTrainer( Person trainer ){
+        return trainer != null;
     }
 }

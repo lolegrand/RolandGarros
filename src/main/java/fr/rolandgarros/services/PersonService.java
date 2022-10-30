@@ -7,6 +7,7 @@ import fr.rolandgarros.model.dal.stub.PersonDAOMock;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.List;
 
 public class PersonService {
 
@@ -31,16 +32,5 @@ public class PersonService {
 
     public List<Person> getAllPerson(){
         return personDAO.getAllPerson();
-    }
-
-
-    public boolean checkPersonExsist(Person person){
-        List<Person> allPerson = getAllPerson();
-        for (Person p : allPerson) {
-            if (person.equals(p)){
-                return true;
-            }
-        }
-        return false;
     }
 }

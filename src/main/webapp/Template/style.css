@@ -145,6 +145,8 @@ a:hover {
     overflow-x: hidden;
     overflow-y: auto;
 
+    margin: 0;
+
     max-height: 100%;
 }
 
@@ -183,6 +185,11 @@ a:hover {
     color: white;
     border: dashed white;
     border-width: 5px 0
+}
+
+.borderDashed {
+    border-bottom: 3px dashed black;
+    margin: 0
 }
 
 /************************************
@@ -271,6 +278,7 @@ h6 {
 .error {
     color: red;
     font-weight: bold;
+    float: right;
 }
 
 /************************************
