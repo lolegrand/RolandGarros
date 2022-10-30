@@ -1,10 +1,7 @@
 package fr.rolandgarros.model;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.TableGenerator;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.sql.Date;
 
 @Entity

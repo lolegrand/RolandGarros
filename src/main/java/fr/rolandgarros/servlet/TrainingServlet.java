@@ -1,7 +1,10 @@
 package fr.rolandgarros.servlet;
 
+import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Role;
 import fr.rolandgarros.model.Training;
+import fr.rolandgarros.model.dal.CourtDAO;
+import fr.rolandgarros.services.CourtService;
 import fr.rolandgarros.services.TrainingService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -15,6 +18,8 @@ import java.util.List;
 public class TrainingServlet extends HttpServlet {
 
     private final TrainingService service = new TrainingService();
+    private final CourtService courtService = new CourtService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         doProcess(req, resp);
@@ -47,9 +52,12 @@ public class TrainingServlet extends HttpServlet {
         }
 
         List<Training> trainings = service.getAllTraining();
+        req.setAttribute("trainings", trainings);
+
+        List<Court> courts = courtService.getAllCourt();
+        req.setAttribute("courts", courts);
 
         req.getSession().setAttribute("role", Role.ADMINISTRATOR);
-        req.setAttribute("trainings", trainings);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         try {

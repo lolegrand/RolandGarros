@@ -2,10 +2,9 @@ package fr.rolandgarros.services;
 
 import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.dal.PersonDAO;
-import fr.rolandgarros.model.dal.dataModel.PersonDAOImpl;
 import fr.rolandgarros.model.dal.stub.PersonDAOMock;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class PersonService {
 
@@ -27,4 +26,7 @@ public class PersonService {
         return personDAO.getPersonByName(lastName, firstName);
     }
 
+    public List<Person> getAllPerson(){
+        return personDAO.getAllPerson();
+    }
 }
