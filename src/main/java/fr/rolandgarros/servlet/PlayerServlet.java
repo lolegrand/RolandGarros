@@ -34,7 +34,7 @@ public class PlayerServlet extends HttpServlet {
     String nationality = null;
     Integer ranking = null;
     Integer bestRanking = null;
-    Date startCareer = null;
+    Integer startCareer = null;
     Float height = null;
     Float weight = null;
     Hand hand = null;
@@ -97,8 +97,7 @@ public class PlayerServlet extends HttpServlet {
         }
 
         if ( req.getParameter("startCareer") != null ) {
-            int startCareerInt = Integer.parseInt(req.getParameter("startCareer"));
-            startCareer = new Date(startCareerInt);
+            startCareer = Integer.parseInt(req.getParameter("startCareer"));
         }
 
         if ( req.getParameter("height") != null ) {
@@ -191,7 +190,7 @@ public class PlayerServlet extends HttpServlet {
                 req.setAttribute("CreatePlayerError-Weight", error);
             }
 
-            if ( !playerService.checkStartCareer( birthdate, startCareer ) ){
+            if ( !playerService.checkStartCareer( startCareer ) ){
                 error = "Début de carrière invalide.";
                 req.setAttribute("CreatePlayerError-StartCareer", error);
             }
@@ -200,8 +199,6 @@ public class PlayerServlet extends HttpServlet {
                 error = "Main de jeu invalide.";
                 req.setAttribute("CreatePlayerError-Hand", error);
             }
-
-
 
             if ( req.getParameter("selectTrainer") != null ) {
                 String[] split = req.getParameter("selectTrainer").split(" ");
