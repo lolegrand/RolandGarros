@@ -5,7 +5,6 @@ import fr.rolandgarros.model.Training;
 import java.util.List;
 
 public interface TrainingDAO {
-
     void createTrainingDemand(Training training);
 
     void completeTrainingDemand(Training training);

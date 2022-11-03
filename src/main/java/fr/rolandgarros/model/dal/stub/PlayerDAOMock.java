@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerDAOMock implements PlayerDAO {
-
     private final List<Player> players = new ArrayList<>();
 
     Date C1Birth = Date.valueOf("1970-01-01");

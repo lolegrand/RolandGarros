@@ -10,7 +10,6 @@ import java.sql.Date;
 import java.util.List;
 
 public interface PlayerDAO {
-
     void createPlayer(Player player);
     void deletePlayer(Player player);
 
@@ -35,5 +34,4 @@ public interface PlayerDAO {
     List<Player> getPlayerByTrainer(Person trainer);
 
     List<Player> getAllPlayer();
-
 }

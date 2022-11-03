@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class TrainingDAOMock implements TrainingDAO {
-
     private final DateFormat df = Utils.dateFormat;
 
     private final List<Training> trainings = new ArrayList<>();

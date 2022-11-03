@@ -16,9 +16,7 @@ public class MatchDAOMock implements MatchDAO {
     private final List<Match> allMatches = new ArrayList<>();
     private final List<Match> matches = new ArrayList<>();
 
-
     Date today = new Date(System.currentTimeMillis());
-
 
     @Override
     public Match getMatch(Court court, Timestamp start) {

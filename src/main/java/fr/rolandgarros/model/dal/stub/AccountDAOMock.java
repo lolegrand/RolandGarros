@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AccountDAOMock implements AccountDAO {
-
     List<Account> accounts = new LinkedList<Account>() {{
         add(new Account("TrainerOne", "T1", Role.TRAINER));
         add(new Account("TrainerTwo", "T2", Role.TRAINER));

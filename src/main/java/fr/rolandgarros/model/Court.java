@@ -11,7 +11,7 @@ public class Court {
     private Integer idC;
 
     @Column(name = "name", nullable = false)
-    private  String name;
+    private String name;
 
     public Court() {}
 

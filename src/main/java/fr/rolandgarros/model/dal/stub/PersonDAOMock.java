@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDAOMock implements PersonDAO {
-
     private final DateFormat df = Utils.dateFormat;
 
     private final List<Person> persons = new ArrayList<Person>() {{

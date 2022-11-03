@@ -11,16 +11,14 @@ public class Account {
     private Integer idAccount;
 
     @Column(name = "password", nullable = false)
-    private  String password;
+    private String password;
 
     @Column(name = "login",unique = true)
-    private  String login;
+    private String login;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private  Role role;
-
-
+    private Role role;
 
     public Account(String login, String password, Role role) {
         this.login = login;
@@ -28,9 +26,7 @@ public class Account {
         this.role = role;
     }
 
-    public Account() {
-
-    }
+    public Account() {}
 
     public String getPassword() {
         return password;

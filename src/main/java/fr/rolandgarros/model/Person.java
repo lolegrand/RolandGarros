@@ -26,18 +26,17 @@ public class Person {
     @Column(name = "idP")
     private Integer id = new Random().nextInt();
 
-
     @Column(name = "lastname", nullable = false)
-    private  String lastname;
+    private String lastname;
 
     @Column(name = "firstname", nullable = false)
-    private  String firstname;
+    private String firstname;
 
     @Column(name = "birthdate", nullable = false)
-    private  Date birthDate;
+    private Date birthDate;
 
     @Column(name = "birthPlace", nullable = false)
-    private  String birthPlace;
+    private String birthPlace;
 
     @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -53,9 +52,7 @@ public class Person {
         this.gender = gender;
     }
 
-    public Person() {
-
-    }
+    public Person() {}
 
     public String getLastname() {
         return lastname;
@@ -88,7 +85,6 @@ public class Person {
     public Gender getGender() {
         return gender;
     }
-
     public void setGender(Gender gender) {
         this.gender = gender;
     }

@@ -5,7 +5,6 @@ import fr.rolandgarros.model.Court;
 import java.util.List;
 
 public interface CourtDAO {
-
     void createCourt(Court court);
 
     List<Court> getAllCourt();
