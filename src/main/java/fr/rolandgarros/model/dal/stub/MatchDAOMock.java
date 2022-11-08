@@ -8,6 +8,7 @@ import fr.rolandgarros.model.Single;
 import fr.rolandgarros.model.dal.MatchDAO;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class MatchDAOMock implements MatchDAO {
 
 
     @Override
-    public Match getMatch(Court court, Date start) {
+    public Match getMatch(Court court, Timestamp start) {
         for (Match match : matches) {
             if ( match.getCourt().equals( court )
                     && match.getStartDate().equals( start )
@@ -28,6 +29,11 @@ public class MatchDAOMock implements MatchDAO {
                 return match;
             }
         }
+        return null;
+    }
+
+    @Override
+    public Match getMatchById(int id) {
         return null;
     }
 

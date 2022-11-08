@@ -1,12 +1,11 @@
 package fr.rolandgarros.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
+@Entity
+@Table( name = "trainingGame" )
 public class Training extends TimeEvent {
 
     @OneToOne(
@@ -31,6 +30,8 @@ public class Training extends TimeEvent {
         this.booker = booker;
         this.court = court;
     }
+
+    public Training() {}
 
     public Person getBooker() {
         return booker;

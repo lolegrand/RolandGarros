@@ -14,9 +14,9 @@ import java.util.List;
 
 public class PersonDAOImpl implements PersonDAO {
 
-    private final DateFormat df = Utils.dateFormat;
-    private  EntityManagerFactory entityManagerFactory = null;
-    private  EntityManager entityManager = null;
+    //private final DateFormat df = Utils.dateFormat;
+    private  EntityManagerFactory entityManagerFactory;
+    private  EntityManager entityManager;
 
     private final String persistenceUnitName = "RolandGarros";
 

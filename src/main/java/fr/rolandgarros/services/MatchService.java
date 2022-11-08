@@ -7,14 +7,15 @@ import fr.rolandgarros.model.dal.MatchDAO;
 import fr.rolandgarros.model.dal.stub.MatchDAOMock;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class MatchService {
     private final MatchDAO matchDAO = new MatchDAOMock();
     //private final MatchDAO matchDAO = new MatchDAOImpl();
 
-    public Match getMatch(Court court, Date start) { return matchDAO.getMatch(court, start); }
-
+    public Match getMatch(Court court, Timestamp start) { return matchDAO.getMatch(court, start); }
+    public Match getMatchById(int id) { return matchDAO.getMatchById(id); }
     public List<Match> getAllMatches() {
         return matchDAO.getAllMatches();
     }

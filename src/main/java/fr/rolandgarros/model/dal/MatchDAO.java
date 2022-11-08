@@ -4,12 +4,15 @@ import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Match;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface MatchDAO {
 
 
-    Match getMatch(Court court, Date start);
+    Match getMatch(Court court, Timestamp start);
+
+    Match getMatchById(int id);
 
     List<Match> getAllMatches();
     List<Match> getMatchesToCome();

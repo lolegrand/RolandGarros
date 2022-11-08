@@ -80,7 +80,7 @@ public class TrainingDAOImpl implements TrainingDAO {
             entityManager = entityManagerFactory.createEntityManager();
 
             entityManager.getTransaction().begin();
-            trainingById = entityManager.createQuery("SELECT t FROM Training WHERE t.idT = :id", Training.class).setParameter("id",trainingId).getSingleResult();
+            trainingById = entityManager.createQuery("SELECT t FROM Training t WHERE t.idT = :id", Training.class).setParameter("id",trainingId).getSingleResult();
             entityManager.getTransaction().commit();
 
         } finally {
