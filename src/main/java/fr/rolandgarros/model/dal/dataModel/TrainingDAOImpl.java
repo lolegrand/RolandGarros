@@ -74,20 +74,19 @@ public class TrainingDAOImpl implements TrainingDAO {
 
     @Override
     public Training getTrainingById(int trainingId) {
-        Training trainingById;
+       Training training;
         try{
             entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             entityManager.getTransaction().begin();
-            trainingById = entityManager.createQuery("SELECT t FROM Training t WHERE t.idT = :id", Training.class).setParameter("id",trainingId).getSingleResult();
+            training = entityManager.find(Training.class, trainingId);
             entityManager.getTransaction().commit();
 
         } finally {
             if (entityManager != null) entityManager.close();
             if (entityManagerFactory != null) entityManagerFactory.close();
         }
-
-        return trainingById;
+        return training;
     }
 }

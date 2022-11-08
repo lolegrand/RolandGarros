@@ -64,4 +64,20 @@ public class CourtDAOImpl implements CourtDAO {
             if (entityManagerFactory != null) entityManagerFactory.close();
         }
     }
+
+    @Override
+    public Court getCourtById(int id) {
+        Court court;
+        try{
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
+            entityManager = entityManagerFactory.createEntityManager();
+
+            court = entityManager.find(Court.class, id);
+
+        } finally {
+            if (entityManager != null) entityManager.close();
+            if (entityManagerFactory != null) entityManagerFactory.close();
+        }
+        return court;
+    }
 }

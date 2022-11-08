@@ -32,4 +32,16 @@ public class CourtDAOMock implements CourtDAO {
     public void deleteCourt(Court court) {
         courts.remove(court);
     }
+
+    @Override
+    public Court getCourtById(int id) {
+        Court court = null;
+
+        for (Court c : this.courts) {
+            if (c.getIdC() == id) {
+                court =  c;
+            }
+        }
+        return court;
+    }
 }

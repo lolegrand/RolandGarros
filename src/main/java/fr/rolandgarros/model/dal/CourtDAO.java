@@ -11,4 +11,6 @@ public interface CourtDAO {
     List<Court> getAllCourt();
 
     void deleteCourt(Court court);
+
+    Court getCourtById(int id);
 }

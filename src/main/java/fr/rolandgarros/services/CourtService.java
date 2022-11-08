@@ -14,13 +14,17 @@ public class CourtService {
 
     void createCourt(Court court){
         courtDAO.createCourt(court);
-    };
+    }
 
     List<Court> getAllCourt(){
         return courtDAO.getAllCourt();
-    };
+    }
+    Court getCourtById(int id){
+        return courtDAO.getCourtById(id);
+    }
+
 
     void deleteCourt(Court court){
         courtDAO.deleteCourt(court);
-    };
+    }
 }
