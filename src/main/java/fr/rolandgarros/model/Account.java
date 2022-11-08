@@ -1,6 +1,7 @@
 package fr.rolandgarros.model;
 
 import jakarta.persistence.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
 @Table(name = "account")
@@ -23,7 +24,7 @@ public class Account {
 
     public Account(String login, String password, Role role) {
         this.login = login;
-        this.password = password;
+        this.password = this.hash(password);
         this.role = role;
     }
 
@@ -35,6 +36,10 @@ public class Account {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = this.hash(password);
+    }
+
     public String getLogin() {
         return login;
     }
@@ -43,7 +48,36 @@ public class Account {
         return role;
     }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public Integer getIdAccount() {
         return idAccount;
     }
+
+    private  String hash(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public  boolean verifyHash(String password) {
+        return BCrypt.checkpw(password, this.password);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == null || this == null) {
+            return false;
+        }
+
+        if (o instanceof Account) {
+            Account account = (Account) o;
+            return this.login.equals(account.getLogin()) && this.verifyHash(account.getPassword()) && this.idAccount.equals(account.getIdAccount()) && this.role.equals(account.getRole());
+        }
+
+        return false;
+
+    }
+
 }

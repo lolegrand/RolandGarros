@@ -1,10 +1,18 @@
 package fr.rolandgarros.model;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
 import jakarta.persistence.TableGenerator;
 
-import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
@@ -34,7 +42,9 @@ public class Person {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    public Person(String lastname, String firstname, Date birthDate, String birthPlace, Gender gender) {
+
+
+    public Person(String lastname, String firstname, Date birthDate, String birthPlace,Gender gender) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.birthDate = birthDate;
@@ -85,4 +95,19 @@ public class Person {
     public Integer getId() {
         return id;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || this == null) {
+            return false;
+        }
+        if (obj instanceof Person) {
+            Person person = (Person) obj;
+            return this.firstname.equals(person.getFirstname()) && this.lastname.equals(person.getLastname()) && this.birthDate.equals(person.getBirthDate()) && this.birthPlace.equals(person.getBirthPlace())
+                    && this.gender.equals(person.getGender()) && this.id.equals(person.getId());
+        }
+
+        return false;
+    };
+
 }

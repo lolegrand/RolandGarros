@@ -1,8 +1,0 @@
-TRUNCATE TABLE account;
-TRUNCATE TABLE player;
-TRUNCATE TABLE person;
-TRUNCATE TABLE doubleGame;
-TRUNCATE TABLE singleGame;
-TRUNCATE TABLE trainingGame;
-TRUNCATE TABLE court;
-TRUNCATE TABLE sequences;

@@ -28,8 +28,12 @@ public class Player extends Person {
     @Enumerated(EnumType.STRING)
     private  Hand hand;
 
-    @OneToOne
-    @JoinColumn(name = "trainerId")
+    @OneToOne (
+            targetEntity = Person.class,
+            fetch = FetchType.EAGER,
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+    )
+    @JoinColumn(name = "trainerId" , nullable = false)
     private  Person trainer;
 
 

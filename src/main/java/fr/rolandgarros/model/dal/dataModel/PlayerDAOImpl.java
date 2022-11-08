@@ -16,18 +16,19 @@ import java.util.List;
 
 public class PlayerDAOImpl implements PlayerDAO {
 
-    private static EntityManagerFactory entityManagerFactory = null;
-    private static EntityManager entityManager = null;
-
+    private  EntityManagerFactory entityManagerFactory;
+    private  EntityManager entityManager;
+    private final String persistenceUnitName = "RolandGarros";
 
 
     @Override
     public void createPlayer(Player player) {
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             entityManager.getTransaction().begin();
+            player = entityManager.merge(player);
             entityManager.persist(player);
             entityManager.getTransaction().commit();
 
@@ -40,10 +41,11 @@ public class PlayerDAOImpl implements PlayerDAO {
     @Override
     public void deletePlayer(Player player) {
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             entityManager.getTransaction().begin();
+            player = entityManager.merge(player);
             entityManager.remove(player);
             entityManager.getTransaction().commit();
 
@@ -63,7 +65,7 @@ public class PlayerDAOImpl implements PlayerDAO {
     public Player getPlayerByName(String firstName, String lastName) {
         Player player;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             player = entityManager.createQuery( "FROM Player p WHERE p.firstname = :f AND  p.lastname = :l", Player.class )
@@ -76,10 +78,10 @@ public class PlayerDAOImpl implements PlayerDAO {
     }
 
     @Override
-    public List<Player> getAllPlayer() {
+    public ArrayList<Player> getAllPlayer() {
         List<Player> players;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             players = entityManager.createQuery("FROM Player ", Player.class).getResultList();
@@ -87,14 +89,14 @@ public class PlayerDAOImpl implements PlayerDAO {
             if (entityManager != null) entityManager.close();
             if (entityManagerFactory != null) entityManagerFactory.close();
         }
-        return players;
+        return (ArrayList<Player>) players;
     }
 
     @Override
-    public List<Player> getPlayerByGender(Gender gender) {
+    public ArrayList<Player> getPlayerByGender(Gender gender) {
         List<Player> players;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             players = entityManager.createQuery("SELECT p FROM Player p WHERE p.gender = ?1 ", Player.class).
@@ -103,15 +105,17 @@ public class PlayerDAOImpl implements PlayerDAO {
             if (entityManager != null) entityManager.close();
             if (entityManagerFactory != null) entityManagerFactory.close();
         }
-        return players;
+
+
+        return (ArrayList<Player>) players;
     }
 
     @Override
-    public List<Player> getPlayerByRank(Integer rank) {
+    public ArrayList<Player> getPlayerByRank(Integer rank) {
 
         List<Player> players;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             players = entityManager.createQuery("SELECT p FROM Player p WHERE p.ranking = :rank ", Player.class)
@@ -122,15 +126,15 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return players;
+        return (ArrayList<Player>) players;
     }
 
     @Override
-    public List<Player> getPlayerByNationality(String nationality) {
+    public ArrayList<Player> getPlayerByNationality(String nationality) {
 
         List<Player> players;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             players = entityManager.createQuery("SELECT p FROM Player p WHERE p.nationality = :nationality", Player.class)
@@ -141,15 +145,15 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return players;
+        return (ArrayList<Player>) players;
     }
 
     @Override
-    public List<Player> getPlayerByHeight(Float height) {
+    public ArrayList<Player> getPlayerByHeight(Float height) {
 
         List<Player> players;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             players = entityManager.createQuery("SELECT p FROM Player p WHERE p.height = :height", Player.class)
@@ -160,15 +164,15 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return players;
+        return (ArrayList<Player>) players;
     }
 
     @Override
-    public List<Player> getPlayerByWeight(Float weight) {
+    public ArrayList<Player> getPlayerByWeight(Float weight) {
 
         List<Player> players;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             players = entityManager.createQuery("SELECT p FROM Player p WHERE p.weight = :weight", Player.class)
@@ -179,15 +183,15 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return players;
+        return (ArrayList<Player>) players;
     }
 
     @Override
-    public List<Player> getPlayerByStartCareer(Date startCareer) {
+    public ArrayList<Player> getPlayerByStartCareer(Date startCareer) {
 
         List<Player> players;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             players = entityManager.createQuery("SELECT p FROM Player p WHERE p.startCareer = :startCareer", Player.class)
@@ -198,7 +202,7 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return players;
+        return (ArrayList<Player>) players;
     }
 
     @Override
@@ -206,7 +210,7 @@ public class PlayerDAOImpl implements PlayerDAO {
 
         List<Player> players;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             players = entityManager.createQuery("SELECT p FROM Player p WHERE p.hand = ?1", Player.class)
@@ -225,11 +229,11 @@ public class PlayerDAOImpl implements PlayerDAO {
 
         List<Player> players;
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             players = entityManager.createQuery("SELECT p FROM Player p WHERE p.trainer = ?1", Player.class).
-            setParameter(1,trainer).getResultList();
+                    setParameter(1,trainer).getResultList();
         } finally {
             if (entityManager != null) entityManager.close();
             if (entityManagerFactory != null) entityManagerFactory.close();
