@@ -16,4 +16,6 @@ public interface PersonDAO {
     Person getById(Integer id);
 
     List<Person> getAllPerson();
+
+    Person getPersonById(int personId);
 }

@@ -20,4 +20,8 @@ public class CourtService {
 
     public void delete(Court court) { courtDAO.deleteCourt(court); }
 
+    public Court getCourtById(int courtId) {
+        return courtDAO.getCourtById(courtId);
+    }
+
 }

@@ -95,4 +95,9 @@ public class PersonDAOImpl implements PersonDAO {
         }
         return trainers;
     }
+
+    @Override
+    public Person getPersonById(int personId) {
+        throw new NotImplementedException(); // TODO
+    }
 }

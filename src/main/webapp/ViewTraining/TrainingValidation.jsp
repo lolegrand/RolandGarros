@@ -2,17 +2,27 @@
 <%@ page import="java.util.List" %>
 <%
   List<Training> trainings = (List<Training>) request.getAttribute("trainings");
+  boolean showValidator = false;
+
+  for (Training training : trainings) {
+    if (training.getValidated() == null) {
+      showValidator = true;
+      break;
+    }
+  }
+
 %>
 
-<article class="w-50 row self-center space-around" id="articleTrainingValidation">
+<% if (showValidator) { %>
 
-  <label class="w-100">Demandes d'entraînement</label>
+<article class="w-50 row self-center space-around scrollable" id="articleTrainingValidation">
 
   <%
     for (Training training: trainings) {
       if (training.getValidated() == null) {
   %>
-  <form method="post" class="w-100 row space-around" style="border: dashed black; border-width: 0 0 3px 0; margin: 0">
+  <form method="post" class="w-100 row space-around"
+        style="margin: 10px; box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;">
 
     <p class="w-100 txt-center">
       Demande d'entraînement par <%=training.getBooker().getFirstname()%> <%=training.getBooker().getLastname()%>
@@ -28,7 +38,6 @@
 
     <input class="w-25 btn-green" type="submit" name="state" value="Accepter">
     <input class="w-25 btn-red" type="submit" name="state" value="Refuser">
-
   </form>
   <%
       }
@@ -40,3 +49,5 @@
   </form>
 
 </article>
+
+<% } %>
