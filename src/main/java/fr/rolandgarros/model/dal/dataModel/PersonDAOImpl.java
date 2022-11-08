@@ -51,4 +51,9 @@ public class PersonDAOImpl implements PersonDAO {
     public List<Person> getAllPerson() { // get all trainers
         return PersistenceManager.runInTransaction(entityManager -> entityManager.createQuery( "FROM Person", Person.class ).getResultList());
     }
+
+    @Override
+    public Person getPersonById(int personId) {
+        throw new NotImplementedException(); // TODO
+    }
 }

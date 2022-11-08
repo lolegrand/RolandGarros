@@ -36,4 +36,8 @@ public class PersonService {
     public List<Person> getAllPerson(){
         return personDAO.getAllPerson();
     }
+
+    public Person getPersonById(int personId) {
+       return personDAO.getPersonById(personId);
+    }
 }
