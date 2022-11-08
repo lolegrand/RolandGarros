@@ -9,6 +9,7 @@ import java.util.List;
 public class TrainingService {
 
     private final TrainingDAO trainingDAO = new TrainingDAOMock();
+    //private final TrainingDAO trainingDAO = new TrainingDAOImpl();
 
     public List<Training> getAllTraining() {
         return trainingDAO.getAllTraining();

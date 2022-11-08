@@ -8,37 +8,40 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class AccountDAOImpl implements AccountDAO {
-    private static EntityManagerFactory entityManagerFactory = null;
-    private static EntityManager entityManager = null;
-
-
+    private  EntityManagerFactory entityManagerFactory;
+    private  EntityManager entityManager;
+    private final String persistenceUnitName = "RolandGarros";
 
     @Override
     public Account findAccountByLoginPassword(String login, String password) {
 
-        Account accounts;
+        Account account;
         try {
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
-            accounts = entityManager.createQuery("FROM Account a WHERE a.login = ?1 AND a.password = ?2", Account.class)
-                    .setParameter(1,login).setParameter(2,password).getSingleResult();
-
+            account = entityManager.createQuery("FROM Account a WHERE a.login = :login", Account.class)
+                    .setParameter("login",login).getSingleResult();
         } finally {
             if (entityManager != null) entityManager.close();
             if (entityManagerFactory != null) entityManagerFactory.close();
         }
 
-        return accounts;
+        if (account == null || !account.verifyHash(password)) {
+            return null;
+        }else {
+            return account;
+        }
     }
 
     @Override
     public void createAccount(Account account) {
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             entityManager.getTransaction().begin();
+            account = entityManager.merge(account);
             entityManager.persist(account);
             entityManager.getTransaction().commit();
 
@@ -56,10 +59,11 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public void deleteAccount(Account account) {
         try{
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
+            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
             entityManager = entityManagerFactory.createEntityManager();
 
             entityManager.getTransaction().begin();
+            account = entityManager.merge(account);
             entityManager.remove(account);
             entityManager.getTransaction().commit();
 

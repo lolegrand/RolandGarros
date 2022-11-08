@@ -6,10 +6,12 @@ import fr.rolandgarros.model.dal.dataModel.PersonDAOImpl;
 import fr.rolandgarros.model.dal.stub.PersonDAOMock;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PersonService {
 
     private static final PersonDAO personDAO = new PersonDAOMock();
+    //private static final PersonDAO personDAO = new PersonDAOImpl();
 
     public void createPerson(Person person){
         personDAO.createPerson(person);
@@ -25,6 +27,10 @@ public class PersonService {
 
     public Person getPersonByName(String lastName, String firstName){
         return personDAO.getPersonByName(lastName, firstName);
+    }
+
+    public List<Person> getAllPerson(){
+        return personDAO.getAllPerson();
     }
 
 }

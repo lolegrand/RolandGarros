@@ -10,6 +10,7 @@ import java.util.List;
 public abstract class Match extends TimeEvent {
 
     @Column(name = "gender", nullable = false)
+    @Enumerated(EnumType.STRING)
     private  Gender gender;
 
     @Column(name = "scoreOne")
@@ -18,7 +19,10 @@ public abstract class Match extends TimeEvent {
     @Column(name = "scoreTwo")
     private String scoreTwo;
 
-    @OneToOne
+    @OneToOne (
+            targetEntity = Court.class,
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+    )
     @JoinColumn(name = "courtId")
     private  Court court;
 

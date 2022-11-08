@@ -1,5 +1,6 @@
 package fr.rolandgarros.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -10,11 +11,17 @@ import java.sql.Timestamp;
 @Table(name = "singleGame")
 public class Single extends Match {
 
-    @OneToOne
+    @OneToOne (
+            targetEntity = Player.class,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+    )
     @JoinColumn(name = "playerOneId")
     private Player playerOne;
 
-    @OneToOne
+    @OneToOne (
+            targetEntity = Player.class,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+    )
     @JoinColumn(name = "playerTwoId")
     private Player playerTwo;
 

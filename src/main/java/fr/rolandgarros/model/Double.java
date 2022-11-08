@@ -1,9 +1,7 @@
 package fr.rolandgarros.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 
 @Entity
@@ -11,19 +9,27 @@ import java.sql.Timestamp;
 public class Double extends Match {
 
 
-    @OneToOne
+    @OneToOne (targetEntity = Player.class,
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+    )
     @JoinColumn(name = "teamOnePlayerOneId")
     private  Player teamOnePlayerOne;
 
-    @OneToOne
+    @OneToOne (targetEntity = Player.class,
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+    )
     @JoinColumn(name = "teamOnePlayerTwoId")
     private  Player teamOnePlayerTwo;
 
-    @OneToOne
+    @OneToOne (targetEntity = Player.class,
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+    )
     @JoinColumn(name = "teamTwoPlayerOneId")
     private  Player teamTwoPlayerOne;
 
-    @OneToOne
+    @OneToOne (targetEntity = Player.class,
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+    )
     @JoinColumn(name = "teamTwoPlayerTwoId")
     private  Player teamTwoPlayerTwo;
 

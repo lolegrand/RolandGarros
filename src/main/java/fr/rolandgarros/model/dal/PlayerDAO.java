@@ -7,14 +7,6 @@ import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import fr.rolandgarros.model.Hand;
-import fr.rolandgarros.model.Person;
-import fr.rolandgarros.model.Player;
-import fr.rolandgarros.model.Player;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.List;
 
 public interface PlayerDAO {

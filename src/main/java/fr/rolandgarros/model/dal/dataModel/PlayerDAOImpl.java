@@ -11,7 +11,6 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerDAOImpl implements PlayerDAO {
@@ -78,7 +77,7 @@ public class PlayerDAOImpl implements PlayerDAO {
     }
 
     @Override
-    public ArrayList<Player> getAllPlayer() {
+    public List<Player> getAllPlayer() {
         List<Player> players;
         try{
             entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
@@ -89,11 +88,11 @@ public class PlayerDAOImpl implements PlayerDAO {
             if (entityManager != null) entityManager.close();
             if (entityManagerFactory != null) entityManagerFactory.close();
         }
-        return (ArrayList<Player>) players;
+        return players;
     }
 
     @Override
-    public ArrayList<Player> getPlayerByGender(Gender gender) {
+    public List<Player> getPlayerByGender(Gender gender) {
         List<Player> players;
         try{
             entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
@@ -107,11 +106,11 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return (ArrayList<Player>) players;
+        return players;
     }
 
     @Override
-    public ArrayList<Player> getPlayerByRank(Integer rank) {
+    public List<Player> getPlayerByRank(Integer rank) {
 
         List<Player> players;
         try{
@@ -126,11 +125,11 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return (ArrayList<Player>) players;
+        return players;
     }
 
     @Override
-    public ArrayList<Player> getPlayerByNationality(String nationality) {
+    public List<Player> getPlayerByNationality(String nationality) {
 
         List<Player> players;
         try{
@@ -145,11 +144,11 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return (ArrayList<Player>) players;
+        return players;
     }
 
     @Override
-    public ArrayList<Player> getPlayerByHeight(Float height) {
+    public List<Player> getPlayerByHeight(Float height) {
 
         List<Player> players;
         try{
@@ -164,11 +163,11 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return (ArrayList<Player>) players;
+        return players;
     }
 
     @Override
-    public ArrayList<Player> getPlayerByWeight(Float weight) {
+    public List<Player> getPlayerByWeight(Float weight) {
 
         List<Player> players;
         try{
@@ -183,11 +182,11 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return (ArrayList<Player>) players;
+        return players;
     }
 
     @Override
-    public ArrayList<Player> getPlayerByStartCareer(Date startCareer) {
+    public List<Player> getPlayerByStartCareer(Date startCareer) {
 
         List<Player> players;
         try{
@@ -202,11 +201,11 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return (ArrayList<Player>) players;
+        return players;
     }
 
     @Override
-    public ArrayList<Player> getPlayerByHand(Hand hand) {
+    public List<Player> getPlayerByHand(Hand hand) {
 
         List<Player> players;
         try{
@@ -221,11 +220,11 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return (ArrayList<Player>) players;
+        return players;
     }
 
     @Override
-    public ArrayList<Player> getPlayerByTrainer(Person trainer) {
+    public List<Player> getPlayerByTrainer(Person trainer) {
 
         List<Player> players;
         try{
@@ -240,6 +239,6 @@ public class PlayerDAOImpl implements PlayerDAO {
         }
 
 
-        return (ArrayList<Player>) players;
+        return players;
     }
 }

@@ -1,19 +1,6 @@
 package fr.rolandgarros.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.TableGenerator;
-import java.sql.Timestamp;
-import java.sql.Date;
-import java.util.Random;
-import javax.persistence.*;
 import jakarta.persistence.*;
-import jakarta.persistence.Column;
-
 import java.sql.Timestamp;
 
 @Entity
