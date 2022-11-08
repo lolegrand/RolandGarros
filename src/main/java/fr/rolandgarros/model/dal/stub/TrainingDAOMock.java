@@ -66,7 +66,7 @@ public class TrainingDAOMock implements TrainingDAO {
     @Override
     public void completeTrainingDemand(Training training) {
         for (Training training1 : trainings) {
-            if (Objects.equals(training1.getIdT(), training.getIdT())) {
+            if (Objects.equals(training.getIdT(), training1.getIdT())) {
                 training1.setValidated(training.getValidated());
             }
         }

@@ -22,7 +22,7 @@ public abstract class TimeEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE , generator = "timeEventId")
     @TableGenerator(table = "sequences", name = "timeEventId" ,allocationSize = 1)
-    private Integer idT = 0;
+    private Integer idT = new Random().nextInt();
 
     @Column(name = "startDate", nullable = false)
     protected  Timestamp startDate;
