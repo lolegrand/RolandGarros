@@ -200,15 +200,17 @@ public class PlayerServlet extends HttpServlet {
                 req.setAttribute("CreatePlayerError-Hand", error);
             }
 
-            if ( req.getParameter("selectTrainer") != null ) {
-                String[] split = req.getParameter("selectTrainer").split(" ");
+            /*
+            if ( req.getParameter("trainer") != null ) {
+                String[] split = req.getParameter("trainer").split(" ");
                 trainer = personService.getPersonByName(split[1], split[0]);
-            }
 
-            if ( !playerService.checkTrainer( trainer ) ){
-                error = "Entraineur invalide.";
-                req.setAttribute("CreatePlayerError-Trainer", error);
+                if ( !playerService.checkTrainer( trainer ) ){
+                    error = "Entraineur invalide.";
+                    req.setAttribute("CreatePlayerError-Trainer", error);
+                }
             }
+             */
 
             if ( error != null ) {
                 req.setAttribute("CreatePlayerError", error);

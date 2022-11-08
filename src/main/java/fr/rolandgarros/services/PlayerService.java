@@ -112,13 +112,9 @@ public class PlayerService {
     }
 
     public boolean checkStartCareer( Integer startCareer ) {
-       /* int currentYear = 2022;
-        return startCareer.compareTo(1900) != -1
-                && startCareer.compareTo(currentYear+1) != 0
+        int currentYear = 2022;
+        return startCareer.compareTo(currentYear+1) != 0
                 && startCareer.compareTo(currentYear+1) != 1;
-
-        */
-        return true;
     }
 
     public boolean checkHand( Hand hand ) {
