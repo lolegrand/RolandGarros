@@ -62,7 +62,6 @@
   if ( trainers != null ) {
 %>
 <article class="w-50 row self-center space-around" id="articleCreatePlayer">
-
   <form class="row space-around" method="post" name="formCreatePlayer">
     <h2 class="w-100 txt-center">Nouvelle fiche joueur</h2>
 
@@ -121,12 +120,12 @@
     <p class="w-100 error"><%= errorHand %></p>
 
     <label class="w-25">Début de carrière</label>
-    <input required class="w-25" type="number" name="startCareer" placeholder="1990">
+    <input required class="w-25" type="number" min="1900" max="2022" name="startCareer" placeholder="1990">
 
     <p class="w-50 error"><%= errorStartCareer %></p>
 
     <label class="w-25">Entraîneur</label>
-    <select class="w-75" name="coucouJoliPetitRagondin">
+    <select class="w-75" name="trainer">
       <% for ( Person trainer : trainers ){ %>
         <option value="<%= trainer.getFirstname() %><%= trainer.getLastname() %>">
           <%= trainer.getFirstname() %><%= trainer.getLastname() %>
