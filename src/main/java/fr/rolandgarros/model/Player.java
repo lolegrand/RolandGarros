@@ -133,4 +133,18 @@ public class Player extends Person {
                 ", Ranking='" + ranking + " }\n";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || this == null) {
+            return false;
+        }
+        if (obj instanceof Person) {
+            Player p = (Player) obj;
+            return this.getLastname().equals(p.getLastname()) && this.getFirstname().equals(p.getFirstname()) && this.getBirthDate().equals(p.getBirthDate()) && this.getBirthPlace().equals(p.getBirthPlace()) && this.getGender().equals(p.getGender()) && this.getNationality().equals(p.getNationality()) && this.getRanking().equals(p.getRanking()) && this.getTrainer().equals(p.getTrainer()) && this.getHand().equals(p.getHand()) && this.getHeight().equals(p.getHeight()) && this.getWeight().equals(p.getWeight()) && this.getStartCareer().equals(p.getStartCareer());
+
+        }
+
+        return false;
+    }
+
 }

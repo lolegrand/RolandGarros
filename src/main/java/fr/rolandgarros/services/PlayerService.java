@@ -87,4 +87,13 @@ public class PlayerService {
     public boolean checkTrainer( Person trainer ){
                 return trainer != null;
         }
+    public boolean checkPlayerExsist( Player player ){
+        List<Player> players = getAllPlayers();
+        for (Player p : players) {
+            if (p.equals(player)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

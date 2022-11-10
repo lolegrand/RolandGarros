@@ -194,10 +194,16 @@ public class PlayerServlet extends HttpServlet {
                 player = new Player(
                         lastname, firstname, birthdate, birthplace, ranking, bestRanking,
                         nationality, height, weight, startCareer, hand, trainer, gender);
-                playerService.createPlayer(player);
 
-                successMsg = "Création réussie.";
-                req.setAttribute("CreatePlayerSuccess", successMsg);
+                if (!playerService.checkPlayerExsist(player)){ //FIXME: check if player already exist
+                    playerService.createPlayer(player);
+                    successMsg = "Création réussie.";
+                    req.setAttribute("CreatePlayerSuccess", successMsg);
+                }
+                else {
+                    errorMsg = "Ce joueur existe déjà.";
+                    req.setAttribute("CreatePlayerError", errorMsg);
+                }
             }
         }
 
