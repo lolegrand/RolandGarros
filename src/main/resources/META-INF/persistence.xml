@@ -17,7 +17,6 @@
 		<class>fr.rolandgarros.model.Single</class>
 		<class>fr.rolandgarros.model.TimeEvent</class>
 
-
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
 <!--			<property name="hibernate.hbm2ddl.auto" value="create" />-->
@@ -26,6 +25,7 @@
 			<property name="hibernate.connection.username" value="IMR_team05" />
 			<property name="hibernate.connection.password" value="3Ym7G3;Y94" />
 			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>

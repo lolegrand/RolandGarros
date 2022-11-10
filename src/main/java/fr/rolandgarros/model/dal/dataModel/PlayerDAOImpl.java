@@ -1,129 +1,134 @@
 package fr.rolandgarros.model.dal.dataModel;
 
+import fr.rolandgarros.di.JPAService;
 import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Hand;
 import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;
 import fr.rolandgarros.model.dal.PlayerDAO;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.sql.Date;
 import java.util.List;
 
 public class PlayerDAOImpl implements PlayerDAO {
 
-    private  EntityManagerFactory entityManagerFactory;
-    private  EntityManager entityManager;
-    private final String persistenceUnitName = "RolandGarros";
-
-
     @Override
     public void createPlayer(Player player) {
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        JPAService jpaService = JPAService.getInstance();
 
-            entityManager.getTransaction().begin();
-            player = entityManager.merge(player);
-            entityManager.persist(player);
-            entityManager.getTransaction().commit();
+        try {
+
+            jpaService.runInTransaction(entityManager -> {
+                entityManager.persist(player);
+                return null;
+            });
 
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
     }
 
     @Override
     public void deletePlayer(Player player) {
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        JPAService jpaService = JPAService.getInstance();
 
-            entityManager.getTransaction().begin();
-            player = entityManager.merge(player);
-            entityManager.remove(player);
-            entityManager.getTransaction().commit();
+        try {
+
+            jpaService.runInTransaction(entityManager -> {
+                entityManager.remove(entityManager.merge(player));
+                return null;
+            });
 
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
 
     }
 
     @Override
     public void updatePlayer(Player player) {
-        createPlayer(player);
+        JPAService jpaService = JPAService.getInstance();
+
+        try {
+
+            jpaService.runInTransaction(entityManager -> {
+                entityManager.persist(entityManager.merge(player));
+                return null;
+            });
+
+        } finally {
+            jpaService.shutdown();
+        }
     }
 
     @Override
     public Player getPlayerByName(String firstName, String lastName) {
-        Player player;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        JPAService jpaService = JPAService.getInstance();
 
-            player = entityManager.createQuery( "FROM Player p WHERE p.firstname = :f AND  p.lastname = :l", Player.class )
-                    .setParameter("f", firstName).setParameter("l",lastName).getSingleResult();
+        Player player;
+        try {
+
+           player =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("SELECT p FROM Player p WHERE p.firstname = :firstName AND p.lastname = :lastName", Player.class)
+                   .setParameter("firstName", firstName)
+                   .setParameter("lastName", lastName)
+                   .getSingleResult());
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
         return player;
     }
 
     @Override
     public List<Player> getAllPlayer() {
-        List<Player> players;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        JPAService jpaService = JPAService.getInstance();
 
-            players = entityManager.createQuery("FROM Player ", Player.class).getResultList();
+        List<Player> players;
+        try {
+
+            players =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("FROM Player", Player.class).getResultList());
+
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
+
         return players;
     }
 
     @Override
     public List<Player> getPlayerByGender(Gender gender) {
+        JPAService jpaService = JPAService.getInstance();
+
         List<Player> players;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        try {
 
-            players = entityManager.createQuery("SELECT p FROM Player p WHERE p.gender = ?1 ", Player.class).
-                    setParameter(1,gender).getResultList();
+            players =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("SELECT p FROM Player p WHERE p.gender = ?1 ", Player.class).
+                    setParameter(1,gender).getResultList());
+
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
-
 
         return players;
     }
 
     @Override
     public List<Player> getPlayerByRank(Integer rank) {
+        JPAService jpaService = JPAService.getInstance();
 
         List<Player> players;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        try {
 
-            players = entityManager.createQuery("SELECT p FROM Player p WHERE p.ranking = :rank ", Player.class)
-                    .setParameter("rank", rank).getResultList();
+            players =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("SELECT p FROM Player p WHERE p.ranking = :rank ", Player.class)
+                    .setParameter("rank", rank).getResultList());
+
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
-
 
         return players;
     }
@@ -131,18 +136,16 @@ public class PlayerDAOImpl implements PlayerDAO {
     @Override
     public List<Player> getPlayerByNationality(String nationality) {
 
+        JPAService jpaService = JPAService.getInstance();
         List<Player> players;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        try {
 
-            players = entityManager.createQuery("SELECT p FROM Player p WHERE p.nationality = :nationality", Player.class)
-                    .setParameter("nationality", nationality).getResultList();
+            players =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("SELECT p FROM Player p WHERE p.nationality = :nationality", Player.class)
+                    .setParameter("nationality", nationality).getResultList());
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
-
 
         return players;
     }
@@ -150,18 +153,18 @@ public class PlayerDAOImpl implements PlayerDAO {
     @Override
     public List<Player> getPlayerByHeight(Float height) {
 
+        JPAService jpaService = JPAService.getInstance();
+
         List<Player> players;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        try {
 
-            players = entityManager.createQuery("SELECT p FROM Player p WHERE p.height = :height", Player.class)
-                    .setParameter("height",height).getResultList();
+            players =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("SELECT p FROM Player p WHERE p.height = :height", Player.class)
+                    .setParameter("height",height).getResultList());
+
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
-
 
         return players;
     }
@@ -169,18 +172,18 @@ public class PlayerDAOImpl implements PlayerDAO {
     @Override
     public List<Player> getPlayerByWeight(Float weight) {
 
+        JPAService jpaService = JPAService.getInstance();
+
         List<Player> players;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        try {
 
-            players = entityManager.createQuery("SELECT p FROM Player p WHERE p.weight = :weight", Player.class)
-                    .setParameter("weight",weight).getResultList();
+            players =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("SELECT p FROM Player p WHERE p.weight = :weight", Player.class)
+                    .setParameter("weight",weight).getResultList());
+
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
-
 
         return players;
     }
@@ -188,18 +191,18 @@ public class PlayerDAOImpl implements PlayerDAO {
     @Override
     public List<Player> getPlayerByStartCareer(Date startCareer) {
 
+        JPAService jpaService = JPAService.getInstance();
+
         List<Player> players;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        try {
 
-            players = entityManager.createQuery("SELECT p FROM Player p WHERE p.startCareer = :startCareer", Player.class)
-                    .setParameter("startCareer",startCareer).getResultList();
+            players =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("SELECT p FROM Player p WHERE p.startCareer = :startCareer", Player.class)
+                    .setParameter("startCareer",startCareer).getResultList());
+
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
-
 
         return players;
     }
@@ -207,37 +210,36 @@ public class PlayerDAOImpl implements PlayerDAO {
     @Override
     public List<Player> getPlayerByHand(Hand hand) {
 
+        JPAService jpaService = JPAService.getInstance();
+
         List<Player> players;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        try {
 
-            players = entityManager.createQuery("SELECT p FROM Player p WHERE p.hand = ?1", Player.class)
-                    .setParameter(1,hand).getResultList();
+            players =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("SELECT p FROM Player p WHERE p.hand = ?1", Player.class)
+                    .setParameter(1,hand).getResultList());
+
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
-
 
         return players;
     }
 
     @Override
     public List<Player> getPlayerByTrainer(Person trainer) {
+        JPAService jpaService = JPAService.getInstance();
 
         List<Player> players;
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        try {
 
-            players = entityManager.createQuery("SELECT p FROM Player p WHERE p.trainer = ?1", Player.class).
-                    setParameter(1,trainer).getResultList();
+            players =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("SELECT p FROM Player p WHERE p.trainer = ?1", Player.class).
+                    setParameter(1,trainer).getResultList());
+
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
-
 
         return players;
     }

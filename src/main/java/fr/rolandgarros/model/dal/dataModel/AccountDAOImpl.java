@@ -1,30 +1,25 @@
 package fr.rolandgarros.model.dal.dataModel;
 
+import fr.rolandgarros.di.JPAService;
 import fr.rolandgarros.model.Account;
 import fr.rolandgarros.model.dal.AccountDAO;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 public class AccountDAOImpl implements AccountDAO {
-    private  EntityManagerFactory entityManagerFactory;
-    private  EntityManager entityManager;
-    private final String persistenceUnitName = "RolandGarros";
 
     @Override
     public Account findAccountByLoginPassword(String login, String password) {
 
+        JPAService jpaService = JPAService.getInstance();
+
         Account account;
         try {
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
 
-            account = entityManager.createQuery("FROM Account a WHERE a.login = :login", Account.class)
-                    .setParameter("login",login).getSingleResult();
+            account =  jpaService.runInTransaction(entityManager -> entityManager.createQuery("FROM Account a WHERE a.login = :login", Account.class)
+                    .setParameter("login",login).getSingleResult());
+
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
 
         if (account == null || !account.verifyHash(password)) {
@@ -36,40 +31,50 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public void createAccount(Account account) {
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
 
-            entityManager.getTransaction().begin();
-            account = entityManager.merge(account);
-            entityManager.persist(account);
-            entityManager.getTransaction().commit();
+        JPAService jpaService = JPAService.getInstance();
+
+        try {
+
+            jpaService.runInTransaction(entityManager -> {
+                entityManager.persist(account);
+                return null;
+            });
 
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
     }
 
     @Override
     public void updateAccount(Account account) {
-        createAccount(account);
+        JPAService jpaService = JPAService.getInstance();
+
+        try {
+
+            jpaService.runInTransaction(entityManager -> {
+                entityManager.persist(entityManager.merge(account));
+                return null;
+            });
+
+        } finally {
+            jpaService.shutdown();
+        }
     }
 
     @Override
     public void deleteAccount(Account account) {
-        try{
-            entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
-            entityManager = entityManagerFactory.createEntityManager();
+        JPAService jpaService = JPAService.getInstance();
 
-            entityManager.getTransaction().begin();
-            account = entityManager.merge(account);
-            entityManager.remove(account);
-            entityManager.getTransaction().commit();
+        try {
+
+            jpaService.runInTransaction(entityManager -> {
+                entityManager.remove(entityManager.merge(account));
+                return null;
+            });
 
         } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
+            jpaService.shutdown();
         }
     }
 

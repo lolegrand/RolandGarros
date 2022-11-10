@@ -2,10 +2,6 @@ package fr.rolandgarros.model.dal.dataModel;
 import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Match;
 import fr.rolandgarros.model.dal.MatchDAO;
-import fr.rolandgarros.model.dal.TrainingDAO;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.sql.Timestamp;
 import java.util.List;

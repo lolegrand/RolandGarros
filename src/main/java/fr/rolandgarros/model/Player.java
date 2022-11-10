@@ -122,5 +122,15 @@ public class Player extends Person {
         return bestRanking;
     }
 
+    @Override
+    //toString method
+    public String toString() {
+        return "Player{" +
+                "Firstname='" + getLastname() + '\'' +
+                ", Lastname='" + getFirstname() + '\'' +
+                ", BirthDate='" + getBirthDate() + '\'' +
+                ", BirthPlace='" + getBirthPlace() + '\'' +
+                ", Ranking='" + ranking + " }\n";
+    }
 
 }

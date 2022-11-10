@@ -3,14 +3,15 @@ package fr.rolandgarros.services;
 import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.dal.CourtDAO;
 import fr.rolandgarros.model.dal.MatchDAO;
+import fr.rolandgarros.model.dal.dataModel.CourtDAOImpl;
 import fr.rolandgarros.model.dal.stub.CourtDAOMock;
 import fr.rolandgarros.model.dal.stub.MatchDAOMock;
 
 import java.util.List;
 
 public class CourtService {
-    private final CourtDAO courtDAO = new CourtDAOMock();
-    //private final CourtDAO courtDAO = new CourtDAOImpl();
+    //private final CourtDAO courtDAO = new CourtDAOMock();
+    private final CourtDAO courtDAO = new CourtDAOImpl();
 
     void createCourt(Court court){
         courtDAO.createCourt(court);

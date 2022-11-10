@@ -10,8 +10,8 @@ import java.util.List;
 
 public class PersonService {
 
-    private static final PersonDAO personDAO = new PersonDAOMock();
-    //private static final PersonDAO personDAO = new PersonDAOImpl();
+    //private static final PersonDAO personDAO = new PersonDAOMock();
+    private static final PersonDAO personDAO = new PersonDAOImpl();
 
     public void createPerson(Person person){
         personDAO.createPerson(person);
