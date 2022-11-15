@@ -63,8 +63,16 @@ public class PlayerServlet extends HttpServlet {
             lastname = req.getParameter("playerLastname");
         }
 
+        if ( req.getParameter("lastname") != null ) {
+            lastname = req.getParameter("lastname");
+        }
+
         if ( req.getParameter("playerFirstname") != null ) {
             firstname = req.getParameter("playerFirstname");
+        }
+
+        if ( req.getParameter("firstname") != null ) {
+            firstname = req.getParameter("firstname");
         }
 
         if ( req.getParameter("gender") != null ) {
@@ -259,7 +267,7 @@ public class PlayerServlet extends HttpServlet {
         }
 
 
-        boolean formDeletePlayer = req.getParameter("submitFormDeletePlayer") != null;
+        boolean formDeletePlayer = req.getParameter("deletePlayer") != null;
 
         if ( formDeletePlayer ){
             player = playerService.getPlayerByName(lastname, firstname);

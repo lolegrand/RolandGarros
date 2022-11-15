@@ -1,8 +1,6 @@
 <%@ page import="fr.rolandgarros.model.Role" %>
 <%
-    // Role role = (String) request.getSession().getAttribute("role");
-    Role role = Role.PLAYER_EDITOR;
-
+    Role role = (Role) request.getSession().getAttribute("role");
     boolean isPlayerEditor = role != null && (role.equals(Role.PLAYER_EDITOR) || role.equals(Role.ADMINISTRATOR));
 
     String display = request.getParameter("displayPlayer");

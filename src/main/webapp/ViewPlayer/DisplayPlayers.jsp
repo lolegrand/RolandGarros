@@ -3,8 +3,7 @@
 <%
 
   List<Player> players = (List<Player>) request.getAttribute("players");
-
-  boolean isAdmin = role != null && role.equals("Admin");
+  boolean isAdmin = role == Role.ADMINISTRATOR;
 
 %>
 <article class="w-50 row scrollable space-around self-center">
@@ -45,7 +44,7 @@
         <form method="post" name="FormToDeletePlayer">
           <input type="hidden" name="playerLastname" value="<%=player.getLastname()%>"/>
           <input type="hidden" name="playerFirstname" value="<%=player.getFirstname()%>"/>
-          <input class="btn-red" type="submit" name="deletePlayer" value="Supprimer"/>
+          <input class="btn-red" type="submit" name="deletePlayer" value="Supprimer" onclick="return confirm('Confirmer la suppression ?')">
         </form>
       </td>
 
