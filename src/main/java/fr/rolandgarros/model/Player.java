@@ -31,9 +31,9 @@ public class Player extends Person {
     @OneToOne (
             targetEntity = Person.class,
             fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = {CascadeType.REMOVE}
     )
-    @JoinColumn(name = "trainerId" , nullable = false)
+    @JoinColumn(name = "trainerId")
     private  Person trainer;
 
 

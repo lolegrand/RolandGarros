@@ -64,6 +64,14 @@ public class Account {
         return BCrypt.checkpw(password, this.password);
     }
 
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "idAccount=" + idAccount +
+                ", password='" + password +
+                ", login='" + login ;
+    }
     @Override
     public boolean equals(Object o) {
 

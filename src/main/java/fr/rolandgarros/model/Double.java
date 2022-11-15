@@ -10,25 +10,25 @@ public class Double extends Match {
 
 
     @OneToOne (targetEntity = Player.class,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = {CascadeType.REMOVE}
     )
     @JoinColumn(name = "teamOnePlayerOneId")
     private  Player teamOnePlayerOne;
 
     @OneToOne (targetEntity = Player.class,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = {CascadeType.REMOVE}
     )
     @JoinColumn(name = "teamOnePlayerTwoId")
     private  Player teamOnePlayerTwo;
 
     @OneToOne (targetEntity = Player.class,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = {CascadeType.REMOVE}
     )
     @JoinColumn(name = "teamTwoPlayerOneId")
     private  Player teamTwoPlayerOne;
 
     @OneToOne (targetEntity = Player.class,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = {CascadeType.REMOVE}
     )
     @JoinColumn(name = "teamTwoPlayerTwoId")
     private  Player teamTwoPlayerTwo;

@@ -42,6 +42,7 @@ public class JPAService {
             } else {
                 transaction.rollback();
             }
+            entityManager.close();
         }
     }
 }

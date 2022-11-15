@@ -13,14 +13,14 @@ public class Single extends Match {
 
     @OneToOne (
             targetEntity = Player.class,
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+            cascade = { CascadeType.REMOVE}
     )
     @JoinColumn(name = "playerOneId")
     private Player playerOne;
 
     @OneToOne (
             targetEntity = Player.class,
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+            cascade = { CascadeType.REMOVE}
     )
     @JoinColumn(name = "playerTwoId")
     private Player playerTwo;

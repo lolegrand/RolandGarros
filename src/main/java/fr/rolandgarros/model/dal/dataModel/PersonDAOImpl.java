@@ -4,6 +4,7 @@ import fr.rolandgarros.di.JPAService;
 import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;
 import fr.rolandgarros.model.dal.PersonDAO;
+import fr.rolandgarros.services.PersonService;
 import fr.rolandgarros.services.PlayerService;
 
 
@@ -46,22 +47,21 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public void deletePerson(Person person) {
-        JPAService jpaService = JPAService.getInstance();
 
+        PlayerService playerService = new PlayerService();
+        List<Player> playersByTrainer = playerService.getPlayersByTrainer(person); // get all players by trainer then set trainer to null
+        if (playersByTrainer.size() > 0) {
+            for (Player player : playersByTrainer) {
+                player.setTrainer(null);
+                playerService.modifyPlayer(player);
+            }
+        }
+
+        JPAService jpaService = JPAService.getInstance();
         try {
 
             jpaService.runInTransaction(entityManager -> {
-                PlayerService playerService = new PlayerService();
-                List<Player> playersByTrainer = playerService.getPlayersByTrainer(person); //FIXME get all players by trainer to remove them because a player must have a trainer and in our conception a trainer is a person maby we could create trainer class with inheritance from person
-
-                if (playersByTrainer.size() > 0) {
-                    for (Player player : playersByTrainer) {
-                        playerService.deletePlayer(player);
-                    }
-                }else {
-                    entityManager.remove(entityManager.merge(person));
-                }
-
+                entityManager.remove(entityManager.merge(person));
                 return null;
             });
 
@@ -71,7 +71,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public Person getPersonByName(String firstName, String lastName) {
+    public Person getPersonByName(String lastName, String firstName) {
 
         JPAService jpaService = JPAService.getInstance();
 

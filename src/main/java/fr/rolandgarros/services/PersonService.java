@@ -33,4 +33,14 @@ public class PersonService {
         return personDAO.getAllPerson();
     }
 
+
+    public boolean checkPersonExsist(Person person){
+        List<Person> allPerson = getAllPerson();
+        for (Person p : allPerson) {
+            if (person.equals(p)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

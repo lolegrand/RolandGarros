@@ -10,14 +10,14 @@ public class Training extends TimeEvent {
 
     @OneToOne(
             targetEntity = Person.class,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = {CascadeType.REMOVE}
     )
     @JoinColumn(name = "bookerId")
     private Person booker;
 
     @OneToOne (
             targetEntity = Court.class,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = {CascadeType.REMOVE}
     )
     @JoinColumn(name = "courtId")
     private Court court;

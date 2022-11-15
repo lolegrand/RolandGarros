@@ -37,7 +37,7 @@ CREATE TABLE player
     weight      INT         NOT NULL ,
     startCareer DATE        NOT NULL,
     hand        VARCHAR(30) NOT NULL,
-    trainerId   INT         NOT NULL,
+    trainerId   INT         ,
     PRIMARY KEY (idP),
     FOREIGN KEY (idP) REFERENCES person(idP) ON DELETE CASCADE,
     FOREIGN KEY (trainerId) REFERENCES person(idP) ON DELETE CASCADE
