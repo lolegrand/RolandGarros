@@ -95,7 +95,6 @@ public class TrainingServlet extends HttpServlet {
         List<Training> trainings = service.getAllTraining();
         req.setAttribute("trainings", trainings);
 
-        req.getSession().setAttribute("role", Role.ADMINISTRATOR);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         try {
