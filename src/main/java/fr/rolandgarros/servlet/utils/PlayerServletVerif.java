@@ -1,4 +1,4 @@
-package fr.rolandgarros.servlet.verification;
+package fr.rolandgarros.servlet.utils;
 
 import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Hand;
