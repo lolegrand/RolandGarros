@@ -57,10 +57,12 @@
             <th class="td-none">Meilleur classement</th>
             <td class="td-none"><%=player.getBestRanking()%></td>
         </tr>
+        <% if (trainer != null) {%>
         <tr class="tr-noBorder">
             <th class="td-none">Entraîneur</th>
             <td class="td-none"><%=trainer.getLastname()%> <%=trainer.getFirstname()%></td>
         </tr>
+        <% } %>
 
     </table>
 </article>
