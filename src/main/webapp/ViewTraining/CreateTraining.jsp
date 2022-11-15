@@ -18,7 +18,11 @@
     </select>
 
     <label class="w-25">Horaire</label>
-    <input class="w-75" type="datetime-local" name="selectSchedule"/>
+    <!-- <input class="w-75" type="datetime-local" name="selectSchedule"/> -->
+
+    <input class="w-50" type="date" name="DateSchedule"/>
+    <input class="w-25" type="time" name="TimeSchedule"/>
+
 
     <label class="w-25">Entrainer</label>
     <select class="w-75" name="selectTrainer">
