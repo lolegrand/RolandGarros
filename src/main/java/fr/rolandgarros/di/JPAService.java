@@ -1,9 +1,6 @@
 package fr.rolandgarros.di;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 
 import java.util.function.Function;
 
@@ -37,7 +34,9 @@ public class JPAService {
             success = true;
             return returnValue;
 
-        } finally {
+        }catch (NoResultException e){
+            return null;
+        }finally {
             if (success) {
                 transaction.commit();
             } else {

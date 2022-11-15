@@ -15,9 +15,9 @@ public class Main {
     private static final JPAService jpaService = JPAService.getInstance();
 
     public static void main(String[] args) {
-        /*
+
         PlayerService playerService = new PlayerService();
-        PersonService personService = new PersonService();
+//        PersonService personService = new PersonService();
         AccountService accountService = new AccountService();
 //        Date C1Birth = Date.valueOf("1970-01-01");
 //        Date C2Birth = Date.valueOf("1970-01-01");
@@ -37,50 +37,22 @@ public class Main {
 //        Player p2 = new Player("NADAL", "Rafael", P2Birth, "Manacor, Mallorca, Spain", 2, 1, "Spanish", 185f, 84f, Date.valueOf("2013-02-11"), Hand.LEFT_HANDED, P2Coach,Gender.MALE);
 //        Player p3 = new Player("RUUD", "Casper", P3Birth, "Oslo, Norway", 3, 2, "Norwegian", 182f, 77f, Date.valueOf("2015-02-11"), Hand.RIGHT_HANDED, P3Coach,Gender.MALE);
 //        Player p4 = new Player("MEDVEDEV", "Daniil", P4Birth, "Moscow, Russia", 4, 3, "Russian", 198f, 82f, Date.valueOf("2014-02-11"), Hand.RIGHT_HANDED, P4Coach,Gender.MALE);
-
-//        personService.createPerson(P1Coach);
-//        personService.createPerson(P2Coach);
-//        personService.createPerson(P3Coach);
-//        personService.createPerson(P4Coach);
-
+//
+//
+//
 //        playerService.createPlayer(p1);
 //        playerService.createPlayer(p2);
 //        playerService.createPlayer(p3);
 //        playerService.createPlayer(p4);
-//        accountService.createAccount(new Account("fefe","fefe",Role.ADMINISTRATOR));
 
-//        List<Player> players = playerService.getAllPlayers();
-//        for (Person player : players) {
-//            System.out.println( "Player : Name :  " + player.getLastname()
-//                     + ", " + player.getFirstname() + "\n");
-//        }
-*/
-        PlayerService playerService = new PlayerService();
-        playerService.getAllPlayers().forEach(System.out::println);
+    //    accountService.createAccount(new Account("fefe","fefe",Role.ADMINISTRATOR));
+
+
+
+       // playerService.getAllPlayers().forEach(System.out::println);
 
     }
 
-    private static void createTest() {
-        Date C1Birth = Date.valueOf("1970-01-01");
-        Date P1Birth = Date.valueOf("2003-05-05");
 
 
-        Person P1Coach = new Person("test", "Traner", C1Birth,"BOUYAH", Gender.MALE);
-
-        Player p1 = new Player("Ferhat", "sn", P1Birth, "ElPalmar, Murcia, Spain", 1, 1, "Spanish", 182f, 74f, Date.valueOf("2010-01-01"), Hand.RIGHT_HANDED, P1Coach,Gender.MALE);
-
-        jpaService.runInTransaction(entityManager -> {
-            entityManager.persist(p1);
-            return null;
-        });
-    }
-    private static void printPlayers() {
-
-        jpaService.runInTransaction(entityManager -> {
-            entityManager.createQuery("FROM Player", Player.class)
-                    .getResultList()
-                    .forEach(System.out::println);
-            return null;
-        });
-    }
 }

@@ -97,7 +97,8 @@ CREATE TABLE trainingGame
     startDate       TIMESTAMP not null,
     PRIMARY KEY (idT),
     FOREIGN KEY (bookerId) REFERENCES person(idP) ON DELETE CASCADE,
-    FOREIGN KEY (courtId) REFERENCES court(idC) ON DELETE CASCADE
+    FOREIGN KEY (courtId) REFERENCES court(idC) ON DELETE CASCADE,
+    UNIQUE (courtId,startDate)
 );
 
 CREATE TABLE sequences (
