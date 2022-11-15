@@ -36,9 +36,9 @@
 
     <input type="hidden" name="training" value="<%=training.getIdT()%>">
 
-    <input class="w-25 btn-green" type="submit" name="state" value="Accepter" onclick="return confirm('Voulez-vous accepter cette entrainement ?')">
+    <input class="w-25 btn-green" type="submit" name="state" value="Accepter" onclick="return confirm('Voulez-vous accepter cet entrainement ?')">
 
-    <input class="w-25 btn-red" type="submit" name="state" value="Refuser" onclick="return confirm('Voulez-vous refuser cette entrainement ?')">
+    <input class="w-25 btn-red" type="submit" name="state" value="Refuser" onclick="return confirm('Voulez-vous refuser cet entrainement ?')">
   </form>
   <%
       }
