@@ -23,10 +23,10 @@ public class PlayerDAOMock implements PlayerDAO {
     Date P3Birth = Date.valueOf("1998-12-22");
     Date P4Birth = Date.valueOf("1996-02-11");
 
-    Person P1Coach = new Person("FERRERO", "Juan Carlos", C1Birth,"BOUYAH", Gender.MALE);
-    Person P2Coach = new Person("MOYA", "Carlos", C2Birth,"BOUYAH", Gender.FEMALE);
-    Person P3Coach = new Person("RUUD", "Christian", C3Birth,"BOUYAH", Gender.MALE);
-    Person P4Coach = new Person("CERVARA", "Gilles", C4Birth,"BOUYAH", Gender.FEMALE);
+    // Person P1Coach = new Person("FERRERO", "Juan Carlos", C1Birth,"BOUYAH", Gender.MALE);
+    // Person P2Coach = new Person("MOYA", "Carlos", C2Birth,"BOUYAH", Gender.FEMALE);
+    // Person P3Coach = new Person("RUUD", "Christian", C3Birth,"BOUYAH", Gender.MALE);
+    // Person P4Coach = new Person("CERVARA", "Gilles", C4Birth,"BOUYAH", Gender.FEMALE);
 
     Player p1 = new Player(
             "ALCARNAZ",
@@ -40,7 +40,7 @@ public class PlayerDAOMock implements PlayerDAO {
             74f,
             2018,
             Hand.RIGHT_HANDED,
-            P1Coach,
+            0,
             Gender.MALE
             );
     Player p2 = new Player(
@@ -56,7 +56,7 @@ public class PlayerDAOMock implements PlayerDAO {
             84f,
             2001,
             Hand.LEFT_HANDED,
-            P2Coach,
+            1,
             Gender.MALE
             );
     Player p3 = new Player(
@@ -71,7 +71,7 @@ public class PlayerDAOMock implements PlayerDAO {
             77f,
             2015,
             Hand.RIGHT_HANDED,
-            P3Coach,
+            1,
             Gender.MALE
     );
     Player p4 = new Player(
@@ -86,7 +86,7 @@ public class PlayerDAOMock implements PlayerDAO {
             82f,
             2014,
             Hand.RIGHT_HANDED,
-            P4Coach,
+            2,
             Gender.MALE
     );
 

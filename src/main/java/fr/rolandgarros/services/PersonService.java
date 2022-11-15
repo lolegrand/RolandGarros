@@ -29,6 +29,9 @@ public class PersonService {
     public Person getPersonByName(String lastName, String firstName){
         return personDAO.getPersonByName(lastName, firstName);
     }
+    public Person getById(Integer id){
+        return personDAO.getById(id);
+    }
 
     public List<Person> getAllPerson(){
         return personDAO.getAllPerson();

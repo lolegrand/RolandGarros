@@ -12,7 +12,8 @@ public interface PersonDAO {
 
     void modifyPerson(Person person);
 
-    Person getPersonByName(String firstName, String lastName);
+    Person getPersonByName(String lastName, String firstName);
+    Person getById(Integer id);
 
     List<Person> getAllPerson();
 }

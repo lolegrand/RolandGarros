@@ -6,6 +6,7 @@ import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;
 import fr.rolandgarros.services.PersonService;
 import fr.rolandgarros.services.PlayerService;
+import fr.rolandgarros.servlet.verification.PlayerServletVerif;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -23,6 +24,7 @@ public class PlayerServlet extends HttpServlet {
 
     Player player = null;
     Person trainer = null;
+    Integer idTrainer = null;
     String error = null;
     String success = null;
 
@@ -112,6 +114,11 @@ public class PlayerServlet extends HttpServlet {
             hand = Hand.valueOf(req.getParameter("hand"));
         }
 
+        if ( req.getParameter("trainer") != null ) {
+            idTrainer = Integer.valueOf(req.getParameter("trainer"));
+            trainer = personService.getById(idTrainer);
+        }
+
 
         // Get what the user wants to do
 
@@ -155,71 +162,65 @@ public class PlayerServlet extends HttpServlet {
 
             req.setAttribute("formToCreatePlayer", "Nouveau Joueur");
 
-            if ( !playerService.checkBirthDate( birthdate ) ){
+            if ( !PlayerServletVerif.checkBirthDate( birthdate ) ){
                 error = "Date de naissance invalide.";
                 req.setAttribute("CreatePlayerError-BirthDate", error);
             }
 
-            if ( !playerService.checkBirthPlace( birthplace ) ){
+            if ( !PlayerServletVerif.checkBirthPlace( birthplace ) ){
                 error = "Lieu de naissance invalide.";
                 req.setAttribute("CreatePlayerError-BirthPlace", error);
             }
 
-            if ( !playerService.checkRanking( ranking ) ){
+            if ( !PlayerServletVerif.checkRanking( ranking ) ){
                 error = "Classement invalide.";
                 req.setAttribute("CreatePlayerError-Ranking", error);
             }
 
-            if ( !playerService.checkBestRanking( bestRanking ) ){
+            if ( !PlayerServletVerif.checkBestRanking( bestRanking ) ){
                 error = "Meilleur rang invalide.";
                 req.setAttribute("CreatePlayerError-BestRanking", error);
             }
 
-            if ( !playerService.checkNationality( nationality ) ){
+            if ( !PlayerServletVerif.checkNationality( nationality ) ){
                 error = "Nationalité invalide.";
                 req.setAttribute("CreatePlayerError-Nationality", error);
             }
 
-            if ( !playerService.checkHeight( height ) ){
+            if ( !PlayerServletVerif.checkHeight( height ) ){
                 error = "Taille invalide.";
                 req.setAttribute("CreatePlayerError-Height", error);
             }
 
-            if ( !playerService.checkWeight( weight ) ){
+            if ( !PlayerServletVerif.checkWeight( weight ) ){
                 error = "Poids invalide.";
                 req.setAttribute("CreatePlayerError-Weight", error);
             }
 
-            if ( !playerService.checkStartCareer( startCareer ) ){
+            if ( !PlayerServletVerif.checkStartCareer( startCareer ) ){
                 error = "Début de carrière invalide.";
                 req.setAttribute("CreatePlayerError-StartCareer", error);
             }
 
-            if ( !playerService.checkHand( hand ) ){
+            if ( !PlayerServletVerif.checkHand( hand ) ){
                 error = "Main de jeu invalide.";
                 req.setAttribute("CreatePlayerError-Hand", error);
             }
 
-            /*
-            if ( req.getParameter("trainer") != null ) {
-                String[] split = req.getParameter("trainer").split(" ");
-                trainer = personService.getPersonByName(split[1], split[0]);
-
-                if ( !playerService.checkTrainer( trainer ) ){
-                    error = "Entraineur invalide.";
-                    req.setAttribute("CreatePlayerError-Trainer", error);
-                }
+            // req.setAttribute("CheckTrainer", PlayerServletVerif.checkTrainer( trainer ));
+            if ( !PlayerServletVerif.checkTrainer( trainer ) ){
+                error = "Entraineur invalide.";
+                req.setAttribute("CreatePlayerError-Trainer", error);
             }
-             */
 
             if ( error != null ) {
                 req.setAttribute("CreatePlayerError", error);
             }
             else {
-                player = new Player(
+                Player newPlayer = new Player(
                         lastname, firstname, birthdate, birthplace, ranking, bestRanking,
-                        nationality, height, weight, startCareer, hand, trainer, gender);
-                playerService.createPlayer(player);
+                        nationality, height, weight, startCareer, hand, idTrainer, gender);
+                playerService.createPlayer(newPlayer);
 
                 success = "Création réussie.";
                 req.setAttribute("CreatePlayerSuccess", success);
@@ -231,13 +232,12 @@ public class PlayerServlet extends HttpServlet {
         if ( formUpdatePlayer ){
             req.setAttribute("formToUpdatePlayer", "Modifier");
 
-            /*
-            if ( !playerService.checkRanking( ranking ) ){
+            if ( !PlayerServletVerif.checkRanking( ranking ) ){
                 error = "Classement invalide.";
                 req.setAttribute("UpdatePlayerError-Ranking", error);
-            }*/
+            }
 
-            if ( !playerService.checkWeight( weight ) ){
+            if ( !PlayerServletVerif.checkWeight( weight ) ){
                 error = "Poids invalide.";
                 req.setAttribute("UpdatePlayerError-Weight", error);
             }

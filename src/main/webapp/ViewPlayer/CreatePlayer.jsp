@@ -14,6 +14,7 @@
   String errorStartCareer = "";
   String  errorHand = "";
   String errorTrainer = "";
+  String errorCheckTrainer = "";
 
   if ( request.getAttribute("CreatePlayerError") != null ) {
     error = request.getAttribute("CreatePlayerError").toString();
@@ -51,6 +52,9 @@
   }
   if ( request.getAttribute("CreatePlayerError-Trainer") != null ){
     errorTrainer = request.getAttribute("CreatePlayerError-Trainer").toString();
+  }
+  if ( request.getAttribute("CheckTrainer") != null ){
+    errorCheckTrainer = request.getAttribute("CheckTrainer").toString();
   }
 
   String success = "";
@@ -127,11 +131,12 @@
     <label class="w-25">Entraîneur</label>
     <select class="w-75" name="trainer">
       <% for ( Person trainer : trainers ){ %>
-        <option value="<%= trainer.getFirstname() %><%= trainer.getLastname() %>">
-          <%= trainer.getFirstname() %><%= trainer.getLastname() %>
+        <option value="<%=trainer.getId() %>">
+          <%= trainer.getFirstname() %><%= trainer.getLastname() %> <%=trainer.getId()%>
         </option>
       <% } %>
     </select>
+    <p class="w-100 error"><%= errorCheckTrainer %></p>
     <p class="w-100 error"><%= errorTrainer %></p>
 
     <input class="btn-blue w-25" type="submit" name="submitFormCreatePlayer" value="Nouveau Joueur">
