@@ -1,12 +1,12 @@
 package fr.rolandgarros.servlet;
 
-import com.sun.tools.javac.jvm.Gen;
 import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Hand;
 import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;
 import fr.rolandgarros.services.PersonService;
 import fr.rolandgarros.services.PlayerService;
+import fr.rolandgarros.servlet.verification.PlayerServletVerif;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -20,11 +20,13 @@ import java.util.List;
 public class PlayerServlet extends HttpServlet {
 
     final PlayerService playerService = new PlayerService();
+    final PersonService personService = new PersonService();
 
     Player player = null;
     Person trainer = null;
-    String errorMsg = null;
-    String successMsg = null;
+    Integer idTrainer = null;
+    String error = null;
+    String success = null;
 
     String lastname = null;
     String firstname = null;
@@ -34,7 +36,7 @@ public class PlayerServlet extends HttpServlet {
     String nationality = null;
     Integer ranking = null;
     Integer bestRanking = null;
-    Date startCareer = null;
+    Integer startCareer = null;
     Float height = null;
     Float weight = null;
     Hand hand = null;
@@ -61,8 +63,16 @@ public class PlayerServlet extends HttpServlet {
             lastname = req.getParameter("playerLastname");
         }
 
+        if ( req.getParameter("lastname") != null ) {
+            lastname = req.getParameter("lastname");
+        }
+
         if ( req.getParameter("playerFirstname") != null ) {
             firstname = req.getParameter("playerFirstname");
+        }
+
+        if ( req.getParameter("firstname") != null ) {
+            firstname = req.getParameter("firstname");
         }
 
         if ( req.getParameter("gender") != null ) {
@@ -72,7 +82,14 @@ public class PlayerServlet extends HttpServlet {
             } else {
                 gender = Gender.FEMALE;
             }
+        }
 
+        if ( req.getParameter("birthdate") != null ) {
+            birthdate = Date.valueOf(req.getParameter("birthdate"));
+        }
+
+        if ( req.getParameter("birthplace") != null ) {
+            birthplace = req.getParameter("birthplace");
         }
 
         if ( req.getParameter("nationality") != null ) {
@@ -85,11 +102,12 @@ public class PlayerServlet extends HttpServlet {
 
         if ( req.getParameter("bestRanking") != null ) {
             bestRanking = Integer.valueOf(req.getParameter("bestRanking"));
+        } else {
+            bestRanking = ranking;
         }
 
         if ( req.getParameter("startCareer") != null ) {
-            int startCareerInt = Integer.parseInt(req.getParameter("startCareer"));
-            startCareer = new Date(startCareerInt);
+            startCareer = Integer.parseInt(req.getParameter("startCareer"));
         }
 
         if ( req.getParameter("height") != null ) {
@@ -102,6 +120,11 @@ public class PlayerServlet extends HttpServlet {
 
         if ( req.getParameter("hand") != null ) {
             hand = Hand.valueOf(req.getParameter("hand"));
+        }
+
+        if ( req.getParameter("trainer") != null ) {
+            idTrainer = Integer.valueOf(req.getParameter("trainer"));
+            trainer = personService.getById(idTrainer);
         }
 
 
@@ -133,6 +156,8 @@ public class PlayerServlet extends HttpServlet {
             }
         }
 
+
+
         /*
          * If there is a request for validation of a form: do check parameters
          * If is not verified, set an error message
@@ -142,79 +167,91 @@ public class PlayerServlet extends HttpServlet {
         boolean formCreatePlayer = req.getParameter("submitFormCreatePlayer") != null;
 
         if ( formCreatePlayer ){
-/*
-            if ( !playerService.checkBirthDate( birthdate ) ){
-                errorMsg = "Date de naissance invalide.";
+
+            req.setAttribute("formToCreatePlayer", "Nouveau Joueur");
+
+            if ( !PlayerServletVerif.checkBirthDate( birthdate ) ){
+                error = "Date de naissance invalide.";
+                req.setAttribute("CreatePlayerError-BirthDate", error);
             }
 
-            if ( !playerService.checkBirthPlace( birthplace ) ){
-                errorMsg = "Lieu de naissance invalide.";
+            if ( !PlayerServletVerif.checkBirthPlace( birthplace ) ){
+                error = "Lieu de naissance invalide.";
+                req.setAttribute("CreatePlayerError-BirthPlace", error);
             }
 
-            if ( !playerService.checkGender( gender ) ){
-                errorMsg = "Genre invalide.";
+            if ( !PlayerServletVerif.checkRanking( ranking ) ){
+                error = "Classement invalide.";
+                req.setAttribute("CreatePlayerError-Ranking", error);
             }
 
-            if ( !playerService.checkRanking( ranking ) ){
-                errorMsg = "Classement invalide.";
-            }
-*/
-            if ( !playerService.checkBestRanking( bestRanking ) ){
-                errorMsg = "Meilleur rang invalide.";
+            if ( !PlayerServletVerif.checkBestRanking( bestRanking ) ){
+                error = "Meilleur rang invalide.";
+                req.setAttribute("CreatePlayerError-BestRanking", error);
             }
 
-            if ( !playerService.checkNationality( nationality ) ){
-                errorMsg = "Nationalité invalide.";
+            if ( !PlayerServletVerif.checkNationality( nationality ) ){
+                error = "Nationalité invalide.";
+                req.setAttribute("CreatePlayerError-Nationality", error);
             }
 
-            if ( !playerService.checkHeight( height ) ){
-                errorMsg = "Taille invalide.";
+            if ( !PlayerServletVerif.checkHeight( height ) ){
+                error = "Taille invalide.";
+                req.setAttribute("CreatePlayerError-Height", error);
             }
 
-            if ( !playerService.checkWeight( weight ) ){
-                errorMsg = "Poids invalide.";
+            if ( !PlayerServletVerif.checkWeight( weight ) ){
+                error = "Poids invalide.";
+                req.setAttribute("CreatePlayerError-Weight", error);
             }
 
-            if ( !playerService.checkStartCareer( birthdate, startCareer ) ){
-                errorMsg = "Début de carrière invalide.";
+            if ( !PlayerServletVerif.checkStartCareer( startCareer ) ){
+                error = "Début de carrière invalide.";
+                req.setAttribute("CreatePlayerError-StartCareer", error);
             }
 
-            if ( !playerService.checkHand( hand ) ){
-                errorMsg = "Main de jeu invalide.";
+            if ( !PlayerServletVerif.checkHand( hand ) ){
+                error = "Main de jeu invalide.";
+                req.setAttribute("CreatePlayerError-Hand", error);
             }
 
-            if ( !playerService.checkTrainer( trainer ) ){
-                errorMsg = "Entraineur invalide.";
+            // req.setAttribute("CheckTrainer", PlayerServletVerif.checkTrainer( trainer ));
+            if ( !PlayerServletVerif.checkTrainer( trainer ) ){
+                error = "Entraineur invalide.";
+                req.setAttribute("CreatePlayerError-Trainer", error);
             }
 
-            if ( errorMsg != null ) {
-                req.setAttribute("CreatePlayerError", errorMsg);
+            if ( error != null ) {
+                req.setAttribute("CreatePlayerError", error);
             }
             else {
-                player = new Player(
+                Player newPlayer = new Player(
                         lastname, firstname, birthdate, birthplace, ranking, bestRanking,
-                        nationality, height, weight, startCareer, hand, trainer, gender);
-                playerService.createPlayer(player);
+                        nationality, height, weight, startCareer, hand, idTrainer, gender);
+                playerService.createPlayer(newPlayer);
 
-                successMsg = "Création réussie.";
-                req.setAttribute("CreatePlayerSuccess", successMsg);
+                success = "Création réussie.";
+                req.setAttribute("CreatePlayerSuccess", success);
             }
         }
 
         boolean formUpdatePlayer = req.getParameter("submitFormUpdatePlayer") != null;
 
         if ( formUpdatePlayer ){
-/*
-            if ( !playerService.checkRanking( ranking ) ){
-                errorMsg = "Classement invalide.";
-            }
-*/
-            if ( !playerService.checkWeight( weight ) ){
-                errorMsg = "Poids invalide.";
+            req.setAttribute("formToUpdatePlayer", "Modifier");
+
+            if ( !PlayerServletVerif.checkRanking( ranking ) ){
+                error = "Classement invalide.";
+                req.setAttribute("UpdatePlayerError-Ranking", error);
             }
 
-            if ( errorMsg != null ) {
-                req.setAttribute("UpdatePlayerError", errorMsg);
+            if ( !PlayerServletVerif.checkWeight( weight ) ){
+                error = "Poids invalide.";
+                req.setAttribute("UpdatePlayerError-Weight", error);
+            }
+
+            if ( error != null ) {
+                req.setAttribute("UpdatePlayerError", error);
             }
             else {
                 player = playerService.getPlayerByName(lastname, firstname);
@@ -224,22 +261,24 @@ public class PlayerServlet extends HttpServlet {
 
                 playerService.modifyPlayer(player);
 
-                successMsg = "Mise à jour réussie.";
-                req.setAttribute("UpdatePlayerSuccess", successMsg);
+                success = "Mise à jour réussie.";
+                req.setAttribute("UpdatePlayerSuccess", success);
             }
         }
 
 
-        boolean formDeletePlayer = req.getParameter("submitFormDeletePlayer") != null;
+        boolean formDeletePlayer = req.getParameter("deletePlayer") != null;
 
         if ( formDeletePlayer ){
             player = playerService.getPlayerByName(lastname, firstname);
             playerService.deletePlayer(player);
 
-            successMsg = "Suppression réussie.";
-            req.setAttribute("DeletePlayerSuccess", successMsg);
+            success = "Suppression réussie.";
+            req.setAttribute("DeletePlayerSuccess", success);
         }
 
+        List<Person> trainers = personService.getAllPerson();
+        req.setAttribute("trainers", trainers);
 
         List<Player> players = playerService.getAllPlayers();
         req.setAttribute("players", players);

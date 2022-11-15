@@ -1,12 +1,15 @@
+<%@ page import="fr.rolandgarros.model.Role" %>
 <%
-    // String role = (String) request.getSession().getAttribute("role");
-    String role = "PlayerEditor";
-
-    boolean isPlayerEditor = role != null && (role.equals("PlayerEditor") || role.equals("Admin"));
+    Role role = (Role) request.getSession().getAttribute("role");
+    boolean isPlayerEditor = role != null && (role.equals(Role.PLAYER_EDITOR) || role.equals(Role.ADMINISTRATOR));
 
     String display = request.getParameter("displayPlayer");
     String create = request.getParameter("createPlayer");
     String update = request.getParameter("updatePlayer");
+
+    if ( create == null && request.getAttribute("formToCreatePlayer") != null ){
+        create = request.getAttribute("formToCreatePlayer").toString();
+    }
 
     boolean displayMore = display != null && display.equals("Détails");
     boolean formToCreatePlayer = create != null && create.equals("Nouveau Joueur");
@@ -25,7 +28,7 @@
     <% if ( isPlayerEditor ){ %>
     <nav class="nav w-100 row space-between">
         <form method="post" name="formNavPlayer">
-            <input class="" type="submit" name="FormToCreatePlayer" value="Nouveau Joueur">
+            <input class="" type="submit" name="createPlayer" value="Nouveau Joueur">
         </form>
     </nav>
     <% } %>
@@ -44,7 +47,6 @@
     <% if( formToUpdatePlayer) { %>
         <%@ include file="/ViewPlayer/UpdatePlayer.jsp" %>
     <% } %>
-
 </main>
 
 <%@ include file="../Template/footer.jsp" %>

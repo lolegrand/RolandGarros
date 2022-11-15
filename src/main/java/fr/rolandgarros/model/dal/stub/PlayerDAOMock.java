@@ -23,10 +23,10 @@ public class PlayerDAOMock implements PlayerDAO {
     Date P3Birth = Date.valueOf("1998-12-22");
     Date P4Birth = Date.valueOf("1996-02-11");
 
-    Person P1Coach = new Person("FERRERO", "Juan Carlos", C1Birth,"BOUYAH", Gender.MALE);
-    Person P2Coach = new Person("MOYA", "Carlos", C2Birth,"BOUYAH", Gender.FEMALE);
-    Person P3Coach = new Person("RUUD", "Christian", C3Birth,"BOUYAH", Gender.MALE);
-    Person P4Coach = new Person("CERVARA", "Gilles", C4Birth,"BOUYAH", Gender.FEMALE);
+    // Person P1Coach = new Person("FERRERO", "Juan Carlos", C1Birth,"BOUYAH", Gender.MALE);
+    // Person P2Coach = new Person("MOYA", "Carlos", C2Birth,"BOUYAH", Gender.FEMALE);
+    // Person P3Coach = new Person("RUUD", "Christian", C3Birth,"BOUYAH", Gender.MALE);
+    // Person P4Coach = new Person("CERVARA", "Gilles", C4Birth,"BOUYAH", Gender.FEMALE);
 
     Player p1 = new Player(
             "ALCARNAZ",
@@ -38,9 +38,9 @@ public class PlayerDAOMock implements PlayerDAO {
             "Spanish",
             182f,
             74f,
-            Date.valueOf("2018-01-01"),
+            2018,
             Hand.RIGHT_HANDED,
-            P1Coach,
+            0,
             Gender.MALE
             );
     Player p2 = new Player(
@@ -54,9 +54,9 @@ public class PlayerDAOMock implements PlayerDAO {
             "Spanish",
             185f,
             84f,
-            Date.valueOf("2001-01-01"),
+            2001,
             Hand.LEFT_HANDED,
-            P2Coach,
+            1,
             Gender.MALE
             );
     Player p3 = new Player(
@@ -69,9 +69,9 @@ public class PlayerDAOMock implements PlayerDAO {
             "Norwegian",
             182f,
             77f,
-            Date.valueOf("2015-01-01"),
+            2015,
             Hand.RIGHT_HANDED,
-            P3Coach,
+            1,
             Gender.MALE
     );
     Player p4 = new Player(
@@ -84,9 +84,9 @@ public class PlayerDAOMock implements PlayerDAO {
             "Russian",
             198f,
             82f,
-            Date.valueOf("2014-01-01"),
+            2014,
             Hand.RIGHT_HANDED,
-            P4Coach,
+            2,
             Gender.MALE
     );
 

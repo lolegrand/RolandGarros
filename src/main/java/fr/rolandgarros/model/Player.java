@@ -1,5 +1,6 @@
 package fr.rolandgarros.model;
 
+import fr.rolandgarros.services.PersonService;
 import jakarta.persistence.*;
 import java.sql.Date;
 
@@ -22,16 +23,16 @@ public class Player extends Person {
     private Float weight;
 
     @Column(name = "startCareer", nullable = false)
-    private  Date startCareer;
+    private Integer startCareer;
 
     @Column(name = "hand", nullable = false)
     @Enumerated(EnumType.STRING)
     private  Hand hand;
 
-    @OneToOne
+    // @OneToOne
     @JoinColumn(name = "trainerId")
-    private  Person trainer;
-
+    // private  Person trainer;
+    private Integer trainerId;
 
     public Player(
             String lastname,
@@ -43,9 +44,10 @@ public class Player extends Person {
             String nationality,
             Float height,
             Float weight,
-            Date startCareer,
+            Integer startCareer,
             Hand hand,
-            Person trainer,
+            // Person trainer,
+            Integer trainerId,
             Gender gender) {
         super(lastname, firstname, birthDate, birthPlace,gender);
         this.ranking = ranking;
@@ -54,7 +56,8 @@ public class Player extends Person {
         this.weight = weight;
         this.startCareer = startCareer;
         this.hand = hand;
-        this.trainer = trainer;
+        // this.trainer = trainer;
+        this.trainerId = trainerId;
         this.bestRanking = bestRanking;
     }
 
@@ -93,10 +96,10 @@ public class Player extends Person {
         this.weight = weight;
     }
 
-    public Date getStartCareer() {
+    public Integer getStartCareer() {
         return startCareer;
     }
-    public void setStartCareer(Date startCareer) {
+    public void setStartCareer(Integer startCareer) {
         this.startCareer = startCareer;
     }
 
@@ -108,11 +111,17 @@ public class Player extends Person {
     }
 
     public Person getTrainer() {
+        PersonService personService = new PersonService();
+        Person trainer = personService.getById(this.trainerId);
         return trainer;
     }
+    /*
+
     public void setTrainer(Person trainer) {
         this.trainer = trainer;
     }
+
+     */
 
     public Integer getBestRanking() {
         return bestRanking;
