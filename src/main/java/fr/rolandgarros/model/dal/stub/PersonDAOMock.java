@@ -69,6 +69,16 @@ public class PersonDAOMock implements PersonDAO {
     }
 
     @Override
+    public Person getById(Integer id) {
+        for (Person person : persons) {
+            if (person.getId().equals(id)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public List<Person> getAllPerson() {
         return persons;
     }
