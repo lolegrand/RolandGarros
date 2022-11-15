@@ -73,4 +73,12 @@ public class PlayerService {
     }
 
 
+    // to get all players order by criteria
+
+    public List<Player> getPlayersOrderByGender(Gender gender){ return playerDAO.getPlayersOrderByGender(gender); }
+    public List<Player> getPlayersOrderByNbVictory(){ return playerDAO.getPlayersOrderByNbVictory(); }
+    public List<Player> getPlayersOrderByRank(){ return playerDAO.getPlayersOrderByRank(); }
+    public List<Player> getPlayersOrderByTotalGameTime(){ return playerDAO.getPlayersOrderByTotalGameTime(); }
+
+
 }

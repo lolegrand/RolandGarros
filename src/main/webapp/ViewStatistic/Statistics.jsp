@@ -17,24 +17,24 @@
   <form class="w-75 row space-between" method="post">
 
     <div class="w-33 row space-around">
-      <input class="self-center" type="radio" name="Gender" value="Male">
+      <input class="self-center" type="radio" name="SortByGender" value="Male">
       <label class="self-center w-25">Homme</label>
 
-      <input class="self-center" type="radio" name="Gender" value="Female">
+      <input class="self-center" type="radio" name="SortByGender" value="Female">
       <label class="self-center w-25">Femme</label>
 
-      <input class="self-center" type="radio" name="Gender" value="None">
+      <input class="self-center" type="radio" name="SortByGender" value="None">
       <label class="self-center w-25">Mixte</label>
     </div>
 
     <div class="w-66 row space-around">
       <div class="w-33 row">
-        <input class="self-center" type="checkbox" name="Victories">
+        <input class="self-center" type="checkbox" name="SortByNbVictory">
         <label class="self-center w-75">Nombre de victoires</label>
       </div>
 
       <div class="w-33 row">
-        <input class="self-center" type="checkbox" name="TotalGameDuration">
+        <input class="self-center" type="checkbox" name="SortByTotalGameTime">
         <label class="self-center w-75">Temps de jeu total</label>
       </div>
 

@@ -8,6 +8,8 @@ import fr.rolandgarros.model.dal.PlayerDAO;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerDAOMock implements PlayerDAO {
@@ -239,5 +241,43 @@ public class PlayerDAOMock implements PlayerDAO {
     @Override
     public List<Player> getAllPlayer() {
         return players;
+    }
+
+    public List<Player> getPlayersOrderByGender(Gender gender){
+
+        ArrayList<Player> playersList = new ArrayList<>();
+
+        if (gender.equals("Mixte")){
+            playersList = (ArrayList<Player>) players;
+        }
+        else {
+            for (Player player : players) {
+                if (player.getGender().equals(gender)) {
+                    playersList.add(player);
+                }
+            }
+        }
+
+        return playersList;
+    }
+    public List<Player> getPlayersOrderByNbVictory(){
+
+        ArrayList<Player> playersList = new ArrayList<>();
+
+
+
+        return playersList;
+    }
+    public List<Player> getPlayersOrderByRank(){
+
+        ArrayList<Player> playersList = new ArrayList<>();
+
+        return playersList;
+    }
+    public List<Player> getPlayersOrderByTotalGameTime(){
+
+        ArrayList<Player> playersList = new ArrayList<>();
+
+        return playersList;
     }
 }

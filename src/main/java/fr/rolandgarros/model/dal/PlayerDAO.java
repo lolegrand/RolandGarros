@@ -44,4 +44,11 @@ public interface PlayerDAO {
 
     List<Player> getAllPlayer();
 
+    //--------------------------------------------------
+
+    List<Player> getPlayersOrderByGender(Gender gender);
+    List<Player> getPlayersOrderByNbVictory();
+    List<Player> getPlayersOrderByRank();
+    List<Player> getPlayersOrderByTotalGameTime();
+
 }
