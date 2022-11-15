@@ -26,7 +26,7 @@
 
 <main class="w-100 row space-around">
 
-    <% if ( true/*isPlayerEditor*/ ){ %>
+    <% if ( isPlayerEditor ){ %>
     <nav class="nav w-100 row space-between">
         <form method="post" name="formNavPlayer">
             <input class="" type="submit" name="createPlayer" value="Nouveau Joueur">
