@@ -3,6 +3,7 @@ package fr.rolandgarros.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.Random;
 
 @Entity
 @Table(name = "person")
@@ -12,7 +13,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.TABLE , generator = "player_person_id")
     @TableGenerator(table = "sequences", name = "player_person_id",allocationSize = 1)
     @Column(name = "idP")
-    private Integer id = 0;
+    private Integer id = new Random().nextInt();
 
 
     @Column(name = "lastname", nullable = false)

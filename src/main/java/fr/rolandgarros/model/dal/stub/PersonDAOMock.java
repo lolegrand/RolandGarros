@@ -60,9 +60,19 @@ public class PersonDAOMock implements PersonDAO {
     }
 
     @Override
-    public Person getPersonByName(String firstName, String lastName) {
+    public Person getPersonByName(String lastName, String firstName) {
         for (Person person : persons) {
             if (person.getFirstname().equals(firstName) && person.getLastname().equals(lastName)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Person getById(Integer id) {
+        for (Person person : persons) {
+            if (person.getId().equals(id)) {
                 return person;
             }
         }

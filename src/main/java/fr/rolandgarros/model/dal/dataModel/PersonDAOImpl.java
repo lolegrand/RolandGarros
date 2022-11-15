@@ -6,6 +6,7 @@ import fr.rolandgarros.model.dal.PersonDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -72,6 +73,11 @@ public class PersonDAOImpl implements PersonDAO {
         }
 
      return person;
+    }
+
+    @Override
+    public Person getById(Integer id) {
+        throw new NotImplementedException();
     }
 
     @Override
