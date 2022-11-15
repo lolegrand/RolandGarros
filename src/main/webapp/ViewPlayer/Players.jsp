@@ -15,6 +15,7 @@
     boolean formToCreatePlayer = create != null && create.equals("Nouveau Joueur");
     boolean formToUpdatePlayer = update != null && update.equals("Modifier");
 
+    int addedPlayer = request.getIntHeader("addedPlayer");
 %>
 
 <%@ include file="../Template/head.jsp" %>
@@ -25,10 +26,22 @@
 
 <main class="w-100 row space-around">
 
-    <% if ( isPlayerEditor ){ %>
+    <% if ( true/*isPlayerEditor*/ ){ %>
     <nav class="nav w-100 row space-between">
         <form method="post" name="formNavPlayer">
             <input class="" type="submit" name="createPlayer" value="Nouveau Joueur">
+        </form>
+
+        <% if (addedPlayer != -1) {%>
+        <p>
+            Vous avez ajouté <%= addedPlayer%> joueur.
+        </p>
+        <% } %>
+
+        <form method="post" name="fromUploadCSV" enctype="multipart/form-data">
+            File :
+            <input type="file" name="file" id="file"/>
+            <input type="submit" value="Upload" name="upload" id="upload" />
         </form>
     </nav>
     <% } %>

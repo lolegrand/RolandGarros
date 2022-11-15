@@ -6,17 +6,24 @@ import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;
 import fr.rolandgarros.services.PersonService;
 import fr.rolandgarros.services.PlayerService;
-import fr.rolandgarros.servlet.verification.PlayerServletVerif;
+import fr.rolandgarros.servlet.utils.PlayerCSVFormat;
+import fr.rolandgarros.servlet.utils.PlayerServletVerif;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
-import java.io.IOException;
+import java.io.*;
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.List;
 
+@MultipartConfig(fileSizeThreshold=1024*1024*10,
+        maxFileSize=1024*1024*50,
+        maxRequestSize=1024*1024*100)
 public class PlayerServlet extends HttpServlet {
 
     final PlayerService playerService = new PlayerService();
@@ -44,18 +51,44 @@ public class PlayerServlet extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp){
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doProcess(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp){
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doProcess(req, resp);
     }
 
-    private void doProcess(HttpServletRequest req, HttpServletResponse resp){
+    private void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String page = "/ViewPlayer/Players.jsp";
+
+        boolean isUploadingFile = req.getParameter("upload") != null;
+        if ( isUploadingFile ) {
+            final Part filePart = req.getPart("file");
+
+            BufferedReader fileContent = new BufferedReader(new InputStreamReader(filePart.getInputStream()));
+
+            int addedPlayed = 0;
+            if (fileContent.ready()) {
+                fileContent.readLine();
+            }
+
+            while (fileContent.ready()) {
+                String line = fileContent.readLine();
+                try {
+                    Player player = PlayerCSVFormat.convertCSVStringToPlayer(line);
+                    playerService.createPlayer(player);
+                    addedPlayed++;
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            req.setAttribute("addedPlayer", addedPlayed);
+
+            fileContent.close();
+        }
 
         // Get all information possible from request
 
