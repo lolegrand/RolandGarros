@@ -5,9 +5,9 @@
 %>
 
 <article>
-  <h2 class="txt-center no-margin">Nouveau match - Informations générales</h2>
-
   <form class="flex-column gap-1" method="post">
+    <h2 class="txt-center no-margin">Nouveau match - Informations générales</h2>
+
     <div class="flex-column justify-stretch gap-1">
       <h3 class="no-margin">Simple ou Double</h3>
       <div class="flex-row gap-1">
