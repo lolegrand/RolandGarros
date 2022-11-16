@@ -1,42 +1,60 @@
-<article class="w-50 row self-center space-around" id="articleCreateMatch">
+<%@ page import="fr.rolandgarros.model.Court" %>
+<%@ page import="java.util.List" %>
+<%
+  List<Court> courts = (List<Court>) request.getAttribute("courts");
+%>
 
-  <form class="row space-around" method="post" name="formCreateMatchModality">
-    <h2 class="w-100 txt-center">Nouveau match</h2>
+<article>
+  <form class="flex-column gap-1" method="post">
+    <h2 class="txt-center no-margin">Nouveau match - Informations générales</h2>
 
-    <label class="w-25">Simple ou Double</label>
-    <div class="w-75">
-      <input class="w-25" type="radio" name="SimpleDouble" id="Simple">
-      <label class="w-75">Simple</label>
-      <input class="w-25" type="radio" name="SimpleDouble" id="Double">
-      <label class="w-75">Double</label>
+    <div class="flex-column justify-stretch gap-1">
+      <h3 class="no-margin">Simple ou Double</h3>
+      <div class="flex-row gap-1">
+        <input type="radio" name="matchType" value="Simple" id="simple" required="required" />
+        <label for="simple">Simple</label>
+
+        <input type="radio" name="matchType" value="Double" id="double" required="required" />
+        <label for="double">Double</label>
+      </div>
     </div>
 
-    <label class="w-25">Homme ou Femme</label>
-    <div class="w-75">
-      <input class="w-25" type="radio" name="Gender" id="Male">
-      <label class="w-75">Homme</label>
-      <input class="w-25" type="radio" name="Gender" id="Female">
-      <label class="w-75">Femme</label>
+    <div class="flex-column justify-stretch gap-1">
+      <h3 class="no-margin">Homme ou Femme</h3>
+      <div class="flex-row gap-1">
+        <input type="radio" name="matchGender" value="Male" id="male" required="required" />
+        <label for="male">Homme</label>
+
+        <input type="radio" name="matchGender" value="Female" id="female" required="required" />
+        <label for="female">Femme</label>
+      </div>
     </div>
 
-    <label class="w-25">Court</label>
-    <% String selectCourt = "selectCourt"; %>
-    <aui:select class="w-75" name="<%= selectCourt %>">
-      <c:forEach items="${courts}" var="court">
-        <aui:option value="${court}" selected="${court==selectCourt ? true : false }">${court}</aui:option>
-      </c:forEach>
-    </aui:select>
+    <div class="flex-column justify-stretch gap-1">
+      <h3 class="no-margin">Court</h3>
+      <select name="matchCourt" required="required">
+        <% for (Court court : courts) { %>
+        <option value="<%= court.getIdC() %>"><%= court.getName() %></option>
+        <% } %>
+      </select>
+    </div>
 
+    <div class="flex-column justify-stretch gap-1">
+      <h3 class="no-margin">Date et heure de début</h3>
 
-    <label class="w-25">Horaire</label>
-    <% String selectSchedule = "selectSchedule"; %>
-    <aui:select class="w-75" name="<%= selectSchedule %>">
-      <c:forEach items="${schedules}" var="schedule">
-        <aui:option value="${schedule}" selected="${schedule==selectSchedule ? true : false }">${schedule}</aui:option>
-      </c:forEach>
-    </aui:select>
+      <div class="flex-row gap-1">
+        <input type="datetime-local" name="matchStartDate" id="startDate" required="required" />
+      </div>
+    </div>
 
-    <input class="btn-blue w-25" type="submit" name="submitFormCreateMatchModality" value="Suivant">
+    <hr class="w-100" />
+
+    <input type="hidden" name="step" value="createMatchModality" />
+    <button class="btn-blue" type="submit">Suivant</button>
   </form>
 
+  <form class="flex-column gap-1" method="post">
+    <input type="hidden" name="step" value="cancelMatchCreation" />
+    <button class="btn-red" type="submit">Annuler</button>
+  </form>
 </article>

@@ -1,9 +1,31 @@
-<article class="w-50 row self-center space-around" id="articleCreateMatch">
+<%
+    String role = (String) request.getSession().getAttribute("role");
+    boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
 
-    <!-- if not exist formCreateMatchModality -->
-    <%@ include file="CreateMatchModality.jsp" %>
+    Object _error = session.getAttribute("tempCreationError");
+    boolean error = (boolean) (_error != null) && (boolean) _error;
+    String matchCreationStep = (String) session.getAttribute("matchCreationStep");
+%>
 
-    <!-- else if exist formCreateMatchModality -->
-    <%@ include file="CreateMatchPlayers.jsp" %>
+<%@ include file="../Template/head.jsp" %>
 
-</article>
+<body class="flex-column">
+<%@ include file="../Template/header.jsp" %>
+
+<main class="flex-column">
+    <% if (error) { %>
+    <p class="btn-red">
+        Erreur dans votre formulaire, veuillez recommencer
+    </p>
+    <% } %>
+
+    <% if (matchCreationStep == null) { %>
+    <%@ include file="../ViewMatch/CreateMatchModality.jsp" %>
+    <% } else { %>
+    <%@ include file="../ViewMatch/CreateMatchPlayers.jsp" %>
+    <% } %>
+</main>
+
+<%@ include file="../Template/footer.jsp" %>
+</body>
+</html>

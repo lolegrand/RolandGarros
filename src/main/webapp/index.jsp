@@ -1,17 +1,16 @@
 <%@ include file="Template/head.jsp" %>
 
-    <body class="w-100 row" id="AccueilBody">
-
+    <body class="column home-body">
         <%@ include file="/Template/header.jsp" %>
 
-        <main class="w-100 row space-around" id="AccueilMain">
-            <h1 class="w-33 txt-center">
-                Rolland Garros
-            </h1>
+        <main class="row space-around home-main">
+            <div class="flex-row justify-center align-center">
+                <h1>
+                    Roland Garros
+                </h1>
+            </div>
         </main>
 
         <%@ include file="/Template/footer.jsp" %>
-
     </body>
-
 </html>

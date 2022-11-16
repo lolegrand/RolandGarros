@@ -16,25 +16,25 @@ public class PlayerService {
     //private static final PlayerDAO playerDAO = new PlayerDAOMock();
     private static final PlayerDAO playerDAO = new PlayerDAOImpl();
 
-
-
     // General functions
 
-    public  void createPlayer(Player player) {
+    public void createPlayer(Player player) {
         playerDAO.createPlayer(player);
     }
-    public  void deletePlayer(Player player) {
+    public void deletePlayer(Player player) {
         playerDAO.deletePlayer(player);
     }
-    public  void modifyPlayer(Player player) {
+    public void modifyPlayer(Player player) {
         playerDAO.updatePlayer(player);
     }
 
-
-
     // Ways to get a player
 
-    public  Player getPlayerByName(String lastName, String firstName) {
+    public Player getPlayerById(int id) {
+        return playerDAO.getPlayerById(id);
+    }
+
+    public Player getPlayerByName(String lastName, String firstName) {
         return playerDAO.getPlayerByName(firstName, lastName);
     }
 

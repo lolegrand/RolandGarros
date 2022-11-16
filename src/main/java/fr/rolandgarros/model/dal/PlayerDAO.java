@@ -1,6 +1,5 @@
 package fr.rolandgarros.model.dal;
 
-
 import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Hand;
 import fr.rolandgarros.model.Person;
@@ -14,6 +13,8 @@ public interface PlayerDAO {
     void deletePlayer(Player player);
 
     void updatePlayer(Player player);
+
+    Player getPlayerById(int id);
 
     Player getPlayerByName(String firstName, String lastName);
     Player getPlayerById(int id);

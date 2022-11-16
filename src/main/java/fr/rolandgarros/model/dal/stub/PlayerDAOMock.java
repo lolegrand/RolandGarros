@@ -113,14 +113,25 @@ public class PlayerDAOMock implements PlayerDAO {
     }
 
     @Override
+    public Player getPlayerById(int id) {
+        for (Player player : players) {
+            if (player.getId() == id) {
+                return player;
+            }
+        }
+
+        return null;
+    }
+
+    @Override
     public Player getPlayerByName(String firstName, String lastName) {
         for (Player player : players) {
             if (player.getFirstname().equals(firstName) && player.getLastname().equals(lastName)) {
                 return player;
             }
         }
-        return null;
 
+        return null;
     }
 
     @Override
@@ -130,7 +141,6 @@ public class PlayerDAOMock implements PlayerDAO {
 
     @Override
     public ArrayList<Player> getPlayerByGender(Gender gender) {
-
         ArrayList<Player> playersRet = new ArrayList<>();
 
         for (Player player : players) {
@@ -144,7 +154,6 @@ public class PlayerDAOMock implements PlayerDAO {
 
     @Override
     public ArrayList<Player> getPlayerByRank(Integer rank) {
-
         ArrayList<Player> playersRet = new ArrayList<>();
 
         for (Player player : players) {
@@ -158,7 +167,6 @@ public class PlayerDAOMock implements PlayerDAO {
 
     @Override
     public ArrayList<Player> getPlayerByNationality(String nationality) {
-
         ArrayList<Player> playersRet = new ArrayList<>();
 
         for (Player player : players) {
@@ -172,7 +180,6 @@ public class PlayerDAOMock implements PlayerDAO {
 
     @Override
     public ArrayList<Player> getPlayerByHeight(Float height) {
-
         ArrayList<Player> playersRet = new ArrayList<>();
 
         for (Player player : players) {
@@ -186,7 +193,6 @@ public class PlayerDAOMock implements PlayerDAO {
 
     @Override
     public ArrayList<Player> getPlayerByWeight(Float weight) {
-
         ArrayList<Player> playersRet = new ArrayList<>();
 
         for (Player player : players) {
@@ -200,7 +206,6 @@ public class PlayerDAOMock implements PlayerDAO {
 
     @Override
     public ArrayList<Player> getPlayerByStartCareer(Date startCareer) {
-
         ArrayList<Player> playersRet = new ArrayList<>();
 
         for (Player player : players) {
@@ -214,7 +219,6 @@ public class PlayerDAOMock implements PlayerDAO {
 
     @Override
     public ArrayList<Player> getPlayerByHand(Hand hand) {
-
         ArrayList<Player> playersRet = new ArrayList<>();
 
         for (Player player : players) {
@@ -228,7 +232,6 @@ public class PlayerDAOMock implements PlayerDAO {
 
     @Override
     public ArrayList<Player> getPlayerByTrainer(Person trainer) {
-
         ArrayList<Player> playersRet = new ArrayList<>();
 
         for (Player player : players) {

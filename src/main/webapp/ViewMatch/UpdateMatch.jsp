@@ -1,74 +1,87 @@
-<!--
-    Update of:
-        - date
-        - place
-    No more, everything else is considered as true so to read only
--->
-<article class="w-50 row self-center space-around" id="articleUpdateMatch">
+<%@ page import="fr.rolandgarros.model.Court" %>
+<%@ page import="fr.rolandgarros.model.Match" %>
+<%@ page import="fr.rolandgarros.model.Single" %>
+<%@ page import="fr.rolandgarros.model.Double" %>
+<%@ page import="java.util.List" %>
 
-    <form class="row space-around" method="post" name="formUpdateMatch">
-        <h2 class="w-100 txt-center">Mise à jour du match</h2>
+<%
+    Match match = (Match) request.getAttribute("match");
+    List<Court> courts = (List<Court>) request.getAttribute("courts");
+%>
 
-        <h3 class="w-100">Modalités</h3>
+<%@ include file="../Template/head.jsp" %>
 
-        <label class="w-25">Simple ou Double</label>
-        <p class="w-75">${match.getType()}</p>
+<body class="column">
+<%@ include file="../Template/header.jsp" %>
 
-        <label class="w-25">Homme ou Femme</label>
-        <p class="w-75">${match.getGender()}</p>
+<main>
+    <article class="content">
+        <form class="row space-around" method="post" name="formUpdateMatch">
+            <h2 class="w-100 txt-center">Mise à jour du match</h2>
 
-        <label class="w-25">Court</label>
-        <% String selectCourt = "selectCourt"; %>
-        <aui:select class="w-75" name="<%= selectCourt %>">
-            <c:forEach items="${courts}" var="court">
-                <aui:option value="${court}" selected="${match.getCourt()==selectCourt ? true : false }">${court}</aui:option>
-            </c:forEach>
-        </aui:select>
+            <h3 class="w-100">Modalités</h3>
 
-        <label class="w-25">Horaire</label>
-        <% String selectSchedule = "selectSchedule"; %>
-        <aui:select class="w-75" name="<%= selectSchedule %>">
-            <c:forEach items="${schedules}" var="schedule">
-                <aui:option value="${schedule}" selected="${match.getSchedule()==selectSchedule ? true : false }">${schedule}</aui:option>
-            </c:forEach>
-        </aui:select>
+            <input type="hidden" name="matchId" value="<%= match.getIdT() %>" />
 
+            <label class="w-25">Simple ou Double</label>
+            <p class="w-75"><%= request.getAttribute("matchType") %></p>
 
-        <h3 class="w-100">Participants</h3>
+            <label class="w-25">Homme ou Femme</label>
+            <p class="w-75"><%= match.getGender() %></p>
 
-        <!-- if post SimpleDouble == Simple -->
-        <% if ( request.getParameter("SimpleDouble").equals("Simple") ){ %>
+            <label class="w-25" for="court">Court</label>
+            <select class="w-75" name="court" id="court" required="required">
+                <% for (Court court : courts) { %>
+                <% if (match.getCourt().equals(court)) { %>
+                <option value="<%= court %>" selected="selected"><%= court %></option>
+                <% } %>
+                <% else { %>
+                <option value="<%= court %>"><%= court %></option>
+                <% } %>
+                <% } %>
+            </select>
 
-        <label class="w-25">Participant 1</label>
-        <p class="w-75">${match.getPlayer1()}</p>
+            <label class="w-25" for="startDate">Horaire</label>
+            <input type="datetime-local" name="startDate" id="startDate" required="required" value="<%= match.getStartDate().toString().substring(0, 16) %>" />
 
-        <label class="w-25">Participant 2</label>
-        <p class="w-75">${match.getPlayer2()}</p>
+            <h3 class="w-100">Participants</h3>
 
-        <% } %>
+            <% if (request.getAttribute("typeMatch").equals("Simple")) {
+                Single matchSingle = (Single) match; %>
+            <label class="w-25">Participant 1</label>
+            <p class="w-75"><%= matchSingle.getPlayerOne() %></p>
 
-        <!-- if post SimpleDouble == Double -->
-        <% if ( request.getParameter("SimpleDouble").equals("Double") ){ %>
+            <label class="w-25">Participant 2</label>
+            <p class="w-75"><%= matchSingle.getPlayerTwo() %></p>
+            <% } %>
 
-        <label class="w-100">Équipe 1</label>
+            <% if (request.getAttribute("typeMatch").equals("Double")) {
+                Double matchDouble = (Double) match; %>
+            <p class="w-100">Équipe 1</p>
 
-        <label class="w-25">Participant 1</label>
-        <p class="w-75">${match.getTeam1Player1()}</p>
+            <label class="w-25">Participant 1</label>
+            <p class="w-75"><%= matchDouble.getTeamOnePlayerOne() %></p>
 
-        <label class="w-25">Participant 2</label>
-        <p class="w-75">${match.getTeam1Player2()}</p>
+            <label class="w-25">Participant 2</label>
+            <p class="w-75"><%= matchDouble.getTeamOnePlayerTwo() %></p>
 
-        <label class="w-100">Équipe 2</label>
+            <p class="w-100">Équipe 2</p>
 
-        <label class="w-25">Participant 1</label>
-        <p class="w-75">${match.getTeam2Player1()}</p>
+            <label class="w-25">Participant 1</label>
+            <p class="w-75"><%= matchDouble.getTeamTwoPlayerOne() %></p>
 
-        <label class="w-25">Participant 2</label>
-        <p class="w-75">${match.getTeam2Player2()}</p>
+            <label class="w-25">Participant 2</label>
+            <p class="w-75"><%= matchDouble.getTeamTwoPlayerTwo() %></p>
+            <% } %>
 
-        <% } %>
+            <button>
 
-        <input class="btn-blue w-25" type="submit" name="submitFormUpdateMatch" value="Mettre à jour">
-    </form>
+            </button>
+            <input class="btn-blue w-25" type="submit" name="submitFormUpdateMatch" value="Mettre à jour" />
+        </form>
+    </article>
+</main>
 
-</article>
+<%@ include file="../Template/footer.jsp" %>
+</body>
+</html>
