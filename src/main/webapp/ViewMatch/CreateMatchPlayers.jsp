@@ -6,9 +6,9 @@
 %>
 
 <article>
-  <h2 class="txt-center no-margin">Nouveau match - Participants</h2>
-
   <form class="flex-column gap-1" method="post">
+    <h2 class="txt-center no-margin">Nouveau match - Participants</h2>
+
     <% if (matchType.equals("Simple")) { %>
     <label for="player1">Participant 1</label>
     <select name="player1" id="player1">

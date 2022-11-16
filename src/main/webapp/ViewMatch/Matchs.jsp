@@ -73,8 +73,8 @@
     <h1 class="w-100 txt-center">Matchs à venir</h1>
 
     <h2 class="w-100">Simple hommes</h2>
-    <div class="w-100 scrollable">
-        <% if (MSMT.size() > 0) { %>
+    <div class="w-100 scrollable"><%
+        if (MSMT.size() > 0) { %>
         <table class="w-100">
             <thead>
                 <tr>
@@ -86,7 +86,6 @@
                     <th>Score 2</th>
                     <% if (isMatchEditor) { %>
                     <th>Modifier</th>
-                    <th>Terminer</th>
                     <th>Supprimer</th>
                     <% } %>
                 </tr>
@@ -102,7 +101,6 @@
                     <td><%= match.getScoreTwo() %></td>
                     <% if (isMatchEditor) { %>
                     <td><a href="/MatchUpdate?id=<%= match.getIdT() %>">Modifier</a></td>
-                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>">Terminer</a></td>
                     <td>
                         <form action="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
@@ -115,15 +113,16 @@
                 </tr>
             <% } %>
             </tbody>
-        </table>
-        <% } else { %>
-        <p>Aucun match prévu</p>
-        <% } %>
+        </table><%
+        }
+        else { %>
+        <p>Aucun match prévu</p><%
+            } %>
     </div>
 
     <h2 class="w-100">Simple femmes</h2>
-    <div class="w-100 scrollable">
-        <% if (MSWT.size() > 0) { %>
+    <div class="w-100 scrollable"><%
+        if (MSWT.size() > 0) { %>
         <table class="w-100">
             <thead>
                 <tr>
@@ -135,7 +134,6 @@
                     <th>Score 2</th>
                     <% if (isMatchEditor) { %>
                     <th>Modifier</th>
-                    <th>Terminer</th>
                     <th>Supprimer</th>
                     <% } %>
                 </tr>
@@ -151,7 +149,6 @@
                     <td><%= match.getScoreTwo() %></td>
                     <% if (isMatchEditor) { %>
                     <td><a href="/MatchUpdate?id=<%= match.getIdT() %>">Modifier</a></td>
-                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>">Terminer</a></td>
                     <td>
                         <form action="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
@@ -164,15 +161,16 @@
                 </tr>
             <% } %>
             </tbody>
-        </table>
-        <% } else { %>
-        <p>Aucun match prévu</p>
-        <% } %>
+        </table><%
+        }
+        else { %>
+        <p>Aucun match prévu</p><%
+            } %>
     </div>
 
     <h2 class="w-100">Double hommes</h2>
-    <div class="w-100 scrollable">
-        <% if (MDMT.size() > 0) { %>
+    <div class="w-100 scrollable"><%
+        if (MDMT.size() > 0) { %>
         <table class="w-100">
             <thead>
                 <tr>
@@ -184,7 +182,6 @@
                     <th>Score 2</th>
                     <% if (isMatchEditor) { %>
                     <th>Modifier</th>
-                    <th>Terminer</th>
                     <th>Supprimer</th>
                     <% } %>
                 </tr>
@@ -200,7 +197,6 @@
                     <td><%= match.getScoreTwo() %></td>
                     <% if (isMatchEditor) { %>
                     <td><a href="/MatchUpdate?id=<%= match.getIdT() %>">Modifier</a></td>
-                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>">Terminer</a></td>
                     <td>
                         <form action="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
@@ -209,19 +205,21 @@
                             </button>
                         </form>
                     </td>
+                    onclick="return confirm('Voulez-vous accepter cette entrainement ?')">
                     <% } %>
                 </tr>
             <% } %>
             </tbody>
-        </table>
-        <% } else { %>
-        <p>Aucun match prévu</p>
-        <% } %>
+        </table><%
+        }
+        else { %>
+        <p>Aucun match prévu</p><%
+        } %>
     </div>
 
     <h2 class="w-100">Double femmes</h2>
-    <div class="w-100 scrollable">
-        <% if (MDWT.size() > 0) { %>
+    <div class="w-100 scrollable"><%
+        if (MDWT.size() > 0) { %>
         <table class="w-100">
             <thead>
                 <tr>
@@ -233,7 +231,6 @@
                     <th>Score 2</th>
                     <% if (isMatchEditor) { %>
                     <th>Modifier</th>
-                    <th>Terminer</th>
                     <th>Supprimer</th>
                     <% } %>
                 </tr>
@@ -247,9 +244,7 @@
                     <td><%= match.getScoreOne() %></td>
                     <td><%= match.getTeamTwoPlayerOne() %> et <%= match.getTeamTwoPlayerTwo() %></td>
                     <td><%= match.getScoreTwo() %></td>
-                    <% if (isMatchEditor) { %>
                     <td><a href="/MatchUpdate?id=<%= match.getIdT() %>">Modifier</a></td>
-                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>">Terminer</a></td>
                     <td>
                         <form action="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
@@ -258,15 +253,18 @@
                             </button>
                         </form>
                     </td>
-                    <% } %>
                 </tr>
             <% } %>
             </tbody>
-        </table>
-        <% } else { %>
-        <p>Aucun match prévu</p>
-        <% } %>
+        </table><%
+        }
+        else { %>
+        <p>Aucun match prévu</p><%
+        } %>
     </div>
+
+    <% if (displayMore) { %>
+    <% } %>
 </main>
 
 <%@ include file="../Template/footer.jsp" %>
