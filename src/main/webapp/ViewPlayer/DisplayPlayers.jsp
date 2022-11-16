@@ -6,7 +6,7 @@
   boolean isAdmin = role == Role.ADMINISTRATOR;
 
 %>
-<article class="w-50 row scrollable space-around self-center">
+<article class="row scrollable space-around self-center">
 
   <h1 class="w-100 txt-center">Liste des joueurs participants au tournois</h1>
 

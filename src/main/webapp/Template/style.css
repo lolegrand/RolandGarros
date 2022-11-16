@@ -4,18 +4,30 @@
 
  ************************************/
 
-*,
+:root {
+    --primary: #C85A19;
+    --secondary: #00503C;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
 body {
-    max-width: 100%;
-    max-height: fit-content;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     font-family: "Open Sans", sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 
     text-align: justify;
 }
@@ -24,9 +36,7 @@ h1, h2, h3, h4, h5, h6, a {
     font-family: "Keraleeyam", sans-serif;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
+.no-margin {
     margin: 0;
 }
 
@@ -37,52 +47,26 @@ h1, h2, h3, h4, h5, h6, a {
  ************************************/
 
 header,
-nav,
-main,
 footer {
-    position: fixed;
-}
-
-header,
-.footer {
-    background-color: #00503C;
+    background-color: var(--secondary);
     color: #F2F2F2;
 }
 
-header{
-    top: 0;
-    z-index: 10;
-}
-
-header,
-nav {
+header {
     margin-bottom: 2.5rem;
 }
 
 nav {
-    top: 7%;
-    z-index: 1;
     padding: 0 1rem;
 }
 
-main{
-    top: 15%;
-    height: 70%;
+main {
+    flex-grow: 1;
+    padding: 2rem;
+    max-width: 1056px;
 }
 
-.footer {
-    height: 10%;
-
-    position: fixed;
-    bottom: 0;
-}
-
-main,
-section,
-article,
-form,
-div,
-table {
+section {
     margin: 5rem 0;
     padding: 0.25rem;
 }
@@ -90,40 +74,55 @@ table {
 article {
     background-color: #F5F5F5;
 
-    padding: 0.05rem 0.5rem;
+    padding: 0 0.5rem;
     box-shadow: 0 0 0.5rem #999;
 }
 
-ul {
-    list-style-type: none;
+article.content {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-li,
-a {
+article,
+form {
+    padding: 1rem;
+}
+
+header a {
     text-decoration: none;
     align-items: stretch;
     padding: 1.5rem;
+    margin-top: -.5rem;
+    margin-bottom: -.5rem;
+    border-top: solid 0.5rem var(--secondary);
+    border-bottom: solid 0.5rem var(--secondary);
 }
 
-a:hover {
-    color: #C85A19;
-
+header a:hover {
     background-color: #F2F2F2;
-
-    padding: 1.75rem 1.5rem 1.55rem 1.5rem;
-
-    z-index: 100;
-
-    border-top: solid 0.5rem #C85A19;
-    border-bottom: solid 0.5rem #C85A19;
+    color: var(--primary);
+    border-color: var(--primary);
 }
 
+footer {
+    padding: 1em;
+}
 
-.footer img {
+footer > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+footer img {
     max-width: 100%;
     height: 4rem;
     margin: 0.25rem 0;
 }
+
 /************************************/
 
 .nav {
@@ -132,64 +131,57 @@ a:hover {
     align-self: center;
     font-variant: small-caps;
 
-    border-top: solid 0.5rem #00503C;
-    border-bottom: solid 0.5rem #00503C;
+    border-top: solid 0.5rem var(--secondary);
+    border-bottom: solid 0.5rem var(--secondary);
+}
 
+.border-top-0 {
+    border-top: 0;
 }
 
 .nav form {
     margin: 0.5rem;
 }
 
-.scrollable {
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    margin: 0;
-
-    max-height: 100%;
+.connection-main > article {
+    max-width: 580px;
 }
 
-#articleConnection {
-    position: fixed;
-    top: 33%;
+input[type="text"],
+input[type="password"] {
+    padding: .5rem;
 }
 
-#AccueilBody {
+.home-body {
     background-image: url("../img/AccueilBG.png");
     background-origin: content-box;
     background-attachment: fixed;
     background-position: center;
-    background-size: 110%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
-@media (max-width: 992px) {
-    #AccueilBody {
-        background-size: 200%;
-    }
+.home-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: unset;
 }
 
-@media (max-width: 500px) {
-    #AccueilBody {
-        background-position: center;
-        left: 10%;
-        background-size: 400%;
-    }
-}
-
-#AccueilMain h1 {
-    position: absolute;
-    top: 33%;
+.home-main > div {
+    min-width: 33vw;
     padding: 5rem;
-    color: white;
     border: dashed white;
-    border-width: 5px 0
+    border-width: 5px 0;
+}
+
+.home-main h1 {
+    color: white;
 }
 
 .borderDashed {
     border-bottom: 3px dashed black;
-    margin: 0
+    margin: 0;
 }
 
 /************************************
@@ -283,9 +275,56 @@ h6 {
 
 /************************************
 
-      Vertical align definition
+      General flex definitions
 
  ************************************/
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+.flex-row {
+    display: flex;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.gap-1 {
+    gap: 1em;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-stretch {
+    justify-content: stretch;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
 
 .items-center {
     align-items: center;
@@ -313,20 +352,6 @@ h6 {
 
 /************************************
 
-       Space global definition
-
- ************************************/
-
-.space-around {
-    justify-content: space-around;
-}
-
-.space-between {
-    justify-content: space-between;
-}
-
-/************************************
-
        Table stuff definition
 
  ************************************/
@@ -336,7 +361,7 @@ table {
     text-align: center;
 }
 
-table, tr, td, th {
+table, td, th {
     border-collapse: collapse;
     border: solid 1px;
 }
@@ -346,23 +371,28 @@ th {
     background-color: #ccc;
 }
 
+table th,
+table td {
+    padding: .1rem;
+}
+
 .td-none {
     background-color: inherit;
     border-style: hidden;
     border-left: solid 1px #000;
 }
 
-td>form{
+td > form {
     margin: 1rem;
     padding: 0;
 }
 
-td>input {
+td > input {
     width: 99%;
 }
 
-.tr-noBorder>th,
-.tr-noBorder>td {
+.tr-noBorder > th,
+.tr-noBorder > td {
     border-style: hidden;
 }
 
@@ -387,9 +417,6 @@ textarea,
 select {
     border-radius: 0.25rem;
     border: solid 1px #ccc;
-    font-family: inherit;
-    font-size: inherit;
-    padding: inherit;
 }
 
 input:focus,
@@ -410,6 +437,10 @@ select:hover {
      Btn style global definition
 
  ************************************/
+
+[class^="btn-"]:hover {
+    cursor: pointer;
+}
 
 .btn-red {
     padding: 0.5rem;

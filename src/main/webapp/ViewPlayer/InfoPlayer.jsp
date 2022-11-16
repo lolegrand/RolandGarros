@@ -6,8 +6,7 @@
     if ( player != null ) {
         Person trainer = player.getTrainer();
 %>
-<article class="w-50 row scrollable space-around self-center">
-
+<article class="row scrollable space-around self-center">
     <h1 class="w-100 txt-center">Détails de <%=player.getFirstname()%> <%=player.getLastname()%></h1>
 
     <table class="w-50 txt-justify">

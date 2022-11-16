@@ -9,11 +9,11 @@
 
 <%@ include file="../Template/header.jsp" %>
 
-<main class="w-100 row space-around">
+<main class="w-100 flex-row justify-center items-center connection-main">
 
-    <article class="w-33 row self-center space-around" id="articleConnection">
+    <article class="flex-grow">
 
-        <form class="row space-around" method="post" name="formConnection">
+        <form class="w-100 flex-column justify-center items-center gap-1" method="post" name="formConnection">
             <h2 class="w-100 txt-center">Connexion</h2>
             <input class="w-100" type="text" name="Login" placeholder="Login">
             <input class="w-100" type="password" name="Password" placeholder="Password">

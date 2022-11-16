@@ -65,7 +65,7 @@
 
   if ( trainers != null ) {
 %>
-<article class="w-50 row self-center space-around" id="articleCreatePlayer">
+<article class="row self-center space-around" id="articleCreatePlayer">
   <form class="row space-around" method="post" name="formCreatePlayer">
     <h2 class="w-100 txt-center">Nouvelle fiche joueur</h2>
 

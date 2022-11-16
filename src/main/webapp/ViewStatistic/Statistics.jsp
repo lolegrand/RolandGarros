@@ -10,7 +10,7 @@
 
 <!-- search criteria -->
 
-<nav class="nav w-100 row space-between">
+<nav class="nav w-100 row space-between align-center border-top-0">
 
   <h2 class="w-25">Critères de tri</h2>
 
@@ -51,7 +51,7 @@
 
 <main class="w-100 row space-around">
 
-  <article class="w-75 row">
+  <article class="w-100 row">
 
     <table class="w-100">
       <tr>

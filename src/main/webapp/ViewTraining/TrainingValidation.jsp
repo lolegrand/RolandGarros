@@ -15,7 +15,7 @@
 
 <% if (showValidator) { %>
 
-<article class="w-50 row self-center space-around scrollable" id="articleTrainingValidation">
+<article class="w-50 row self-center space-around" id="articleTrainingValidation">
 
   <%
     for (Training training: trainings) {
