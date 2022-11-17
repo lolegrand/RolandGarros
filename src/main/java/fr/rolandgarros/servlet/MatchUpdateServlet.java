@@ -11,9 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.List;
 
 public class MatchUpdateServlet extends HttpServlet {
     final CourtService courtService = new CourtService();
@@ -24,7 +22,7 @@ public class MatchUpdateServlet extends HttpServlet {
         String page = "/ViewMatch/UpdateMatch.jsp";
         HttpSession session = request.getSession();
 
-        String role = (String) request.getSession().getAttribute("role");
+        String role = (String) session.getAttribute("role");
         boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
 
 // TODO inverser la condition
@@ -82,12 +80,13 @@ public class MatchUpdateServlet extends HttpServlet {
         // Or handle the form to update start date and court, everything else is read-only
 
         boolean error = false;
-        String matchId = request.getParameter("matchId");
-        String matchCourt = request.getParameter("matchCourt");
-        String matchStartDate = request.getParameter("matchStartDate");
         Match match = null;
         Court court = null;
         Timestamp ts = null;
+
+        String matchId = request.getParameter("matchId");
+        String matchCourt = request.getParameter("matchCourt");
+        String matchStartDate = request.getParameter("matchStartDate");
 
         try {
             // check this match exists
@@ -102,7 +101,8 @@ public class MatchUpdateServlet extends HttpServlet {
                     error = true;
                 }
 
-                // The HTML input[type=datetime] has the format yyyy-mm-ddThh:mm, but timestamp needs yyyy-mm-dd hh:mm:ss so we convert it
+                // The HTML input[type=datetime] has the format yyyy-mm-ddThh:mm (ISO 8601)
+                // But timestamp needs yyyy-mm-dd hh:mm:ss so we convert it
                 // By replacing the T by a space and adding default :00 for seconds
                 ts = Timestamp.valueOf(matchStartDate.replace('T', ' ').concat(":00"));
 
@@ -135,7 +135,7 @@ public class MatchUpdateServlet extends HttpServlet {
             match.setStartDate(ts);
             matchService.modifyMatch(match);
 
-            // Then redirects the user to prevent multiple form submission
+            // Then redirects the user to the list of matches
             response.sendRedirect("/Matchs");
         }
     }

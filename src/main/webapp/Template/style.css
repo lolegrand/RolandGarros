@@ -361,6 +361,10 @@ table {
     text-align: center;
 }
 
+.fixed-layout {
+    table-layout: fixed;
+}
+
 table, td, th {
     border-collapse: collapse;
     border: solid 1px;

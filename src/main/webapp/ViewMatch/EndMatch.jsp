@@ -1,76 +1,109 @@
-<!--
+<%@ page import="fr.rolandgarros.model.Match" %>
+<%@ page import="fr.rolandgarros.model.Single" %>
+<%@ page import="fr.rolandgarros.model.Double" %>
+
+<%
+    Match match = (Match) request.getAttribute("match");
+    String matchType = (String) request.getAttribute("matchType");
+    String matchGender = (String) request.getAttribute("matchGender");
+
+    /*
     End match:
-        - display all information about the match
-        - fill scores to terminate the match
-            -> the winner will be defined by the controller according to scores
--->
-<article class="w-50 row self-center space-around" id="articleEndMatch">
+    - display all information about the match
+    - fill scores to terminate the match
+    -> the winner will be defined by the controller according to the scores
+     */
+%>
 
-    <form class="row space-around" method="post" name="formEndMatch">
-        <h2 class="w-100 txt-center">Clore un match</h2>
+<%@ include file="../Template/head.jsp" %>
 
+<body class="column">
+<%@ include file="../Template/header.jsp" %>
+
+<main>
+<article class="w-50 row self-center space-around">
+    <h2 class="w-100 txt-center">Clore un match</h2>
+
+    <form class="row space-around" method="post">
         <h3 class="w-100">Modalités</h3>
 
-        <p class="w-100 txt-justify">${match.getType()}, ${match.getGender()}</p>
-        <p class="w-100 txt-justify">${match.getCourt()}, ${match.getSchedule()}</p>
+        <input type="hidden" name="matchId" value="<%= match.getIdT() %>" />
+
+        <p class="w-100 txt-justify"><%= matchType %>, <%= matchGender %></p>
+        <p class="w-100 txt-justify"><%= match.getCourt() %>, <%= match.getStartDate().toString().substring(0, 16) %></p>
 
         <h3 class="w-100">Participants</h3>
 
-        <!-- if post SimpleDouble == Simple -->
-        <% if ( match.getType().equals("Simple") ){ %>
-
-        <p class="w-100">${match.getPlayer1()} VS ${match.getPlayer2()}</p>
-
+        <% if (matchType.equals("Simple")) { %>
+        <% Single singleMatch = (Single) match; %>
+        <p class="w-100">
+            <%= singleMatch.getPlayerOne() %> VS <%= singleMatch.getPlayerTwo() %>
+        </p>
         <% } %>
 
-        <!-- if post SimpleDouble == Double -->
-        <% if ( match.getType().equals("Double") ){ %>
-
-        <table class="w-50">
+        <% if (matchType.equals("Double")) { %>
+        <% Double doubleMatch = (Double) match; %>
+        <table class="fixed-layout">
             <tr class="tr-noBorder">
                 <th>Équipe 1</th>
                 <th></th>
                 <th>Équipe 2</th>
             </tr>
             <tr class="tr-noBorder">
-                <td class="w-33">${match.getTeam1Player1()}</td>
-                <td class="w-33" rowspan="2"> VS </td>
-                <td class="w-33">${match.getTeam2Player1()}</td>
+                <td><%= doubleMatch.getTeamOnePlayerOne() %></td>
+                <td rowspan="2"> VS </td>
+                <td><%= doubleMatch.getTeamTwoPlayerOne() %></td>
             </tr>
             <tr class="tr-noBorder">
-                <td class="w-33">${match.getTeam1Player2()}</td>
-                <td class="w-33">${match.getTeam2Player2()}</td>
+                <td><%= doubleMatch.getTeamOnePlayerTwo() %></td>
+                <td rowspan="2"> VS </td>
+                <td><%= doubleMatch.getTeamTwoPlayerTwo() %></td>
             </tr>
         </table>
-
         <% } %>
 
         <h3 class="w-100">Résultats</h3>
 
-        <label class="w-25">Temps de jeu</label>
-        <input class="w-75" type="text" name="gameTime" value="1h00" pattern="[0-9]{0,3}h[0-9]{2}">
+        <label>Temps de jeu</label>
+        <input type="time" name="matchDuration" />
 
-        <label class="w-25">Premier set</label>
-        <input class="w-33" type="number" min="0" max="7" name="scoreS1P1" placeholder="0">
-        <input class="w-33" type="number" min="0" max="7" name="scoreS1P2" placeholder="0">
+        <p>Premier set</p>
+        <label for="scoreS1P1">Joueur/équipe 1</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS1P1" id="scoreS1P1" />
+        <label for="scoreS1P2">Joueur/équipe 2</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS1P2" id="scoreS1P2" />
 
-        <label class="w-25">Deuxième set</label>
-        <input class="w-33" type="number" min="0" max="7" name="scoreS2P1" placeholder="0">
-        <input class="w-33" type="number" min="0" max="7" name="scoreS2P2" placeholder="0">
+        <p>Deuxième set</p>
+        <label for="scoreS2P1">Joueur/équipe 1</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS2P1" id="scoreS2P1" />
+        <label for="scoreS2P2">Joueur/équipe 2</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS2P2" id="scoreS2P2" />
 
-        <label class="w-25">Troisième set</label>
-        <input class="w-33" type="number" min="0" max="7" name="scoreS3P1" placeholder="0">
-        <input class="w-33" type="number" min="0" max="7" name="scoreS3P2" placeholder="0">
+        <p>Troisième set</p>
+        <label for="scoreS3P1">Joueur/équipe 1</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS3P1" id="scoreS3P1" />
+        <label for="scoreS3P2">Joueur/équipe 2</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS3P2" id="scoreS3P2" />
 
-        <% if ( match.getGender().equals("Male") ){ %>
+        <% if (matchGender.equals("Male") && matchType.equals("Simple")) { %>
+        <p>Quatrième set</p>
+        <label for="scoreS4P1">Joueur/équipe 1</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS4P1" id="scoreS4P1" />
+        <label for="scoreS4P2">Joueur/équipe 2</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS4P2" id="scoreS4P2" />
 
-        <label class="w-25">Quatrième set</label>
-        <input class="w-33" type="number" min="0" max="7" name="scoreS4P1" placeholder="0">
-        <input class="w-33" type="number" min="0" max="7" name="scoreS4P2" placeholder="0">
-
+        <p>Cinquième set</p>
+        <label for="scoreS5P1">Joueur/équipe 1</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS5P1" id="scoreS5P1" />
+        <label for="scoreS5P2">Joueur/équipe 2</label>
+        <input type="number" min="0" max="7" value="0" name="scoreS5P2" id="scoreS5P2" />
         <% } %>
 
-        <input class="btn-blue w-25" type="submit" name="submitFormEndMatch" value="Finir">
-    </form>
+        <small>Laissez égals à 0 les sets non joués</small>
 
+        <button class="btn-blue" type="submit">
+            Valider
+        </button>
+        <a class="btn-red" href="/Matchs">Annuler</a>
+    </form>
 </article>
