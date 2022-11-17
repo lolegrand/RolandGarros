@@ -16,17 +16,15 @@
 
 <main>
     <article class="content">
-        <form class="row space-around" method="post" name="formUpdateMatch">
-            <h2 class="w-100 txt-center">Mise à jour du match</h2>
+        <h2 class="w-100 txt-center">Mise à jour du match</h2>
 
+        <form class="row space-around" method="post" name="formUpdateMatch">
             <h3 class="w-100">Modalités</h3>
 
             <input type="hidden" name="matchId" value="<%= match.getIdT() %>" />
 
             <label class="w-25">Simple ou Double</label>
             <p class="w-75"><%= request.getAttribute("matchType") %></p>
-
-            <label class="w-25">Homme ou Femme</label>
             <p class="w-75"><%= match.getGender() %></p>
 
             <label class="w-25" for="court">Court</label>

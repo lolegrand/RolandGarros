@@ -25,7 +25,7 @@ public class MatchCreationServlet extends HttpServlet {
         String page = "/ViewMatch/CreateMatch.jsp";
         HttpSession session = request.getSession();
 
-        String role = (String) request.getSession().getAttribute("role");
+        String role = (String) session.getAttribute("role");
         boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
 
 // TODO inverser la condition
@@ -83,12 +83,13 @@ public class MatchCreationServlet extends HttpServlet {
 
         if (submittedStep.equals("createMatchModality") && lastStep == null) {
             boolean error = false;
+            Court court = null;
+            Timestamp ts = null;
+
             String matchType = request.getParameter("matchType");
             String matchGender = request.getParameter("matchGender");
             String matchCourt = request.getParameter("matchCourt");
             String matchStartDate = request.getParameter("matchStartDate");
-            Court court = null;
-            Timestamp ts = null;
 
             if (matchType == null || matchGender == null || matchStartDate == null) {
                 error = true;
@@ -128,7 +129,7 @@ public class MatchCreationServlet extends HttpServlet {
                 session.setAttribute("tempCreationError", true);
             }
 
-            // Else, save the data and skip to the next step
+            // Else, save the data for the next step
             else {
                 session.setAttribute("tempMatchType", matchType);
                 session.setAttribute("tempMatchGender", matchGender);
@@ -137,7 +138,7 @@ public class MatchCreationServlet extends HttpServlet {
                 session.setAttribute("matchCreationStep", "createMatchModality");
             }
 
-            // Redirects the user to the same form to prevent new submission and skip to next step if no error encountered
+            // Redirects the user to the same form to prevent new submission and skip to the next step if no error encountered
             response.sendRedirect("/MatchCreation");
         }
 
@@ -157,7 +158,7 @@ public class MatchCreationServlet extends HttpServlet {
 
                 clearTemporaryData(session);
 
-                // Then redirects the user to prevent multiple form submission
+                // Then redirects the user to prevent resubmission
                 response.sendRedirect("/Matchs");
             }
             else {
@@ -171,7 +172,7 @@ public class MatchCreationServlet extends HttpServlet {
 
                     clearTemporaryData(session);
 
-                    // Then redirects the user to prevent multiple form submission
+                    // Then redirects the user to the list of matches
                     response.sendRedirect("/Matchs");
                 }
                 catch (IllegalArgumentException iae) {
@@ -186,7 +187,7 @@ public class MatchCreationServlet extends HttpServlet {
         else if (submittedStep.equals("cancelMatchCreation")) {
             clearTemporaryData(session);
 
-            // Then redirects the user to prevent multiple form submission
+            // Then redirects the user to prevent resubmission
             response.sendRedirect("/Matchs");
         }
 
