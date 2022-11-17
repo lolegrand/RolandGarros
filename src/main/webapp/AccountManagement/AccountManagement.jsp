@@ -1,10 +1,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="fr.rolandgarros.model.Account" %>
-<%@ page import="fr.rolandgarros.model.Role" %>
 <%
     List<Account> accounts = (List<Account>) request.getAttribute("accounts");
 
     Role role = (Role) request.getSession().getAttribute("role");
+
     boolean isAdmin = role == Role.ADMINISTRATOR;
 %>
 
@@ -12,14 +12,13 @@
 
 <body class="w-100 row">
 
-<jsp:include page="/Template/header.jsp"/>
+<%@ include file="../Template/header.jsp" %>
 
 <% if ( isAdmin ) {%>
 
 <main class="w-100 row space-around">
 
     <article class="w-75 row">
-        <h1 class="self-center">Liste des comptes d'administration</h1>
 
         <table class="w-100">
             <tr>
@@ -47,6 +46,12 @@
 
     </article>
 
+    <% } else { %>
+    <article class="w-75 row">
+
+        <h1> Vous n'étes pas un adminnistrateur </h1>
+
+    </article>
     <% } %>
 
 </main>
