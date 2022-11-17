@@ -105,4 +105,13 @@
         <url-pattern>/Disconnection</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AccountManagement</servlet-name>
+        <servlet-class>fr.rolandgarros.servlet.AccountManagementServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccountManagement</servlet-name>
+        <url-pattern>/Account</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -22,7 +22,7 @@
 
 <body class="w-100 row">
 
-<%@ include file="../Template/header.jsp" %>
+<jsp:include page="/Template/header.jsp"/>
 
 <% if ( isPlayerEditor ){ %>
 <nav class="nav w-100 row space-between align-center border-top-0">

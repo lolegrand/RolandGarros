@@ -6,6 +6,7 @@ import fr.rolandgarros.model.Role;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class AccountDAOMock implements AccountDAO {
     List<Account> accounts = new LinkedList<Account>() {{
@@ -39,5 +40,20 @@ public class AccountDAOMock implements AccountDAO {
     @Override
     public void deleteAccount(Account account) {
         accounts.remove(account);
+    }
+
+    @Override
+    public Account getAccountById(int account) {
+        for (Account account1 : accounts) {
+            if (Objects.equals(account1.getIdAccount(), account)) {
+                return account1;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Account> getAllAccount() {
+        return accounts;
     }
 }

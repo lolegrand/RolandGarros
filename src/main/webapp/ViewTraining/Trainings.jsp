@@ -15,7 +15,7 @@
 
 <body class="w-100 row">
 
-<%@ include file="../Template/header.jsp" %>
+<jsp:include page="/Template/header.jsp"/>
 
 <main class="w-100 row space-around" style="margin: 0">
     <div class="w-75">
