@@ -2,13 +2,14 @@
 <%@ page import="fr.rolandgarros.model.Match" %>
 <%@ page import="fr.rolandgarros.model.Single" %>
 <%@ page import="fr.rolandgarros.model.Double" %>
+<%@ page import="fr.rolandgarros.model.Role" %>
 <%
-    String role = (String) request.getSession().getAttribute("role");
-    boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+    Role role = (Role) request.getSession().getAttribute("role");
+    boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
     boolean displayMore = request.getParameter("displayMatch") != null;
 
-    boolean isAdmin = role != null && role.equals("Admin");
+    boolean isAdmin = role == Role.ADMINISTRATOR;
 
     /*
     List<Match> matches = (List<Match>) request.getAttribute("matches");

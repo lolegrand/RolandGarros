@@ -25,7 +25,7 @@ public class MatchCreationServlet extends HttpServlet {
         String page = "/ViewMatch/CreateMatch.jsp";
         HttpSession session = request.getSession();
 
-        String role = (String) session.getAttribute("role");
+        Role role = (Role) session.getAttribute("role");
         boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
 
 // TODO inverser la condition
@@ -67,8 +67,8 @@ public class MatchCreationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        String role = (String) session.getAttribute("role");
-        boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+        Role role = (Role) session.getAttribute("role");
+        boolean isMatchEditor = role == Role.ADMINISTRATOR || role == Role.MATCH_EDITOR;
 
 // TODO inverser la condition
         // Redirects the user if he is not permitted

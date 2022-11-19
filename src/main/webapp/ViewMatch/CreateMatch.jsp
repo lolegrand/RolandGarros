@@ -1,6 +1,7 @@
+<%@ page import="fr.rolandgarros.model.Role" %>
 <%
-    String role = (String) request.getSession().getAttribute("role");
-    boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+    Role role = (Role) request.getSession().getAttribute("role");
+    boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
     Object _error = session.getAttribute("tempCreationError");
     boolean error = (boolean) (_error != null) && (boolean) _error;

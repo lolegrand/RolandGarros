@@ -1,17 +1,20 @@
 package fr.rolandgarros.servlet.utils;
 
-import fr.rolandgarros.core.Utils;
 import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Hand;
+import fr.rolandgarros.model.Person;
 import fr.rolandgarros.model.Player;
+import fr.rolandgarros.services.PersonService;
 
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 public class PlayerCSVFormat {
     private static DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+    private static PersonService personService = new PersonService();
 
     public static Player convertCSVStringToPlayer(String str) throws ParseException {
         String[] playerPart = str.split(",");
@@ -35,6 +38,8 @@ public class PlayerCSVFormat {
             hand = Hand.AMBIDEXTROUS;
         }
         int trainerId = Integer.parseInt(playerPart[11]);
+        Person trainer = personService.getPersonById(trainerId);
+
         String genderStr = playerPart[12];
         Gender gender;
         if (genderStr.equals("Male")) {
@@ -55,7 +60,7 @@ public class PlayerCSVFormat {
                 weight,
                 startCareer,
                 hand,
-                trainerId,
+                trainer,
                 gender
         );
     }

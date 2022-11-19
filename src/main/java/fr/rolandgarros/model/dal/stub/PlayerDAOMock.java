@@ -39,7 +39,7 @@ public class PlayerDAOMock implements PlayerDAO {
             74f,
             2018,
             Hand.RIGHT_HANDED,
-            0,
+            new Person(),
             Gender.MALE
             );
     Player p2 = new Player(
@@ -55,7 +55,7 @@ public class PlayerDAOMock implements PlayerDAO {
             84f,
             2001,
             Hand.LEFT_HANDED,
-            1,
+            new Person(),
             Gender.MALE
             );
     Player p3 = new Player(
@@ -70,7 +70,7 @@ public class PlayerDAOMock implements PlayerDAO {
             77f,
             2015,
             Hand.RIGHT_HANDED,
-            1,
+            new Person(),
             Gender.MALE
     );
     Player p4 = new Player(
@@ -85,7 +85,7 @@ public class PlayerDAOMock implements PlayerDAO {
             82f,
             2014,
             Hand.RIGHT_HANDED,
-            2,
+            new Person(),
             Gender.MALE
     );
 

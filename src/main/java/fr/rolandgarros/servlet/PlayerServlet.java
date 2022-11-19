@@ -258,9 +258,11 @@ public class PlayerServlet extends HttpServlet {
                 req.setAttribute("CreatePlayerError", error);
             }
             else {
+                Person trainer = personService.getPersonById(idTrainer);
+
                 Player newPlayer = new Player(
                         lastname, firstname, birthdate, birthplace, ranking, bestRanking,
-                        nationality, height, weight, startCareer, hand, idTrainer, gender);
+                        nationality, height, weight, startCareer, hand, trainer, gender);
                 playerService.createPlayer(newPlayer);
 
                 success = "Création réussie.";
