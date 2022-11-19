@@ -19,6 +19,17 @@ public abstract class Match extends TimeEvent {
     @Column(name = "scoreTwo")
     private String scoreTwo;
 
+    public void setScoreOne(List<Integer> scoreOne) {
+       // parse to string and set the string
+
+
+
+    }
+
+    public void setScoreTwo(String scoreTwo) {
+        this.scoreTwo = scoreTwo;
+    }
+
     @OneToOne (
             targetEntity = Court.class,
             cascade = {CascadeType.REMOVE}

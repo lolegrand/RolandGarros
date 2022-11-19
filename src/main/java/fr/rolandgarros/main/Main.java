@@ -17,20 +17,20 @@ public class Main {
     public static void main(String[] args) {
 
         PlayerService playerService = new PlayerService();
-        PersonService personService = new PersonService();
-//        AccountService accountService = new AccountService();
-        Date C1Birth = Date.valueOf("1970-01-01");
-        Date C2Birth = Date.valueOf("1970-01-01");
-        Date C3Birth = Date.valueOf("1970-01-01");
-        Date P1Birth = Date.valueOf("2003-05-05");
-        Date P2Birth = Date.valueOf("1986-06-03");
-        Date P3Birth = Date.valueOf("1998-12-22");
-        Date P4Birth = Date.valueOf("1996-02-11");
-
-        Person P1Coach = new Person("FERRERO", "Juan Carlos", C1Birth,"BOUYAH", Gender.MALE);
-        Person P2Coach = new Person("MOYA", "Carlos", C2Birth,"BOUYAH",Gender.MALE);
-        Person P3Coach = new Person("RUUD", "Christian", C3Birth,"BOUYAH",Gender.MALE);
-        personService.createPerson(P1Coach);
+//        PersonService personService = new PersonService();
+////        AccountService accountService = new AccountService();
+//        Date C1Birth = Date.valueOf("1970-01-01");
+//        Date C2Birth = Date.valueOf("1970-01-01");
+//        Date C3Birth = Date.valueOf("1970-01-01");
+//        Date P1Birth = Date.valueOf("2003-05-05");
+//        Date P2Birth = Date.valueOf("1986-06-03");
+//        Date P3Birth = Date.valueOf("1998-12-22");
+//        Date P4Birth = Date.valueOf("1996-02-11");
+//
+//        Person P1Coach = new Person("FERRERO", "Juan Carlos", C1Birth,"BOUYAH", Gender.MALE);
+//        Person P2Coach = new Person("MOYA", "Carlos", C2Birth,"BOUYAH",Gender.MALE);
+//        Person P3Coach = new Person("RUUD", "Christian", C3Birth,"BOUYAH",Gender.MALE);
+//        personService.createPerson(P1Coach);
 
 //        Player p1 = new Player("ALCARNAZ", "Carlos", P1Birth, "ElPalmar, Murcia, Spain", 1, 1, "Spanish", 182f, 74f, Date.valueOf("2010-01-01"), Hand.RIGHT_HANDED, P1Coach,Gender.MALE);
 //        Player p2 = new Player("NADAL", "Rafael", P2Birth, "Manacor, Mallorca, Spain", 2, 1, "Spanish", 185f, 84f, Date.valueOf("2013-02-11"), Hand.LEFT_HANDED, personService.getPersonByName("FERRERO","Juan Carlos"),Gender.MALE);
@@ -49,7 +49,7 @@ public class Main {
 
 //        personService.deletePerson(personService.getPersonByName("FERRERO","Juan Carlos"));
 
-//       playerService.getAllPlayers().forEach(System.out::println);
+       playerService.getAllPlayers().forEach(System.out::println);
    //     playerService.getPlayersByTrainer(personService.getPersonByName("FERRERO","Juan Carlos")).forEach(System.out::println);
 
     }
