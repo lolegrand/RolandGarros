@@ -1,6 +1,5 @@
 package fr.rolandgarros.model;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

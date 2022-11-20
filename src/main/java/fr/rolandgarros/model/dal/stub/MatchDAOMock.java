@@ -33,6 +33,22 @@ public class MatchDAOMock implements MatchDAO {
     }
 
     @Override
+    public void createMatch(Match match) {
+        matches.add(match);
+    }
+
+    @Override
+    public void deleteMatch(Match match) {
+        matches.remove(match);
+    }
+
+    @Override
+    public void modifyMatch(Match match) {
+        matches.remove(match);
+        matches.add(match);
+    }
+
+    @Override
     public Match getMatchById(int id) {
         return null;
     }

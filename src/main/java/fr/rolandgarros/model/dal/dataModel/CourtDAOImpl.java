@@ -8,8 +8,6 @@ import fr.rolandgarros.model.dal.CourtDAO;
 import java.util.List;
 
 public class CourtDAOImpl implements CourtDAO {
-
-
     @Override
     public void createCourt(Court court) {
         JPAService jpaService = JPAService.getInstance();

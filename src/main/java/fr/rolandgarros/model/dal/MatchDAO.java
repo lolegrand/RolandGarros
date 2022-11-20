@@ -3,7 +3,6 @@ package fr.rolandgarros.model.dal;
 import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Match;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -11,7 +10,9 @@ public interface MatchDAO {
 
 
     Match getMatch(Court court, Timestamp start);
-
+    void createMatch(Match match);
+    void deleteMatch(Match match);
+    void modifyMatch(Match match);
     Match getMatchById(int id);
 
     List<Match> getAllMatches();

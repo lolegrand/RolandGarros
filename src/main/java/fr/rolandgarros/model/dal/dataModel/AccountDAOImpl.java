@@ -53,7 +53,7 @@ public class AccountDAOImpl implements AccountDAO {
         try {
 
             jpaService.runInTransaction(entityManager -> {
-                entityManager.persist(entityManager.merge(account));
+                entityManager.merge(account);
                 return null;
             });
 

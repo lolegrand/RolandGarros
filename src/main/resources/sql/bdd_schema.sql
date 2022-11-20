@@ -68,7 +68,9 @@ CREATE TABLE doubleGame
     FOREIGN KEY (teamTwoPlayerOneId) REFERENCES player (idP) ON DELETE CASCADE,
     FOREIGN KEY (teamOnePlayerTwoId) REFERENCES player (idP) ON DELETE CASCADE,
     FOREIGN KEY (teamTwoPlayerTwoId) REFERENCES player (idP) ON DELETE CASCADE,
-    FOREIGN KEY (courtId) REFERENCES court (idC) ON DELETE CASCADE
+    FOREIGN KEY (courtId) REFERENCES court (idC) ON DELETE CASCADE,
+    UNIQUE (courtId,startDate)
+
 );
 CREATE TABLE singleGame
 (
@@ -84,7 +86,8 @@ CREATE TABLE singleGame
     PRIMARY KEY (idT),
     FOREIGN KEY (playerOneId) REFERENCES player(idP) ON DELETE CASCADE,
     FOREIGN KEY (playerTwoId) REFERENCES player(idP) ON DELETE CASCADE,
-    FOREIGN KEY (courtId) REFERENCES court(idC) ON DELETE CASCADE
+    FOREIGN KEY (courtId) REFERENCES court(idC) ON DELETE CASCADE,
+    UNIQUE (courtId,startDate)
 
 );
 CREATE TABLE trainingGame

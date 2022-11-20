@@ -36,7 +36,7 @@ public class PersonDAOImpl implements PersonDAO {
         try {
 
             jpaService.runInTransaction(entityManager -> {
-                entityManager.persist(entityManager.merge(person));
+                entityManager.merge(person);
                 return null;
             });
 

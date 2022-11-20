@@ -33,7 +33,7 @@ public class TrainingDAOImpl implements TrainingDAO {
         try {
 
             jpaService.runInTransaction(entityManager -> {
-                entityManager.persist(entityManager.merge(training));
+                entityManager.merge(training);
                 return null;
             });
 

@@ -2,6 +2,7 @@ package fr.rolandgarros.model;
 
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,17 +20,6 @@ public abstract class Match extends TimeEvent {
     @Column(name = "scoreTwo")
     private String scoreTwo;
 
-    public void setScoreOne(List<Integer> scoreOne) {
-       // parse to string and set the string
-
-
-
-    }
-
-    public void setScoreTwo(String scoreTwo) {
-        this.scoreTwo = scoreTwo;
-    }
-
     @OneToOne (
             targetEntity = Court.class,
             cascade = {CascadeType.REMOVE}
@@ -44,13 +34,12 @@ public abstract class Match extends TimeEvent {
     }
 
     public Match() {
-
     }
 
-    public void endMatch(Timestamp endDate, String scoreOne, String scoreTwo) {
+    public void endMatch(Timestamp endDate, List<Integer> scoreOne, List<Integer> scoreTwo) {
         super.endTimeEvent(endDate);
-        this.scoreOne = scoreOne;
-        this.scoreTwo = scoreTwo;
+        this.setScoreOne(scoreOne);
+        this.setScoreTwo(scoreTwo);
     }
 
     public Gender getGender() {
@@ -61,25 +50,29 @@ public abstract class Match extends TimeEvent {
         if (!isTimeEventPassed()) {
             throw new RuntimeException("Match has not been passed yet");
         }
-        //parse scoreOne AND return it as list of integers
-        List<Integer> scoreOne = Collections.emptyList();
-        for (String s : this.scoreOne.split(",")) {
+
+        ArrayList<Integer> scoreOne = new ArrayList<>();
+        for (String s : this.scoreOne.replace("[","").replace("]","").split(",")) {
             scoreOne.add(Integer.parseInt(s));
         }
         return scoreOne;
+    }
+    public void setScoreOne(List<Integer> scoreOne) {
+        this.scoreOne = scoreOne.toString();
     }
 
     public List<Integer> getScoreTwo() {
         if (!isTimeEventPassed()) {
             throw new RuntimeException("Match has not been passed yet");
         }
-        //parse scoreOne AND return it as list of integers
-        List<Integer> scoreTwo = Collections.emptyList();
-        for (String s : this.scoreTwo.split(",")) {
+        ArrayList<Integer> scoreTwo = new ArrayList<>();
+        for (String s : this.scoreTwo.replace("[","").replace("]","").split(",")) {
             scoreTwo.add(Integer.parseInt(s));
         }
         return scoreTwo;
-
+    }
+    public void setScoreTwo(List<Integer> scoreTwo) {
+        this.scoreTwo = scoreTwo.toString();
     }
 
     public Court getCourt() {

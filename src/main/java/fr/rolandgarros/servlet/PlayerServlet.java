@@ -1,6 +1,5 @@
 package fr.rolandgarros.servlet;
 
-import com.sun.tools.javac.jvm.Gen;
 import fr.rolandgarros.model.Gender;
 import fr.rolandgarros.model.Hand;
 import fr.rolandgarros.model.Person;

@@ -46,7 +46,7 @@ public class PlayerDAOImpl implements PlayerDAO {
         JPAService jpaService = JPAService.getInstance();
         try {
             jpaService.runInTransaction(entityManager -> {
-                entityManager.persist(entityManager.merge(player));
+                entityManager.merge(player);
                 return null;
             });
         }finally {

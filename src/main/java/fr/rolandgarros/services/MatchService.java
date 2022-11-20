@@ -4,6 +4,7 @@ import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Match;
 import fr.rolandgarros.model.Match;
 import fr.rolandgarros.model.dal.MatchDAO;
+import fr.rolandgarros.model.dal.dataModel.MatchDAOImpl;
 import fr.rolandgarros.model.dal.stub.MatchDAOMock;
 
 import java.sql.Date;
@@ -11,11 +12,20 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class MatchService {
-    private final MatchDAO matchDAO = new MatchDAOMock();
-    //private final MatchDAO matchDAO = new MatchDAOImpl();
+//    private final MatchDAO matchDAO = new MatchDAOMock();
+    private final MatchDAO matchDAO = new MatchDAOImpl();
 
     public Match getMatch(Court court, Timestamp start) { return matchDAO.getMatch(court, start); }
     public Match getMatchById(int id) { return matchDAO.getMatchById(id); }
+    public void createMatch(Match match) {
+        matchDAO.createMatch(match);
+    }
+    public void deleteMatch(Match match) {
+        matchDAO.deleteMatch(match);
+    }
+    public void modifyMatch(Match match) {
+        matchDAO.modifyMatch(match);
+    }
     public List<Match> getAllMatches() {
         return matchDAO.getAllMatches();
     }
