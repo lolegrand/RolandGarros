@@ -7,7 +7,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -19,15 +18,14 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class MatchEndServlet extends HttpServlet {
-    final MatchService matchService = new MatchService();
+    private static final MatchService matchService = new MatchService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = "/ViewMatch/EndMatch.jsp";
-        HttpSession session = request.getSession();
 
-        String role = (String) session.getAttribute("role");
-        boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+        Role role = (Role) request.getSession().getAttribute("role");
+        boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
 // TODO inverser la condition
         // Redirects the user if he is not permitted
@@ -69,10 +67,8 @@ public class MatchEndServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
-
-        String role = (String) session.getAttribute("role");
-        boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+        Role role = (Role) request.getSession().getAttribute("role");
+        boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
 // TODO inverser la condition
         // Redirects the user if he is not permitted
@@ -190,10 +186,7 @@ public class MatchEndServlet extends HttpServlet {
         }
 
         else {
-            // Method to convert list of integers to a string formatted like: "1,2,3"
-            Function<List<Integer>, String> listToString = (list) -> list.stream().map(String::valueOf).collect(Collectors.joining(","));
-
-            match.endMatch(ts, listToString.apply(scoresOne), listToString.apply(scoresTwo));
+            match.endMatch(ts, scoresOne, scoresTwo);
             matchService.modifyMatch(match);
 
             // Then redirects the user to prevent multiple form submission

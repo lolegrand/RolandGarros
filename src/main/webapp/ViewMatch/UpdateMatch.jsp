@@ -72,10 +72,9 @@
             <p class="w-75"><%= matchDouble.getTeamTwoPlayerTwo() %></p>
             <% } %>
 
-            <button>
-
+            <button class="btn-blue" type="submit">
+                Mettre à jour
             </button>
-            <input class="btn-blue w-25" type="submit" name="submitFormUpdateMatch" value="Mettre à jour" />
         </form>
     </article>
 </main>

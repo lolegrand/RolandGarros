@@ -13,14 +13,14 @@
     <label for="player1">Participant 1</label>
     <select name="player1" id="player1">
       <% for (Player player : players) { %>
-      <option value="<%= player.getId() %>"><%= player.getFirstname() %> <%= player.getLastname() %></option>
+      <option value="<%= player.getId() %>"><%= player %></option>
       <% } %>
     </select>
 
     <label for="player2">Participant 2</label>
     <select name="player2" id="player2">
       <% for (Player player : players) { %>
-      <option value="<%= player.getId() %>"><%= player.getFirstname() %> <%= player.getLastname() %></option>
+      <option value="<%= player.getId() %>"><%= player %></option>
       <% } %>
     </select>
     <% } %>
@@ -28,33 +28,33 @@
     <% if (matchType.equals("Double")) { %>
     <label class="w-100">Équipe 1</label>
 
-    <label for="team1Player1">Participant 1</label>
-    <select name="team1Player1" id="team1Player1">
+    <label for="team1player1">Participant 1</label>
+    <select name="team1player1" id="team1player1">
       <% for (Player player : players) { %>
-      <option value="<%= player.getId() %>"><%= player.getFirstname() %> <%= player.getLastname() %></option>
+      <option value="<%= player.getId() %>"><%= player %></option>
       <% } %>
     </select>
 
-    <label for="team1Player2">Participant 2</label>
-    <select name="team1Player2" id="team1Player2">
+    <label for="team1player2">Participant 2</label>
+    <select name="team1player2" id="team1player2">
       <% for (Player player : players) { %>
-      <option value="<%= player.getId() %>"><%= player.getFirstname() %> <%= player.getLastname() %></option>
+      <option value="<%= player.getId() %>"><%= player %></option>
       <% } %>
     </select>
 
     <label class="w-100">Équipe 2</label>
 
-    <label for="team2Player1">Participant 1</label>
-    <select name="team2Player1" id="team2Player1">
+    <label for="team2player1">Participant 1</label>
+    <select name="team2player1" id="team2player1">
       <% for (Player player : players) { %>
-      <option value="<%= player.getId() %>"><%= player.getFirstname() %> <%= player.getLastname() %></option>
+      <option value="<%= player.getId() %>"><%= player %></option>
       <% } %>
     </select>
 
-    <label for="team2Player2">Participant 2</label>
-    <select name="team2Player2" id="team2Player2">
+    <label for="team2player2">Participant 2</label>
+    <select name="team2player2" id="team2player2">
       <% for (Player player : players) { %>
-      <option value="<%= player.getId() %>"><%= player.getFirstname() %> <%= player.getLastname() %></option>
+      <option value="<%= player.getId() %>"><%= player %></option>
       <% } %>
     </select>
     <% } %>

@@ -14,16 +14,15 @@ import java.io.IOException;
 import java.sql.Timestamp;
 
 public class MatchUpdateServlet extends HttpServlet {
-    final CourtService courtService = new CourtService();
-    final MatchService matchService = new MatchService();
+    private static final CourtService courtService = new CourtService();
+    private static final MatchService matchService = new MatchService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = "/ViewMatch/UpdateMatch.jsp";
-        HttpSession session = request.getSession();
 
-        String role = (String) session.getAttribute("role");
-        boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+        Role role = (Role) request.getSession().getAttribute("role");
+        boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
 // TODO inverser la condition
         // Redirects the user if he is not permitted
@@ -65,10 +64,8 @@ public class MatchUpdateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
-
-        String role = (String) session.getAttribute("role");
-        boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+        Role role = (Role) request.getSession().getAttribute("role");
+        boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
 // TODO inverser la condition
         // Redirects the user if he is not permitted

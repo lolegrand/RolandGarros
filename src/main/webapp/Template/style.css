@@ -32,7 +32,7 @@ body {
     text-align: justify;
 }
 
-h1, h2, h3, h4, h5, h6, a {
+h1, h2, h3, h4, h5, h6, a, button {
     font-family: "Keraleeyam", sans-serif;
 }
 
@@ -306,8 +306,16 @@ h6 {
     gap: 1em;
 }
 
+.justify-start {
+    justify-content: flex-start;
+}
+
 .justify-center {
     justify-content: center;
+}
+
+.justify-end {
+    justify-content: flex-end;
 }
 
 .justify-stretch {
@@ -357,7 +365,6 @@ h6 {
  ************************************/
 
 table {
-    width: 100%;
     text-align: center;
 }
 
@@ -365,19 +372,18 @@ table {
     table-layout: fixed;
 }
 
-table, td, th {
+table {
     border-collapse: collapse;
+}
+
+td, th {
     border: solid 1px;
+    padding: .1rem;
 }
 
 th {
     font-variant: small-caps;
     background-color: #ccc;
-}
-
-table th,
-table td {
-    padding: .1rem;
 }
 
 .td-none {
@@ -442,12 +448,33 @@ select:hover {
 
  ************************************/
 
-[class^="btn-"]:hover {
+.btn-disabled {
+    pointer-events: none;
+    user-select: none;
+}
+
+.btn {
+    display: block;
+}
+
+.btn-red,
+.btn-green,
+.btn-blue,
+.btn-dark {
+    padding: .5rem;
+    color: black;
+    text-decoration: none;
+    border: none;
+}
+
+.btn-red:hover,
+.btn-green:hover,
+.btn-blue:hover,
+.btn-dark:hover {
     cursor: pointer;
 }
 
 .btn-red {
-    padding: 0.5rem;
     background-color: #f43352;
     border-color: #cb0b2a;
 }
@@ -458,7 +485,6 @@ select:hover {
 }
 
 .btn-green {
-    padding: 0.5rem;
     background-color: #c0f433;
     border-color: #8fbe0e;
 }
@@ -469,7 +495,6 @@ select:hover {
 }
 
 .btn-blue {
-    padding: 0.5rem;
     background-color: #33c0f4;
     border-color: #0291c6;
 }
@@ -480,7 +505,6 @@ select:hover {
 }
 
 .btn-dark {
-    padding: 0.5rem;
     background-color: #8e8d8d;
     border-color: #313030;
 }

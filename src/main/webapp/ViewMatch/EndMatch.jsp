@@ -99,7 +99,7 @@
         <input type="number" min="0" max="7" value="0" name="scoreS5P2" id="scoreS5P2" />
         <% } %>
 
-        <small>Laissez égals à 0 les sets non joués</small>
+        <small>Laissez égaux à 0 les sets non joués</small>
 
         <button class="btn-blue" type="submit">
             Valider

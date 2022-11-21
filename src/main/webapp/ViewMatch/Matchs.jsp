@@ -1,21 +1,12 @@
 <%@ page import="java.util.List" %>
-<%@ page import="fr.rolandgarros.model.Match" %>
 <%@ page import="fr.rolandgarros.model.Single" %>
 <%@ page import="fr.rolandgarros.model.Double" %>
 <%@ page import="fr.rolandgarros.model.Role" %>
 <%
     Role role = (Role) request.getSession().getAttribute("role");
     boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
-
-    boolean displayMore = request.getParameter("displayMatch") != null;
-
-    boolean isAdmin = role == Role.ADMINISTRATOR;
-
-    /*
-    List<Match> matches = (List<Match>) request.getAttribute("matches");
-    List<Match> matchesPast = (List<Match>) request.getAttribute("matchesPast");
-    List<Match> matchesToCome = (List<Match>) request.getAttribute("matchesToCome");
-    */
+// TODO remove this command when dev done
+isMatchEditor = ! isMatchEditor;
 
     /*
      * Match Simple Men (MSM)
@@ -24,41 +15,11 @@
      * Match Double Women (MDW)
      */
 
-    /*
+    String matchesCategory = (String) request.getAttribute("matches");
     List<Single> MSM = (List<Single>) request.getAttribute("MSM");
     List<Single> MSW = (List<Single>) request.getAttribute("MSW");
     List<Double> MDM = (List<Double>) request.getAttribute("MDM");
     List<Double> MDW = (List<Double>) request.getAttribute("MDW");
-    */
-
-    /*
-     * Match Simple Past          (MSP)
-     * Match Simple Men Past      (MSMP)
-     * Match Simple Women Past    (MSWP)
-     * Match Double Men Past      (MDMP)
-     * Match Double Women Past    (MDWP)
-     */
-
-    /*
-    List<Single> MSMP = (List<Single>) request.getAttribute("MSMP");
-    List<Single> MSWP = (List<Single>) request.getAttribute("MSWP");
-    List<Double> MDMP = (List<Double>) request.getAttribute("MDMP");
-    List<Double> MDWP = (List<Double>) request.getAttribute("MDWP");
-    */
-
-    /*
-     * Match Simple ToCome          (MST)
-     * Match Simple Men ToCome      (MSMT)
-     * Match Simple Women ToCome    (MSWT)
-     * Match Double Men ToCome      (MDMT)
-     * Match Double Women ToCome    (MDWT)
-     */
-
-    List<Single> MSMT = (List<Single>) request.getAttribute("MSMT");
-    List<Single> MSWT = (List<Single>) request.getAttribute("MSWT");
-    List<Double> MDMT = (List<Double>) request.getAttribute("MDMT");
-    List<Double> MDWT = (List<Double>) request.getAttribute("MDWT");
-
 %>
 
 <%@ include file="../Template/head.jsp" %>
@@ -71,11 +32,23 @@
     <a href="/MatchCreation">Créer un match</a>
     <% } %>
 
-    <h1 class="w-100 txt-center">Matchs à venir</h1>
+    <a href="/Matchs?matches=all">Tous les matchs</a>
+    <a href="/Matchs?matches=past">Matchs passés</a>
+    <a href="/Matchs?matches=toCome">Matchs à venir</a>
+
+    <h1 class="w-100 txt-center">
+        <% if (matchesCategory.equals("all")) { %>
+        Tous les matchs
+        <% } else if (matchesCategory.equals("past")) { %>
+        Matchs passés
+        <% } else if (matchesCategory.equals("toCome")) { %>
+        Matchs à venir
+        <% } %>
+    </h1>
 
     <h2 class="w-100">Simple hommes</h2>
     <div class="w-100 scrollable">
-        <% if (MSMT.size() > 0) { %>
+        <% if (MSM.size() > 0) { %>
         <table class="w-100">
             <thead>
                 <tr>
@@ -93,25 +66,39 @@
                 </tr>
             </thead>
             <tbody>
-            <% for (Single match : MSMT) { %>
+            <% for (Single match : MSM) { %>
                 <tr>
                     <td><%= match.getCourt() %></td>
                     <td><%= match.getStartDate() %></td>
                     <td><%= match.getPlayerOne() %></td>
+                    <% if (! match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreOne() %></td>
+                    <% } else { %>
+                    <td>—</td>
+                    <% } %>
                     <td><%= match.getPlayerTwo() %></td>
+                    <% if (! match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreTwo() %></td>
+                    <% } else { %>
+                    <td>—</td>
+                    <% } %>
                     <% if (isMatchEditor) { %>
-                    <td><a href="/MatchUpdate?id=<%= match.getIdT() %>">Modifier</a></td>
-                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>">Terminer</a></td>
+                    <% if (match.isTimeEventPassed()) { %>
+                    <td><a class="btn btn-dark btn-disabled">Modifier</a></td>
+                    <td><a class="btn btn-dark btn-disabled">Terminer</a></td>
+                    <td><a class="btn btn-dark btn-disabled">Supprimer</a></td>
+                    <% } else { %>
+                    <td><a href="/MatchUpdate?id=<%= match.getIdT() %>" class="btn btn-blue">Modifier</a></td>
+                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>" class="btn btn-blue">Terminer</a></td>
                     <td>
                         <form action="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
-                            <button class="btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
+                            <button class=btn "btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
                                 Supprimer
                             </button>
                         </form>
                     </td>
+                    <% } %>
                     <% } %>
                 </tr>
             <% } %>
@@ -124,7 +111,7 @@
 
     <h2 class="w-100">Simple femmes</h2>
     <div class="w-100 scrollable">
-        <% if (MSWT.size() > 0) { %>
+        <% if (MSW.size() > 0) { %>
         <table class="w-100">
             <thead>
                 <tr>
@@ -142,25 +129,39 @@
                 </tr>
             </thead>
             <tbody>
-            <% for (Single match : MSWT) { %>
+            <% for (Single match : MSW) { %>
                 <tr>
                     <td><%= match.getCourt() %></td>
                     <td><%= match.getStartDate() %></td>
                     <td><%= match.getPlayerOne() %></td>
+                    <% if (! match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreOne() %></td>
+                    <% } else { %>
+                    <td>—</td>
+                    <% } %>
                     <td><%= match.getPlayerTwo() %></td>
+                    <% if (! match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreTwo() %></td>
+                    <% } else { %>
+                    <td>—</td>
+                    <% } %>
                     <% if (isMatchEditor) { %>
-                    <td><a href="/MatchUpdate?id=<%= match.getIdT() %>">Modifier</a></td>
-                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>">Terminer</a></td>
+                    <% if (match.isTimeEventPassed()) { %>
+                    <td><a class="btn btn-dark btn-disabled">Modifier</a></td>
+                    <td><a class="btn btn-dark btn-disabled">Terminer</a></td>
+                    <td><a class="btn btn-dark btn-disabled">Supprimer</a></td>
+                    <% } else { %>
+                    <td><a href="/MatchUpdate?id=<%= match.getIdT() %>" class="btn btn-blue">Modifier</a></td>
+                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>" class="btn btn-blue">Terminer</a></td>
                     <td>
                         <form action="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
-                            <button class="btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
+                            <button class="btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
                                 Supprimer
                             </button>
                         </form>
                     </td>
+                    <% } %>
                     <% } %>
                 </tr>
             <% } %>
@@ -173,7 +174,7 @@
 
     <h2 class="w-100">Double hommes</h2>
     <div class="w-100 scrollable">
-        <% if (MDMT.size() > 0) { %>
+        <% if (MDM.size() > 0) { %>
         <table class="w-100">
             <thead>
                 <tr>
@@ -191,25 +192,39 @@
                 </tr>
             </thead>
             <tbody>
-            <% for (Double match : MDMT) { %>
+            <% for (Double match : MDM) { %>
                 <tr>
                     <td><%= match.getCourt() %></td>
                     <td><%= match.getStartDate() %></td>
                     <td><%= match.getTeamOnePlayerOne() %> et <%= match.getTeamOnePlayerTwo() %></td>
+                    <% if (! match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreOne() %></td>
+                    <% } else { %>
+                    <td>—</td>
+                    <% } %>
                     <td><%= match.getTeamTwoPlayerOne() %> et <%= match.getTeamTwoPlayerTwo() %></td>
+                    <% if (! match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreTwo() %></td>
+                    <% } else { %>
+                    <td>—</td>
+                    <% } %>
                     <% if (isMatchEditor) { %>
-                    <td><a href="/MatchUpdate?id=<%= match.getIdT() %>">Modifier</a></td>
-                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>">Terminer</a></td>
+                    <% if (match.isTimeEventPassed()) { %>
+                    <td><a class="btn btn-dark btn-disabled">Modifier</a></td>
+                    <td><a class="btn btn-dark btn-disabled">Terminer</a></td>
+                    <td><a class="btn btn-dark btn-disabled">Supprimer</a></td>
+                    <% } else { %>
+                    <td><a href="/MatchUpdate?id=<%= match.getIdT() %>" class="btn btn-blue">Modifier</a></td>
+                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>" class="btn btn-blue">Terminer</a></td>
                     <td>
                         <form action="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
-                            <button class="btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
+                            <button class="btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
                                 Supprimer
                             </button>
                         </form>
                     </td>
+                    <% } %>
                     <% } %>
                 </tr>
             <% } %>
@@ -222,7 +237,7 @@
 
     <h2 class="w-100">Double femmes</h2>
     <div class="w-100 scrollable">
-        <% if (MDWT.size() > 0) { %>
+        <% if (MDW.size() > 0) { %>
         <table class="w-100">
             <thead>
                 <tr>
@@ -240,25 +255,39 @@
                 </tr>
             </thead>
             <tbody>
-            <% for (Double match : MDWT) { %>
+            <% for (Double match : MDW) { %>
                 <tr>
                     <td><%= match.getCourt() %></td>
                     <td><%= match.getStartDate() %></td>
                     <td><%= match.getTeamOnePlayerOne() %> et <%= match.getTeamOnePlayerTwo() %></td>
+                    <% if (! match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreOne() %></td>
+                    <% } else { %>
+                    <td>—</td>
+                    <% } %>
                     <td><%= match.getTeamTwoPlayerOne() %> et <%= match.getTeamTwoPlayerTwo() %></td>
+                    <% if (! match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreTwo() %></td>
+                    <% } else { %>
+                    <td>—</td>
+                    <% } %>
                     <% if (isMatchEditor) { %>
-                    <td><a href="/MatchUpdate?id=<%= match.getIdT() %>">Modifier</a></td>
-                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>">Terminer</a></td>
+                    <% if (match.isTimeEventPassed()) { %>
+                    <td><a class="btn btn-dark btn-disabled">Modifier</a></td>
+                    <td><a class="btn btn-dark btn-disabled">Terminer</a></td>
+                    <td><a class="btn btn-dark btn-disabled">Supprimer</a></td>
+                    <% } else { %>
+                    <td><a href="/MatchUpdate?id=<%= match.getIdT() %>" class="btn btn-blue">Modifier</a></td>
+                    <td><a href="/MatchEnd?id=<%= match.getIdT() %>" class="btn btn-blue">Terminer</a></td>
                     <td>
                         <form action="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
-                            <button class="btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
+                            <button class="btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
                                 Supprimer
                             </button>
                         </form>
                     </td>
+                    <% } %>
                     <% } %>
                 </tr>
             <% } %>

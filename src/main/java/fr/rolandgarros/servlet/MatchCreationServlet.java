@@ -16,9 +16,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class MatchCreationServlet extends HttpServlet {
-    final CourtService courtService = new CourtService();
-    final MatchService matchService = new MatchService();
-    final PlayerService playerService = new PlayerService();
+    private static final CourtService courtService = new CourtService();
+    private static final MatchService matchService = new MatchService();
+    private static final PlayerService playerService = new PlayerService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class MatchCreationServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         Role role = (Role) session.getAttribute("role");
-        boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+        boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
 // TODO inverser la condition
         // Redirects the user if he is not permitted
@@ -108,7 +108,8 @@ public class MatchCreationServlet extends HttpServlet {
                         error = true;
                     }
 
-                    // The HTML input[type=datetime] has the format yyyy-mm-ddThh:mm, but timestamp needs yyyy-mm-dd hh:mm:ss so we convert it
+                    // The HTML input[type=datetime] has the ISO 8601 format yyyy-mm-ddThh:mm
+                    // But timestamp needs the yyyy-mm-dd hh:mm:ss format so we convert it
                     // By replacing the T by a space and adding default :00 for seconds
                     ts = Timestamp.valueOf(matchStartDate.replace('T', ' ').concat(":00"));
 
@@ -191,7 +192,7 @@ public class MatchCreationServlet extends HttpServlet {
             response.sendRedirect("/Matchs");
         }
 
-        // Impossible case: should crash in 403 (forbidden)
+        // Impossible case: should crash in 403 Forbidden
         else {
             response.setStatus(403);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Template/error.jsp");

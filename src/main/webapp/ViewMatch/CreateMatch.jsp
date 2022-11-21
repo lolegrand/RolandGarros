@@ -1,10 +1,6 @@
-<%@ page import="fr.rolandgarros.model.Role" %>
 <%
-    Role role = (Role) request.getSession().getAttribute("role");
-    boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
-
     Object _error = session.getAttribute("tempCreationError");
-    boolean error = (boolean) (_error != null) && (boolean) _error;
+    boolean error = (_error != null) && (boolean) _error;
     String matchCreationStep = (String) session.getAttribute("matchCreationStep");
 %>
 
@@ -16,7 +12,7 @@
 <main class="flex-column">
     <% if (error) { %>
     <p class="btn-red">
-        Erreur dans votre formulaire, veuillez recommencer
+        Erreur dans votre formulaire, veuillez recommencer.
     </p>
     <% } %>
 

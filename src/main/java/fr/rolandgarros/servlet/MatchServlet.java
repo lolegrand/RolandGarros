@@ -2,6 +2,7 @@ package fr.rolandgarros.servlet;
 
 import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Match;
+import fr.rolandgarros.model.Role;
 import fr.rolandgarros.services.MatchService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,28 +13,54 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class MatchServlet extends HttpServlet {
-    final MatchService matchService = new MatchService();
+    private static final MatchService matchService = new MatchService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = "/ViewMatch/Matchs.jsp";
+List<Match> m = matchService.getSimpleMen();
 
-        request.setAttribute("MSMT", matchService.getSimpleMenToCome());
-        request.setAttribute("MSWT", matchService.getSimpleWomenToCome());
-        request.setAttribute("MDMT", matchService.getDoubleMenToCome());
-        request.setAttribute("MDWT", matchService.getDoubleWomenToCome());
+        String matches = request.getParameter("matches");
+        if (matches == null || matches.equals("all")) {
+            matches = "all";
+            request.setAttribute("matches", matches);
+            request.setAttribute("MSM", matchService.getSimpleMen());
+            request.setAttribute("MSW", matchService.getSimpleWomen());
+            request.setAttribute("MDM", matchService.getDoubleMen());
+            request.setAttribute("MDW", matchService.getDoubleWomen());
+        }
+        else if (matches.equals("past")) {
+            request.setAttribute("matches", matches);
+            request.setAttribute("MSM", matchService.getSimpleMenPast());
+            request.setAttribute("MSW", matchService.getSimpleWomenPast());
+            request.setAttribute("MDM", matchService.getDoubleMenPast());
+            request.setAttribute("MDW", matchService.getDoubleWomenPast());
+        }
+        else if (matches.equals("toCome")) {
+            request.setAttribute("matches", matches);
+            request.setAttribute("MSM", matchService.getSimpleMenToCome());
+            request.setAttribute("MSW", matchService.getSimpleWomenToCome());
+            request.setAttribute("MDM", matchService.getDoubleMenToCome());
+            request.setAttribute("MDW", matchService.getDoubleWomenToCome());
+        }
+        else {
+            // 400 Bad Request
+            response.setStatus(400);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Template/error.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
         dispatcher.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-        String role = (String) request.getSession().getAttribute("role");
-        boolean isMatchEditor = role != null && (role.equals("MatchEditor") || role.equals("Admin"));
+        Role role = (Role) request.getSession().getAttribute("role");
+        boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
 // TODO inverser la condition
         // Redirects the user if he is not permitted
@@ -49,9 +76,9 @@ public class MatchServlet extends HttpServlet {
         Match match = null;
 
         try {
-            // check this match exists
+            // check this match exists and is has not been played yet
             match = matchService.getMatchById(Integer.parseInt(matchId));
-            if (match == null) {
+            if (match == null || match.isTimeEventPassed()) {
                 error = true;
             }
         }

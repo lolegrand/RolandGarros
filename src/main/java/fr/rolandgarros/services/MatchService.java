@@ -2,12 +2,10 @@ package fr.rolandgarros.services;
 
 import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Match;
-import fr.rolandgarros.model.Match;
 import fr.rolandgarros.model.dal.MatchDAO;
 import fr.rolandgarros.model.dal.dataModel.MatchDAOImpl;
 import fr.rolandgarros.model.dal.stub.MatchDAOMock;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
