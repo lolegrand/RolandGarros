@@ -21,8 +21,7 @@ public abstract class Match extends TimeEvent {
     private String scoreTwo;
 
     @OneToOne (
-            targetEntity = Court.class,
-            cascade = {CascadeType.REMOVE}
+            targetEntity = Court.class
     )
     @JoinColumn(name = "courtId")
     private  Court court;

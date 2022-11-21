@@ -12,15 +12,13 @@ import java.sql.Timestamp;
 public class Single extends Match {
 
     @OneToOne (
-            targetEntity = Player.class,
-            cascade = { CascadeType.REMOVE}
+            targetEntity = Player.class
     )
     @JoinColumn(name = "playerOneId")
     private Player playerOne;
 
     @OneToOne (
-            targetEntity = Player.class,
-            cascade = { CascadeType.REMOVE}
+            targetEntity = Player.class
     )
     @JoinColumn(name = "playerTwoId")
     private Player playerTwo;

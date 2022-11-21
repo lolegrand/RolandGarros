@@ -9,14 +9,14 @@ import java.sql.Timestamp;
 public class Double extends Match {
 
 
-    @OneToOne (targetEntity = Player.class,
-            cascade = {CascadeType.REMOVE}
+    @OneToOne (
+            targetEntity = Player.class
     )
     @JoinColumn(name = "teamOnePlayerOneId")
     private  Player teamOnePlayerOne;
 
-    @OneToOne (targetEntity = Player.class,
-            cascade = {CascadeType.REMOVE}
+    @OneToOne (
+            targetEntity = Player.class
     )
     @JoinColumn(name = "teamOnePlayerTwoId")
     private  Player teamOnePlayerTwo;
@@ -27,8 +27,8 @@ public class Double extends Match {
     @JoinColumn(name = "teamTwoPlayerOneId")
     private  Player teamTwoPlayerOne;
 
-    @OneToOne (targetEntity = Player.class,
-            cascade = {CascadeType.REMOVE}
+    @OneToOne (
+            targetEntity = Player.class
     )
     @JoinColumn(name = "teamTwoPlayerTwoId")
     private  Player teamTwoPlayerTwo;
