@@ -73,8 +73,7 @@ public class Main {
 //               playerService.getPlayerByName("j3","Casper"),playerService.getPlayerByName("j4","Daniil"));
 //       matchService.createMatch(md);
 //        Match match = matchService.getMatch(courtService.getCourtById(1),Timestamp.valueOf("2016-05-16 10:00:00"));
-        Match matchs = matchService.getMatchById(1);
-        List<Integer> i = matchs.getScoreOne();
+        List<Match> matchs = matchService.getAllMatches();
 //        match.setEndDate(Timestamp.valueOf("2016-05-16 11:00:00"));
 //        matchService.modifyMatch(match);
 //        List<Player> players = playerService.getPlayersByGender(Gender.FEMALE);
