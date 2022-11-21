@@ -24,7 +24,13 @@ public class Single extends Match {
     private Player playerTwo;
 
     public Single(Gender gender, Timestamp startDate, Court court, Player playerOne, Player playerTwo) {
+        //if the two players are'nt the same we create the match
         super(gender, startDate, court);
+
+        if (playerOne == playerTwo || playerOne == null || playerTwo == null) {
+            throw new IllegalArgumentException("The two players can't be the same");
+        }
+
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
     }

@@ -43,6 +43,14 @@ public class Double extends Match {
                   Player teamTwoPlayerTwo
     ) {
         super(gender, startDate, court);
+        if (
+                teamOnePlayerOne == null || teamOnePlayerTwo == null || teamTwoPlayerOne == null || teamTwoPlayerTwo == null
+                        || teamOnePlayerOne == teamOnePlayerTwo || teamOnePlayerOne == teamTwoPlayerOne || teamOnePlayerOne == teamTwoPlayerTwo
+                        || teamOnePlayerTwo == teamTwoPlayerOne || teamOnePlayerTwo == teamTwoPlayerTwo
+                        || teamTwoPlayerOne == teamTwoPlayerTwo
+        ) {
+            throw new IllegalArgumentException("Players must all be different");
+        }
         this.teamOnePlayerOne = teamOnePlayerOne;
         this.teamOnePlayerTwo = teamOnePlayerTwo;
         this.teamTwoPlayerOne = teamTwoPlayerOne;
