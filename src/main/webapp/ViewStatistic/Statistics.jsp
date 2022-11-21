@@ -11,35 +11,33 @@
 <!-- search criteria -->
 
 <nav class="nav w-100 row space-between align-center border-top-0">
+  <h2>Critères de tri</h2>
 
-  <h2 class="w-25">Critères de tri</h2>
+  <form class="flex-grow row justify-end gap-1" method="post">
+    <div class="row items-center gap-1">
+      <input type="radio" name="Gender" value="Male" id="Male" />
+      <label for="Male">Homme</label>
 
-  <form class="w-75 row space-between" method="post">
+      <input type="radio" name="Gender" value="Female" id="Female" />
+      <label for="Female">Femme</label>
 
-    <div class="w-33 row space-around">
-      <input class="self-center" type="radio" name="Gender" value="Male">
-      <label class="self-center w-25">Homme</label>
-
-      <input class="self-center" type="radio" name="Gender" value="Female">
-      <label class="self-center w-25">Femme</label>
-
-      <input class="self-center" type="radio" name="Gender" value="None">
-      <label class="self-center w-25">Mixte</label>
+      <input type="radio" name="Gender" value="None" id="Mixed" />
+      <label for="Mixed">Mixte</label>
     </div>
 
-    <div class="w-66 row space-around">
-      <div class="w-33 row">
-        <input class="self-center" type="checkbox" name="Victories">
-        <label class="self-center w-75">Nombre de victoires</label>
+    <div class="row gap-1">
+      <div class="row items-center gap-1">
+        <input type="checkbox" name="Victories" id="Victories" />
+        <label for="Victories">Nombre de victoires</label>
       </div>
 
-      <div class="w-33 row">
-        <input class="self-center" type="checkbox" name="TotalGameDuration">
-        <label class="self-center w-75">Temps de jeu total</label>
+      <div class="row items-center gap-1">
+        <input type="checkbox" name="TotalGameDuration" id="TotalGameDuration" />
+        <label for="TotalGameDuration">Temps de jeu total</label>
       </div>
 
-      <div class="w-33 row space-around">
-        <input class="btn-dark" type="submit" name="Bouyah" value="Trier">
+      <div class="row gap-1">
+        <input class="btn-dark" type="submit" name="Bouyah" value="Trier" />
       </div>
     </div>
 
