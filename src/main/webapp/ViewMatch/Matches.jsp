@@ -32,9 +32,9 @@ isMatchEditor = ! isMatchEditor;
     <a href="/MatchCreation">Créer un match</a>
     <% } %>
 
-    <a href="/Matchs?matches=all">Tous les matchs</a>
-    <a href="/Matchs?matches=past">Matchs passés</a>
-    <a href="/Matchs?matches=toCome">Matchs à venir</a>
+    <a href="/Matches?matches=all">Tous les matchs</a>
+    <a href="/Matches?matches=past">Matchs passés</a>
+    <a href="/Matches?matches=toCome">Matchs à venir</a>
 
     <h1 class="w-100 txt-center">
         <% if (matchesCategory.equals("all")) { %>
@@ -71,13 +71,13 @@ isMatchEditor = ! isMatchEditor;
                     <td><%= match.getCourt() %></td>
                     <td><%= match.getStartDate() %></td>
                     <td><%= match.getPlayerOne() %></td>
-                    <% if (! match.isTimeEventPassed()) { %>
+                    <% if (match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreOne() %></td>
                     <% } else { %>
                     <td>—</td>
                     <% } %>
                     <td><%= match.getPlayerTwo() %></td>
-                    <% if (! match.isTimeEventPassed()) { %>
+                    <% if (match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreTwo() %></td>
                     <% } else { %>
                     <td>—</td>
@@ -91,9 +91,9 @@ isMatchEditor = ! isMatchEditor;
                     <td><a href="/MatchUpdate?id=<%= match.getIdT() %>" class="btn btn-blue">Modifier</a></td>
                     <td><a href="/MatchEnd?id=<%= match.getIdT() %>" class="btn btn-blue">Terminer</a></td>
                     <td>
-                        <form action="post">
+                        <form class="row no-margin" method="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
-                            <button class=btn "btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
+                            <button class="flex-grow btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
                                 Supprimer
                             </button>
                         </form>
@@ -134,13 +134,13 @@ isMatchEditor = ! isMatchEditor;
                     <td><%= match.getCourt() %></td>
                     <td><%= match.getStartDate() %></td>
                     <td><%= match.getPlayerOne() %></td>
-                    <% if (! match.isTimeEventPassed()) { %>
+                    <% if (match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreOne() %></td>
                     <% } else { %>
                     <td>—</td>
                     <% } %>
                     <td><%= match.getPlayerTwo() %></td>
-                    <% if (! match.isTimeEventPassed()) { %>
+                    <% if (match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreTwo() %></td>
                     <% } else { %>
                     <td>—</td>
@@ -154,9 +154,9 @@ isMatchEditor = ! isMatchEditor;
                     <td><a href="/MatchUpdate?id=<%= match.getIdT() %>" class="btn btn-blue">Modifier</a></td>
                     <td><a href="/MatchEnd?id=<%= match.getIdT() %>" class="btn btn-blue">Terminer</a></td>
                     <td>
-                        <form action="post">
+                        <form class="row no-margin" method="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
-                            <button class="btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
+                            <button class="flex-grow btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
                                 Supprimer
                             </button>
                         </form>
@@ -197,13 +197,13 @@ isMatchEditor = ! isMatchEditor;
                     <td><%= match.getCourt() %></td>
                     <td><%= match.getStartDate() %></td>
                     <td><%= match.getTeamOnePlayerOne() %> et <%= match.getTeamOnePlayerTwo() %></td>
-                    <% if (! match.isTimeEventPassed()) { %>
+                    <% if (match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreOne() %></td>
                     <% } else { %>
                     <td>—</td>
                     <% } %>
                     <td><%= match.getTeamTwoPlayerOne() %> et <%= match.getTeamTwoPlayerTwo() %></td>
-                    <% if (! match.isTimeEventPassed()) { %>
+                    <% if (match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreTwo() %></td>
                     <% } else { %>
                     <td>—</td>
@@ -217,9 +217,9 @@ isMatchEditor = ! isMatchEditor;
                     <td><a href="/MatchUpdate?id=<%= match.getIdT() %>" class="btn btn-blue">Modifier</a></td>
                     <td><a href="/MatchEnd?id=<%= match.getIdT() %>" class="btn btn-blue">Terminer</a></td>
                     <td>
-                        <form action="post">
+                        <form class="row no-margin" method="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
-                            <button class="btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
+                            <button class="flex-grow btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
                                 Supprimer
                             </button>
                         </form>
@@ -260,13 +260,13 @@ isMatchEditor = ! isMatchEditor;
                     <td><%= match.getCourt() %></td>
                     <td><%= match.getStartDate() %></td>
                     <td><%= match.getTeamOnePlayerOne() %> et <%= match.getTeamOnePlayerTwo() %></td>
-                    <% if (! match.isTimeEventPassed()) { %>
+                    <% if (match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreOne() %></td>
                     <% } else { %>
                     <td>—</td>
                     <% } %>
                     <td><%= match.getTeamTwoPlayerOne() %> et <%= match.getTeamTwoPlayerTwo() %></td>
-                    <% if (! match.isTimeEventPassed()) { %>
+                    <% if (match.isTimeEventPassed()) { %>
                     <td><%= match.getScoreTwo() %></td>
                     <% } else { %>
                     <td>—</td>
@@ -280,9 +280,9 @@ isMatchEditor = ! isMatchEditor;
                     <td><a href="/MatchUpdate?id=<%= match.getIdT() %>" class="btn btn-blue">Modifier</a></td>
                     <td><a href="/MatchEnd?id=<%= match.getIdT() %>" class="btn btn-blue">Terminer</a></td>
                     <td>
-                        <form action="post">
+                        <form class="row no-margin" method="post">
                             <input type="hidden" name="matchIdDeletion" value="<%= match.getIdT() %>" />
-                            <button class="btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
+                            <button class="flex-grow btn btn-red" type="submit" onclick="return confirm('Voulez-vous supprimer ce match ?')">
                                 Supprimer
                             </button>
                         </form>

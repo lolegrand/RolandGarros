@@ -31,7 +31,7 @@ public class MatchCreationServlet extends HttpServlet {
 // TODO inverser la condition
         // Redirects the user if he is not permitted
         if (isMatchEditor) {
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
             return;
         }
 
@@ -73,7 +73,7 @@ public class MatchCreationServlet extends HttpServlet {
 // TODO inverser la condition
         // Redirects the user if he is not permitted
         if (isMatchEditor) {
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
             return;
         }
 
@@ -109,7 +109,7 @@ public class MatchCreationServlet extends HttpServlet {
                     }
 
                     // The HTML input[type=datetime] has the ISO 8601 format yyyy-mm-ddThh:mm
-                    // But timestamp needs the yyyy-mm-dd hh:mm:ss format so we convert it
+                    // But timestamp needs the yyyy-mm-dd hh:mm:ss format, so we convert it
                     // By replacing the T by a space and adding default :00 for seconds
                     ts = Timestamp.valueOf(matchStartDate.replace('T', ' ').concat(":00"));
 
@@ -160,7 +160,7 @@ public class MatchCreationServlet extends HttpServlet {
                 clearTemporaryData(session);
 
                 // Then redirects the user to prevent resubmission
-                response.sendRedirect("/Matchs");
+                response.sendRedirect("/Matches");
             }
             else {
                 try {
@@ -174,7 +174,7 @@ public class MatchCreationServlet extends HttpServlet {
                     clearTemporaryData(session);
 
                     // Then redirects the user to the list of matches
-                    response.sendRedirect("/Matchs");
+                    response.sendRedirect("/Matches");
                 }
                 catch (IllegalArgumentException iae) {
                     session.setAttribute("tempCreationError", true);
@@ -189,7 +189,7 @@ public class MatchCreationServlet extends HttpServlet {
             clearTemporaryData(session);
 
             // Then redirects the user to prevent resubmission
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
         }
 
         // Impossible case: should crash in 403 Forbidden

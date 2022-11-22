@@ -3,7 +3,7 @@
     <nav class="nav w-100 row self-center space-around">
         <a href="/">Accueil</a>
         <a href="/Players">Joueurs</a>
-        <a href="/Matchs">Matchs</a>
+        <a href="/Matches">Matchs</a>
         <a href="/Trainings">Entrainements</a>
         <a href="/Statistics">Statistiques</a>
 

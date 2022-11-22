@@ -64,8 +64,8 @@
 
         <h3 class="w-100">Résultats</h3>
 
-        <label>Temps de jeu</label>
-        <input type="time" name="matchDuration" />
+        <label for="matchDuration">Temps de jeu</label>
+        <input type="time" name="matchDuration" id="matchDuration" />
 
         <p>Premier set</p>
         <label for="scoreS1P1">Joueur/équipe 1</label>
@@ -104,6 +104,11 @@
         <button class="btn-blue" type="submit">
             Valider
         </button>
-        <a class="btn-red" href="/Matchs">Annuler</a>
+        <a class="btn-red" href="/Matches">Annuler</a>
     </form>
 </article>
+</main>
+
+<%@ include file="../Template/footer.jsp" %>
+</body>
+</html>

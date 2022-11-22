@@ -8,10 +8,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.stream.Collectors;
 
 public class MatchUpdateServlet extends HttpServlet {
     private static final CourtService courtService = new CourtService();
@@ -20,6 +19,7 @@ public class MatchUpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = "/ViewMatch/UpdateMatch.jsp";
+System.out.println(matchService.getAllMatches().stream().map(m->m.getIdT()).collect(Collectors.toList()));
 
         Role role = (Role) request.getSession().getAttribute("role");
         boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
@@ -27,7 +27,7 @@ public class MatchUpdateServlet extends HttpServlet {
 // TODO inverser la condition
         // Redirects the user if he is not permitted
         if (isMatchEditor) {
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
             return;
         }
 
@@ -44,6 +44,9 @@ public class MatchUpdateServlet extends HttpServlet {
                 Match match = matchService.getMatchById(Integer.parseInt(matchId));
                 if (match == null) {
                     error = true;
+                }
+                else {
+                    request.setAttribute("match", match);
                 }
             }
             catch (IllegalArgumentException iae) {
@@ -70,7 +73,7 @@ public class MatchUpdateServlet extends HttpServlet {
 // TODO inverser la condition
         // Redirects the user if he is not permitted
         if (isMatchEditor) {
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
             return;
         }
 
@@ -133,7 +136,7 @@ public class MatchUpdateServlet extends HttpServlet {
             matchService.modifyMatch(match);
 
             // Then redirects the user to the list of matches
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
         }
     }
 }

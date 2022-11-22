@@ -18,7 +18,7 @@
     <article class="content">
         <h2 class="w-100 txt-center">Mise à jour du match</h2>
 
-        <form class="row space-around" method="post" name="formUpdateMatch">
+        <form class="row space-around" method="post">
             <h3 class="w-100">Modalités</h3>
 
             <input type="hidden" name="matchId" value="<%= match.getIdT() %>" />
@@ -30,10 +30,9 @@
             <label class="w-25" for="court">Court</label>
             <select class="w-75" name="court" id="court" required="required">
                 <% for (Court court : courts) { %>
-                <% if (match.getCourt().equals(court)) { %>
+                <% if (court.equals(match.getCourt())) { %>
                 <option value="<%= court %>" selected="selected"><%= court %></option>
-                <% } %>
-                <% else { %>
+                <% } else { %>
                 <option value="<%= court %>"><%= court %></option>
                 <% } %>
                 <% } %>
@@ -44,8 +43,8 @@
 
             <h3 class="w-100">Participants</h3>
 
-            <% if (request.getAttribute("typeMatch").equals("Simple")) {
-                Single matchSingle = (Single) match; %>
+            <% if (request.getAttribute("typeMatch").equals("Simple")) { %>
+            <% Single matchSingle = (Single) match; %>
             <label class="w-25">Participant 1</label>
             <p class="w-75"><%= matchSingle.getPlayerOne() %></p>
 
@@ -53,8 +52,8 @@
             <p class="w-75"><%= matchSingle.getPlayerTwo() %></p>
             <% } %>
 
-            <% if (request.getAttribute("typeMatch").equals("Double")) {
-                Double matchDouble = (Double) match; %>
+            <% if (request.getAttribute("typeMatch").equals("Double")) { %>
+            <% Double matchDouble = (Double) match; %>
             <p class="w-100">Équipe 1</p>
 
             <label class="w-25">Participant 1</label>
@@ -73,7 +72,7 @@
             <% } %>
 
             <button class="btn-blue" type="submit">
-                Mettre à jour
+                Valider
             </button>
         </form>
     </article>

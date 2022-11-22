@@ -7,15 +7,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class MatchEndServlet extends HttpServlet {
     private static final MatchService matchService = new MatchService();
@@ -30,7 +27,7 @@ public class MatchEndServlet extends HttpServlet {
 // TODO inverser la condition
         // Redirects the user if he is not permitted
         if (isMatchEditor) {
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
             return;
         }
 
@@ -73,7 +70,7 @@ public class MatchEndServlet extends HttpServlet {
 // TODO inverser la condition
         // Redirects the user if he is not permitted
         if (isMatchEditor) {
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
             return;
         }
 
@@ -109,7 +106,7 @@ public class MatchEndServlet extends HttpServlet {
                 error = true;
             }
             else {
-                // The HTML input[type=time] has the format hh:mm so we check the format and retrieve the data
+                // The HTML input[type=time] has the format hh:mm, so we check the format and retrieve the data
                 Matcher m = Pattern.compile("([01][0-9]|2[0-3]):([0-5][0-9])").matcher(matchDuration);
                 if (m.matches()) {
                     long hours = Long.parseLong(m.group(0));
@@ -190,7 +187,7 @@ public class MatchEndServlet extends HttpServlet {
             matchService.modifyMatch(match);
 
             // Then redirects the user to prevent multiple form submission
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
         }
     }
 }

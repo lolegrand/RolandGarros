@@ -1,6 +1,5 @@
 package fr.rolandgarros.servlet;
 
-import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Match;
 import fr.rolandgarros.model.Role;
 import fr.rolandgarros.services.MatchService;
@@ -9,19 +8,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.List;
 
 public class MatchServlet extends HttpServlet {
     private static final MatchService matchService = new MatchService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String page = "/ViewMatch/Matchs.jsp";
-List<Match> m = matchService.getSimpleMen();
+        String page = "/ViewMatch/Matches.jsp";
 
         String matches = request.getParameter("matches");
         if (matches == null || matches.equals("all")) {
@@ -65,7 +59,7 @@ List<Match> m = matchService.getSimpleMen();
 // TODO inverser la condition
         // Redirects the user if he is not permitted
         if (isMatchEditor) {
-            response.sendRedirect("/Matchs");
+            response.sendRedirect("/Matches");
             return;
         }
 
@@ -93,7 +87,7 @@ List<Match> m = matchService.getSimpleMen();
             matchService.deleteMatch(match);
         }
 
-        // Then redirects the user to prevent multiple form submission
-        response.sendRedirect("/Matchs");
+        // Then redirects the user to prevent form resubmission
+        response.sendRedirect("/Matches");
     }
 }

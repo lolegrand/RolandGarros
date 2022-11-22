@@ -48,7 +48,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Matchs</servlet-name>
-        <url-pattern>/Matchs</url-pattern>
+        <url-pattern>/Matches</url-pattern>
     </servlet-mapping>
 
     <servlet>

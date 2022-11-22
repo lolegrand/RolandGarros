@@ -453,24 +453,20 @@ select:hover {
     user-select: none;
 }
 
-.btn {
-    display: block;
+td .btn {
+    margin: .25rem;
 }
 
 .btn-red,
 .btn-green,
 .btn-blue,
 .btn-dark {
+    display: block;
+    font-size: 1rem;
     padding: .5rem;
     color: black;
-    text-decoration: none;
     border: none;
-}
-
-.btn-red:hover,
-.btn-green:hover,
-.btn-blue:hover,
-.btn-dark:hover {
+    text-decoration: none;
     cursor: pointer;
 }
 
