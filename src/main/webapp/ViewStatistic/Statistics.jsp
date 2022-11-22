@@ -37,7 +37,7 @@
       </div>
 
       <div class="row gap-1">
-        <input class="btn-dark" type="submit" name="Bouyah" value="Trier" />
+        <input class="btn-dark" type="submit" name="submitFormStatistics" value="Trier" />
       </div>
     </div>
 
