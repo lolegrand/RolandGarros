@@ -24,7 +24,7 @@
 
 <%@ include file="../Template/header.jsp" %>
 
-<main class="w-100 row space-around">
+<main class="w-100 row space-around gap-1">
 
     <% if ( isPlayerEditor ){ %>
     <nav class="nav w-100 row space-between">
