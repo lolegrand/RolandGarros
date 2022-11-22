@@ -125,6 +125,11 @@ public class PlayerDAOMock implements PlayerDAO {
     }
 
     @Override
+    public Player getPlayerById(int id) {
+        return null;
+    }
+
+    @Override
     public ArrayList<Player> getPlayerByGender(Gender gender) {
 
         ArrayList<Player> playersRet = new ArrayList<>();

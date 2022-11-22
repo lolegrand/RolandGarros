@@ -17,7 +17,7 @@ public interface PlayerDAO {
     void updatePlayer(Player player);
 
     Player getPlayerByName(String firstName, String lastName);
-
+    Player getPlayerById(int id);
     List<Player> getPlayerByGender(Gender gender);
 
     List<Player> getPlayerByRank(Integer rank);
