@@ -34,8 +34,8 @@ public class Double extends Match {
     private  Player teamTwoPlayerTwo;
 
 
-    public Double(Gender gender,
-                  Timestamp startDate,
+    public Double(Timestamp startDate,
+                  Gender gender,
                   Court court,
                   Player teamOnePlayerOne,
                   Player teamOnePlayerTwo,

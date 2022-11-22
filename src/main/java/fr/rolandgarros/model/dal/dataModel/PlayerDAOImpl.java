@@ -70,6 +70,18 @@ public class PlayerDAOImpl implements PlayerDAO {
     }
 
     @Override
+    public Player getPlayerById(int id) {
+        JPAService jpaService = JPAService.getInstance();
+        Player player;
+        try {
+            player =  jpaService.runInTransaction(entityManager -> entityManager.find(Player.class, id));
+        }finally {
+            jpaService.shutdown();
+        }
+        return player;
+    }
+
+    @Override
     public List<Player> getAllPlayer() {
         JPAService jpaService = JPAService.getInstance();
         List<Player> players;

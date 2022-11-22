@@ -2,6 +2,7 @@ package fr.rolandgarros.model;
 
 import jakarta.persistence.*;
 import java.sql.Date;
+import java.util.Locale;
 
 @Entity
 @Table(name = "player")
@@ -123,14 +124,8 @@ public class Player extends Person {
     }
 
     @Override
-    //toString method
     public String toString() {
-        return "Player{" +
-                "Firstname='" + getLastname() + '\'' +
-                ", Lastname='" + getFirstname() + '\'' +
-                ", BirthDate='" + getBirthDate() + '\'' +
-                ", BirthPlace='" + getBirthPlace() + '\'' +
-                ", Ranking='" + ranking + " }\n";
+        return this.getFirstname() + " " + this.getLastname().toUpperCase(Locale.FRANCE);
     }
 
     @Override

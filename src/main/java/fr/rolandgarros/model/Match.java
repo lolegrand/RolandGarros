@@ -77,4 +77,8 @@ public abstract class Match extends TimeEvent {
     public Court getCourt() {
         return court;
     }
+
+    public void setCourt(Court court) {
+        this.court = court;
+    }
 }

@@ -23,7 +23,7 @@ public class Single extends Match {
     @JoinColumn(name = "playerTwoId")
     private Player playerTwo;
 
-    public Single(Gender gender, Timestamp startDate, Court court, Player playerOne, Player playerTwo) {
+    public Single( Timestamp startDate,Gender gender, Court court, Player playerOne, Player playerTwo) {
         //if the two players are'nt the same we create the match
         super(gender, startDate, court);
 

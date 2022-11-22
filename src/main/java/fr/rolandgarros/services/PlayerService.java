@@ -96,4 +96,8 @@ public class PlayerService {
         }
         return false;
     }
+
+    public Player getPlayerById(int id) {
+        return playerDAO.getPlayerById(id);
+    }
 }

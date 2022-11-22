@@ -26,4 +26,9 @@ public class Court {
     public Integer getIdC() {
         return idC;
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }
