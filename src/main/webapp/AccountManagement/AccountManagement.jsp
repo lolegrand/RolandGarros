@@ -19,6 +19,7 @@
 <main class="w-100 row space-around">
 
     <article class="w-75 row">
+        <h1 class="self-center">Liste des comptes d'administration</h1>
 
         <table class="w-100">
             <tr>
