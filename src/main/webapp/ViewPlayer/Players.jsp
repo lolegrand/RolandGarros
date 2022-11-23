@@ -24,27 +24,27 @@
 
 <%@ include file="../Template/header.jsp" %>
 
-<main class="w-100 row space-around gap-1">
+<% if ( isPlayerEditor ){ %>
+<nav class="nav w-100 row space-between align-center border-top-0">
+    <form method="post" name="formNavPlayer">
+        <input class="" type="submit" name="createPlayer" value="Nouveau Joueur">
+    </form>
 
-    <% if ( isPlayerEditor ){ %>
-    <nav class="nav w-100 row space-between">
-        <form method="post" name="formNavPlayer">
-            <input class="" type="submit" name="createPlayer" value="Nouveau Joueur">
-        </form>
-
-        <% if (addedPlayer != -1) {%>
-        <p>
-            Vous avez ajouté <%= addedPlayer%> joueur.
-        </p>
-        <% } %>
-
-        <form method="post" name="fromUploadCSV" enctype="multipart/form-data">
-            File :
-            <input type="file" name="file" id="file"/>
-            <input type="submit" value="Upload" name="upload" id="upload" />
-        </form>
-    </nav>
+    <% if (addedPlayer != -1) {%>
+    <p>
+        Vous avez ajouté <%= addedPlayer%> joueur.
+    </p>
     <% } %>
+
+    <form method="post" name="fromUploadCSV" enctype="multipart/form-data">
+        File :
+        <input type="file" name="file" id="file"/>
+        <input type="submit" value="Upload" name="upload" id="upload" />
+    </form>
+</nav>
+<% } %>
+
+<main class="w-100 row space-around gap-1">
 
     <% if( !formToCreatePlayer && !formToUpdatePlayer){ %>
         <%@ include file="/ViewPlayer/DisplayPlayers.jsp" %>

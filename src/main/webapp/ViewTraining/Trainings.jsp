@@ -17,7 +17,7 @@
 
 <%@ include file="../Template/header.jsp" %>
 
-<main class="w-100 row space-around">
+<main class="w-100 row space-around" style="margin: 0">
     <div class="w-50">
         <% if( isTrainer ) { %>
         <%@ include file="/ViewTraining/CreateTraining.jsp" %>
