@@ -39,7 +39,7 @@ public abstract class TimeEvent {
     }
 
     public Timestamp getEndDate() {
-        if (!isTimeEventPassed()) { //TODO: check if this is correct to make changes in data base
+        if (!isTimeEventPassed()) {
             throw new RuntimeException("Match has not been passed yet");
         }
         return endDate;
