@@ -1,6 +1,16 @@
 <%@ page import="java.util.List,fr.rolandgarros.model.Player" %>
+<%@ page import="java.util.Map" %>
 
-<% List<Player> players = (List<Player>) request.getAttribute("players"); %>
+<%
+  List<Player> players = (List<Player>) request.getAttribute("players");
+  List<Map.Entry<Player, Float>> playerSorted = (List<Map.Entry<Player, Float>>) request.getAttribute("playerSorted");
+  String sortName = (String) request.getAttribute("sortName");
+  String sortGender = (String) request.getAttribute("genderStr");
+  if (sortGender == null) {
+    sortGender = "Mixe";
+  }
+
+%>
 
 <%@ include file="../Template/head.jsp" %>
 
@@ -15,24 +25,29 @@
 
   <form class="flex-grow row justify-end gap-1" method="post">
     <div class="row items-center gap-1">
-      <input type="radio" name="Gender" value="Male" id="Male" />
+      <input type="radio" name="Gender" value="Male" id="Male"
+             <% if (sortGender.equals("Male")) { %> checked="checked" <% }%>
+      />
       <label for="Male">Homme</label>
 
-      <input type="radio" name="Gender" value="Female" id="Female" />
+      <input type="radio" name="Gender" value="Female" id="Female"
+              <% if (sortGender.equals("Female")) { %> checked="checked" <% }%>
+      />
       <label for="Female">Femme</label>
 
-      <input type="radio" name="Gender" value="None" id="Mixed" />
+      <input type="radio" name="Gender" value="Mixe" id="Mixed"
+              <% if (sortGender.equals("Mixe")) { %> checked="checked" <% }%>/>
       <label for="Mixed">Mixte</label>
     </div>
 
     <div class="row gap-1">
       <div class="row items-center gap-1">
-        <input type="checkbox" name="Victories" id="Victories" />
+        <input type="radio" name="Sort" value="Victories" id="Victories" />
         <label for="Victories">Nombre de victoires</label>
       </div>
 
       <div class="row items-center gap-1">
-        <input type="checkbox" name="TotalGameDuration" id="TotalGameDuration" />
+        <input type="radio" name="Sort" value="TotalGameDuration" id="TotalGameDuration" />
         <label for="TotalGameDuration">Temps de jeu total</label>
       </div>
 
@@ -56,22 +71,34 @@
         <th>Nom</th>
         <th>Prénom</th>
         <th>Sexe</th>
-        <th>Temps de jeu</th>
-        <th>Nombre de Victoire</th>
+        <% if (sortName != null) {%><th><%=sortName%></th><% } %>
         <th>Classement</th>
       </tr>
 
-      <% for (Player player: players) { %>
+      <% if (playerSorted == null) { %>
+        <% for (Player player: players) { %>
 
+          <tr class="tr-hover">
+            <td><%=player.getLastname()%></td>
+            <td><%=player.getFirstname()%></td>
+            <td><%=player.getGender()%></td>
+            <td><%=player.getRanking()%></td>
+          </tr>
+
+        <% } %>
+      <% } else { %>
+        <% for (Map.Entry<Player, Float> playerTuple: playerSorted) {
+          Player player = playerTuple.getKey();
+          Float value = playerTuple.getValue();
+        %>
         <tr class="tr-hover">
           <td><%=player.getLastname()%></td>
           <td><%=player.getFirstname()%></td>
           <td><%=player.getGender()%></td>
-          <td>xxx</td>
-          <td>xxx</td>
+          <td><%=value%> <% if (sortName.equals("TotalGameDuration")) { %> h <% } %></td>
           <td><%=player.getRanking()%></td>
         </tr>
-
+        <% } %>
       <% } %>
 
     </table>
