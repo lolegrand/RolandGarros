@@ -79,33 +79,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>MatchCreation</servlet-name>
-        <servlet-class>fr.rolandgarros.servlet.MatchCreationServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MatchCreation</servlet-name>
-        <url-pattern>/MatchCreation</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>MatchUpdate</servlet-name>
-        <servlet-class>fr.rolandgarros.servlet.MatchUpdateServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MatchUpdate</servlet-name>
-        <url-pattern>/MatchUpdate</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>MatchEnd</servlet-name>
-        <servlet-class>fr.rolandgarros.servlet.MatchEndServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MatchEnd</servlet-name>
-        <url-pattern>/MatchEnd</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>Trainings</servlet-name>
         <servlet-class>fr.rolandgarros.servlet.TrainingServlet</servlet-class>
     </servlet>
