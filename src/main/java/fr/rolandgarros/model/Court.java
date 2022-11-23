@@ -8,7 +8,7 @@ public class Court {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idC")
-    private Integer idC = 0;
+    private Integer idC;
 
     @Column(name = "name", nullable = false)
     private  String name;

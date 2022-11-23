@@ -1,27 +1,17 @@
 package fr.rolandgarros.main;
 
 
-import fr.rolandgarros.di.JPAService;
 import fr.rolandgarros.model.*;
-import fr.rolandgarros.model.Double;
 import fr.rolandgarros.services.*;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public class Main {
-    private static final JPAService jpaService = JPAService.getInstance();
 
     public static void main(String[] args) {
 
-        PlayerService playerService = new PlayerService();
-        PersonService personService = new PersonService();
-        MatchService matchService = new MatchService();
-        AccountService accountService = new AccountService();
+//        PlayerService playerService = new PlayerService();
+//        PersonService personService = new PersonService();
+//        MatchService matchService = new MatchService();
+//        AccountService accountService = new AccountService();
         CourtService courtService = new CourtService();
 
 //        Date C1Birth = Date.valueOf("1970-01-01");
@@ -73,15 +63,18 @@ public class Main {
 //               playerService.getPlayerByName("j3","Casper"),playerService.getPlayerByName("j4","Daniil"));
 //       matchService.createMatch(md);
 //        Match match = matchService.getMatch(courtService.getCourtById(1),Timestamp.valueOf("2016-05-16 10:00:00"));
-        List<Match> matchs = matchService.getAllMatches();
+//        List<Match> matchs = matchService.getAllMatches();
 //        match.setEndDate(Timestamp.valueOf("2016-05-16 11:00:00"));
 //        matchService.modifyMatch(match);
 //        List<Player> players = playerService.getPlayersByGender(Gender.FEMALE);
 
-//        matchService.deleteMatch(match);
+//       matchService.deleteMatch(match);
 //       playerService.getAllPlayers().forEach(System.out::println);
-   //     playerService.getPlayersByTrainer(personService.getPersonByName("FERRERO","Juan Carlos")).forEach(System.out::println);
+//       playerService.getPlayersByTrainer(personService.getPersonByName("FERRERO","Juan Carlos")).forEach(System.out::println);
 
+//        Court c = courtService.getCourtById(1);
+//        Court c1 =courtService.getCourtById(2);
+//        courtService.getAllCourt().forEach(System.out::println);
     }
 
 

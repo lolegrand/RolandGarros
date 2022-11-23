@@ -8,7 +8,7 @@ import org.mindrot.jbcrypt.BCrypt;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idAccount = 0;
+    private Integer idAccount;
 
     @Column(name = "password", nullable = false)
     private  String password;
