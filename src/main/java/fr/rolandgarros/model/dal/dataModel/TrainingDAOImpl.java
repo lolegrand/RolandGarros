@@ -9,7 +9,7 @@ public class TrainingDAOImpl implements TrainingDAO {
     @Override
     public void createTrainingDemand(Training training) {
         PersistenceManager.runInTransaction(entityManager -> {
-                entityManager.merge(training);
+                entityManager.persist(entityManager.merge(training));
                 return null;
             });
     }

@@ -11,7 +11,7 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public void createPerson(Person person) {
         PersistenceManager.runInTransaction(entityManager -> {
-                entityManager.merge(person);
+                entityManager.persist(entityManager.merge(person));
                 return null;
             });
     }

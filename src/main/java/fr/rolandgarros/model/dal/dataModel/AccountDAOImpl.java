@@ -22,7 +22,7 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public void createAccount(Account account) {
         PersistenceManager.runInTransaction(entityManager -> {
-                entityManager.merge(account);
+                entityManager.persist(entityManager.merge(account));
                 return null;
             });
     }
