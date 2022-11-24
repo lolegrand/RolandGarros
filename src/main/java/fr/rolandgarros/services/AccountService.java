@@ -5,11 +5,21 @@ import fr.rolandgarros.model.dal.AccountDAO;
 import fr.rolandgarros.model.dal.dataModel.AccountDAOImpl;
 import fr.rolandgarros.model.dal.stub.AccountDAOMock;
 
+import java.util.List;
+
 public class AccountService {
     private final AccountDAO accountDAO = new AccountDAOImpl();
 
     public Account getAccount(String login, String password) {
         return accountDAO.findAccountByLoginPassword(login, password);
+    }
+
+    public List<Account> getAllAccount() {
+        return accountDAO.getAllAccount();
+    }
+
+    public Account getAccountById(int accountId) {
+        return accountDAO.getAccountById(accountId);
     }
 
     public void createAccount(Account account) {

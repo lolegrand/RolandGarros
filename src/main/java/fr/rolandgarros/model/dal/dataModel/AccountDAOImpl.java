@@ -2,6 +2,7 @@ package fr.rolandgarros.model.dal.dataModel;
 
 import fr.rolandgarros.di.PersistenceManager;
 import fr.rolandgarros.model.Account;
+import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.dal.AccountDAO;
 
 
@@ -47,38 +48,12 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public Account getAccountById(int account) {
-        Account accountOut;
-        try {
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
-            entityManager = entityManagerFactory.createEntityManager();
-
-            accountOut = entityManager.createQuery("SELECT Account FROM Account WHERE Account.id=id", Account.class)
-                    .setParameter("id", account)
-                    .getSingleResult();
-
-        } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
-        }
-
-        return accountOut;
+        return PersistenceManager.runInTransaction(entityManager -> entityManager.find(Account.class, account));
     }
 
     @Override
     public List<Account> getAllAccount() {
-        List<Account> accounts;
-        try {
-            entityManagerFactory = Persistence.createEntityManagerFactory("RolandGarros");
-            entityManager = entityManagerFactory.createEntityManager();
-
-            accounts = entityManager.createQuery("SELECT Account FROM Account ", Account.class).getResultList();
-
-        } finally {
-            if (entityManager != null) entityManager.close();
-            if (entityManagerFactory != null) entityManagerFactory.close();
-        }
-
-        return accounts;
+        return PersistenceManager.runInTransaction(entityManager -> entityManager.createQuery("FROM Account",Account.class).getResultList());
     }
 
 }

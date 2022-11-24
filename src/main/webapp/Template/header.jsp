@@ -1,17 +1,30 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="fr.rolandgarros.model.Role" %>
+
+
+<%
+    Role roles = (Role) request.getSession().getAttribute("role");
+    boolean isAdministrator = roles == Role.ADMINISTRATOR;
+%>
+
 <header class="w-100 row">
-    <nav class="nav w-100 row self-center space-around">
-        <a href="/">Accueil</a>
-        <a href="/Players">Joueurs</a>
-        <a href="/Matches">Matchs</a>
-        <a href="/Trainings">Entrainements</a>
-        <a href="/Statistics">Statistiques</a>
+
+    <ul class="nav w-100 row self-center space-around">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/Players">Joueurs</a></li>
+        <li><a href="/Matchs">Matchs</a></li>
+        <li><a href="/Trainings">Entraînements</a></li>
+        <li><a href="/Statistics">Statistiques</a></li>
 
         <% if ( session.getAttribute("login") == null ) { %>
-        <a href="/Connection">Connexion</a>
+        <li><a href="/Connection">Connexion</a></li>
         <% } else { %>
-        <a href="/Disconnection">Déconnexion</a>
+        <li><a href="/Disconnection" onclick="return confirm('Voulez-vous vous déconnecter ?')">Déconnexion</a></li>
         <% } %>
-    </nav>
+
+        <% if ( isAdministrator ) { %>
+        <li><a href="/Account">Manage Account</a></li>
+        <% } %>
+
+    </ul>
 
 </header>
