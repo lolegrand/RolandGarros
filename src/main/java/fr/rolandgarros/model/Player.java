@@ -23,7 +23,7 @@ public class Player extends Person {
     private Float weight;
 
     @Column(name = "startCareer", nullable = false)
-    private Integer startCareer;
+    private Date startCareer;
 
     @Column(name = "hand", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -48,7 +48,7 @@ public class Player extends Person {
             String nationality,
             Float height,
             Float weight,
-            Integer startCareer,
+            Date startCareer,
             Hand hand,
             Person trainer,
             Gender gender) {
@@ -98,10 +98,10 @@ public class Player extends Person {
         this.weight = weight;
     }
 
-    public Integer getStartCareer() {
+    public Date getStartCareer() {
         return startCareer;
     }
-    public void setStartCareer(Integer startCareer) {
+    public void setStartCareer(Date startCareer) {
         this.startCareer = startCareer;
     }
 
@@ -126,20 +126,6 @@ public class Player extends Person {
     @Override
     public String toString() {
         return this.getFirstname() + " " + this.getLastname().toUpperCase(Locale.FRANCE);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null || this == null) {
-            return false;
-        }
-        if (obj instanceof Person) {
-            Player p = (Player) obj;
-            return this.getLastname().equals(p.getLastname()) && this.getFirstname().equals(p.getFirstname()) && this.getBirthDate().equals(p.getBirthDate()) && this.getBirthPlace().equals(p.getBirthPlace()) && this.getGender().equals(p.getGender()) && this.getNationality().equals(p.getNationality()) && this.getRanking().equals(p.getRanking()) && this.getTrainer().equals(p.getTrainer()) && this.getHand().equals(p.getHand()) && this.getHeight().equals(p.getHeight()) && this.getWeight().equals(p.getWeight()) && this.getStartCareer().equals(p.getStartCareer());
-
-        }
-
-        return false;
     }
 
 }

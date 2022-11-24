@@ -43,10 +43,8 @@ public class PlayerServletVerif {
         return weight.compareTo(40f) != -1 && weight.compareTo(40f) != 0 ;
     }
 
-    public static boolean checkStartCareer( Integer startCareer ) {
-        int currentYear = 2022;
-        return startCareer.compareTo(currentYear+1) != 0
-                && startCareer.compareTo(currentYear+1) != 1;
+    public static boolean checkStartCareer( Date startCareer ) {
+        return true;
     }
 
     public static boolean checkHand( Hand hand ) {

@@ -1,11 +1,9 @@
 package fr.rolandgarros.servlet;
 
-import com.sun.org.apache.xalan.internal.lib.ExsltDatetime;
+
 import fr.rolandgarros.model.Court;
 import fr.rolandgarros.model.Person;
-import fr.rolandgarros.model.Role;
 import fr.rolandgarros.model.Training;
-import fr.rolandgarros.model.dal.CourtDAO;
 import fr.rolandgarros.services.CourtService;
 import fr.rolandgarros.services.PersonService;
 import fr.rolandgarros.services.TrainingService;
@@ -18,12 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 public class TrainingServlet extends HttpServlet {
@@ -92,10 +84,10 @@ public class TrainingServlet extends HttpServlet {
             String schedule = date.toString()+" "+time.toString()+":00.0";
 
             if (schedule == null) {
-                error = "Erreur lors de la saisie de la date de l'entrainement.";
+                error = "Erreur : le terrain est déjà reservé";
             }
 
-            Person trainer = personService.getById(idTrainer);
+            Person trainer = personService.getPersonById(idTrainer);
             Court court = courtService.getCourtById(idCourt);
             if (trainer == null || court == null) {
                 error = "Error lors de la saisie d'un champs";
@@ -103,9 +95,13 @@ public class TrainingServlet extends HttpServlet {
 
             if (error.equals("Success")) {
                 Training newTraining = new Training(Timestamp.valueOf(schedule), trainer, court);
-                service.createTrainingDemand(newTraining);
-            }
 
+                try {
+                    service.createTrainingDemand(newTraining);
+                } catch (Exception e) {
+                    error = "Erreur l'ors de l'enregistrement de votre entrainement.";
+                }
+            }
 
             req.setAttribute("reqCreationError", error);
 

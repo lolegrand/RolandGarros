@@ -37,7 +37,7 @@ public class PlayerDAOMock implements PlayerDAO {
             "Spanish",
             182f,
             74f,
-            2018,
+            Date.valueOf("2018-01-01"),
             Hand.RIGHT_HANDED,
             new Person(),
             Gender.MALE
@@ -53,7 +53,7 @@ public class PlayerDAOMock implements PlayerDAO {
             "Spanish",
             185f,
             84f,
-            2001,
+            Date.valueOf("2018-01-01"),
             Hand.LEFT_HANDED,
             new Person(),
             Gender.MALE
@@ -68,7 +68,7 @@ public class PlayerDAOMock implements PlayerDAO {
             "Norwegian",
             182f,
             77f,
-            2015,
+            Date.valueOf("2018-01-01"),
             Hand.RIGHT_HANDED,
             new Person(),
             Gender.MALE
@@ -83,7 +83,7 @@ public class PlayerDAOMock implements PlayerDAO {
             "Russian",
             198f,
             82f,
-            2014,
+            Date.valueOf("2018-01-01"),
             Hand.RIGHT_HANDED,
             new Person(),
             Gender.MALE
@@ -134,10 +134,6 @@ public class PlayerDAOMock implements PlayerDAO {
         return null;
     }
 
-    @Override
-    public Player getPlayerById(int id) {
-        return null;
-    }
 
     @Override
     public ArrayList<Player> getPlayerByGender(Gender gender) {

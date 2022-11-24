@@ -3,6 +3,8 @@ package fr.rolandgarros.model;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "doubleGame")
@@ -82,5 +84,32 @@ public class Double extends Match {
     }
     public void setTeamTwoPlayerTwo(Player teamTwoPlayerTwo) {
         this.teamTwoPlayerTwo = teamTwoPlayerTwo;
+    }
+
+    public List<Player> getWinner() {
+        List<Player> team = new ArrayList<>();
+        int scoreOne;
+        int scoreTwo;
+
+        try {
+            scoreOne = getScoreOne().stream().mapToInt(Integer::intValue).sum();
+            scoreTwo = getScoreTwo().stream().mapToInt(Integer::intValue).sum();
+        }catch (RuntimeException exception) {
+            return team;
+        }
+
+        if (scoreOne > scoreTwo) {
+            team.add(teamOnePlayerOne);
+            team.add(teamOnePlayerTwo);
+            return team;
+        }
+
+        if (scoreOne < scoreTwo) {
+            team.add(teamTwoPlayerTwo);
+            team.add(teamTwoPlayerOne);
+            return team;
+        }
+
+        return new ArrayList<>();
     }
 }

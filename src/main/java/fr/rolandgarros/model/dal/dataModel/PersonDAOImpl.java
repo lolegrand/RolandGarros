@@ -54,6 +54,6 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public Person getPersonById(int personId) {
-        throw new NotImplementedException(); // TODO
+        return PersistenceManager.runInTransaction(entityManager -> entityManager.find(Person.class,personId));
     }
 }

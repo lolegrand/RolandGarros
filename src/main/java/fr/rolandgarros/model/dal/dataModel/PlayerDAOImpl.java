@@ -13,7 +13,7 @@ public class PlayerDAOImpl implements PlayerDAO {
     @Override
     public void createPlayer(Player player) {
             PersistenceManager.runInTransaction(entityManager -> {
-                entityManager.persist(player);
+                entityManager.merge(player);
                 return null;
             });
     }

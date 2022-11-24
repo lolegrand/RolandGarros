@@ -43,7 +43,7 @@ public class PlayerServlet extends HttpServlet {
     String nationality = null;
     Integer ranking = null;
     Integer bestRanking = null;
-    Integer startCareer = null;
+    Date startCareer = null;
     Float height = null;
     Float weight = null;
     Hand hand = null;
@@ -140,7 +140,8 @@ public class PlayerServlet extends HttpServlet {
         }
 
         if ( req.getParameter("startCareer") != null ) {
-            startCareer = Integer.parseInt(req.getParameter("startCareer"));
+            int startCareerInt = Integer.parseInt(req.getParameter("startCareer"));
+            startCareer = Date.valueOf(startCareerInt+"-01-01");
         }
 
         if ( req.getParameter("height") != null ) {
@@ -157,7 +158,7 @@ public class PlayerServlet extends HttpServlet {
 
         if ( req.getParameter("trainer") != null ) {
             idTrainer = Integer.valueOf(req.getParameter("trainer"));
-            trainer = personService.getById(idTrainer);
+            trainer = personService.getPersonById(idTrainer);
         }
 
 
@@ -263,6 +264,7 @@ public class PlayerServlet extends HttpServlet {
                 Player newPlayer = new Player(
                         lastname, firstname, birthdate, birthplace, ranking, bestRanking,
                         nationality, height, weight, startCareer, hand, trainer, gender);
+
                 playerService.createPlayer(newPlayer);
 
                 success = "Création réussie.";

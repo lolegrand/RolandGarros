@@ -27,7 +27,8 @@ public class PlayerCSVFormat {
         String nationality = playerPart[6];
         float height = Float.parseFloat(playerPart[7]);
         float weight = Float.parseFloat(playerPart[8]);
-        int startCareer = Integer.parseInt(playerPart[9]);
+        int startCareerInt = Integer.parseInt(playerPart[9]);
+        Date startCareer = Date.valueOf(startCareerInt + "-01-01");
         String handStr = playerPart[10];
         Hand hand;
         if (handStr.equals("Left")) {

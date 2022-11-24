@@ -51,4 +51,25 @@ public class Single extends Match {
         this.playerTwo = playerTwo;
     }
 
+    public Player getWinner() {
+        int scoreOne;
+        int scoreTwo;
+        try {
+            scoreOne = getScoreOne().stream().mapToInt(Integer::intValue).sum();
+            scoreTwo = getScoreTwo().stream().mapToInt(Integer::intValue).sum();
+        } catch (RuntimeException exception) {
+            return null;
+        }
+
+        if (scoreOne > scoreTwo) {
+            return playerOne;
+        }
+
+        if (scoreOne < scoreTwo) {
+            return playerTwo;
+        }
+
+        return null;
+    }
+
 }

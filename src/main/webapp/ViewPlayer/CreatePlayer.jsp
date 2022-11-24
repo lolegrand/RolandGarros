@@ -114,9 +114,9 @@
     <p class="w-50 error"><%= errorRanking %></p>
 
     <div class="w-75 row space-around">
-      <input required class="self-center" type="radio" name="hand" value="RIGHT_HAND">
+      <input required class="self-center" type="radio" name="hand" value="RIGHT_HANDED">
       <label class="self-center">Droitier</label>
-      <input required class="self-center" type="radio" name="hand" value="LEFT_HAND">
+      <input required class="self-center" type="radio" name="hand" value="LEFT_HANDED">
       <label class="self-center">Gaucher</label>
       <input required class="self-center" type="radio" name="hand" value="AMBIDEXTROUS">
       <label class="self-center">Ambidextre</label>

@@ -11,7 +11,6 @@ import fr.rolandgarros.model.dal.stub.CourtDAOMock;
 import java.util.List;
 
 public class CourtService {
-    //private final CourtDAO courtDAO = new CourtDAOMock();
     private final CourtDAO courtDAO = new CourtDAOImpl();
 
     public void createCourt(Court court){
