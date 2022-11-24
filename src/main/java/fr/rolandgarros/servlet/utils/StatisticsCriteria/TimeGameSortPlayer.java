@@ -5,10 +5,7 @@ import fr.rolandgarros.model.Match;
 import fr.rolandgarros.model.Player;
 import fr.rolandgarros.model.Single;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class TimeGameSortPlayer implements StatisticsSortCriteria{
@@ -45,6 +42,7 @@ public class TimeGameSortPlayer implements StatisticsSortCriteria{
 
         List<Entry<Player, Float>> list = new ArrayList<>(out.entrySet());
         list.sort(Entry.comparingByValue());
+        Collections.reverse(list);
 
         return list;
     }
