@@ -40,6 +40,26 @@ h1, h2, h3, h4, h5, h6, a, button {
     margin: 0;
 }
 
+.padding-1 {
+    padding: 1rem;
+}
+
+.margin-1 {
+    margin: 1rem;
+}
+.margin-top-1 {
+    margin-top: 1rem;
+}
+.margin-left-1 {
+    margin-left: 1rem;
+}
+.margin-right-1 {
+    margin-right: 1rem;
+}
+.margin-bottom-1 {
+    margin-bottom: 1rem;
+}
+
 /************************************
 
    Main elements' style definition
@@ -147,8 +167,12 @@ footer img {
     max-width: 580px;
 }
 
+select,
 input[type="text"],
-input[type="password"] {
+input[type="time"],
+input[type="number"],
+input[type="password"],
+input[type="datetime-local"] {
     padding: .5rem;
 }
 
@@ -427,6 +451,7 @@ textarea,
 select {
     border-radius: 0.25rem;
     border: solid 1px #ccc;
+    background-color: #fefefe;
 }
 
 input:focus,
@@ -439,7 +464,7 @@ select:focus {
 input:hover,
 textarea:hover,
 select:hover {
-    /*border: solid 1px #333;*/
+    border: solid 1px #333;
 }
 
 /************************************

@@ -1,12 +1,15 @@
-<%@ page import="fr.rolandgarros.model.Court" %>
-<%@ page import="fr.rolandgarros.model.Match" %>
-<%@ page import="fr.rolandgarros.model.Single" %>
+<%@ page import="fr.rolandgarros.core.Utils" %>
+<%@ page import="fr.rolandgarros.model.*" %>
 <%@ page import="fr.rolandgarros.model.Double" %>
 <%@ page import="java.util.List" %>
 
 <%
     Match match = (Match) request.getAttribute("match");
     List<Court> courts = (List<Court>) request.getAttribute("courts");
+    String matchType = (String) request.getAttribute("matchType");
+
+    Object _error = session.getAttribute("tempUpdateError");
+    boolean error = (_error != null) && (boolean) _error;
 %>
 
 <%@ include file="../Template/head.jsp" %>
@@ -15,65 +18,79 @@
 <%@ include file="../Template/header.jsp" %>
 
 <main>
+    <% if (error) { %>
+    <p class="btn-red">
+        Erreur dans votre formulaire, veuillez recommencer.
+    </p>
+    <% } %>
+
     <article class="content">
-        <h2 class="w-100 txt-center">Mise à jour du match</h2>
+        <h2 class="txt-center no-margin">Mise à jour du match</h2>
 
-        <form class="row space-around" method="post">
-            <h3 class="w-100">Modalités</h3>
+        <form class="flex-column gap-1" method="post">
+            <div class="flex-row gap-1">
+                <div class="flex-column justify-start items-center padding-1 gap-1">
+                    <h3 class="no-margin">Modalités</h3>
 
-            <input type="hidden" name="matchId" value="<%= match.getIdT() %>" />
+                    <input type="hidden" name="matchId" value="<%= match.getIdT() %>" />
 
-            <label class="w-25">Simple ou Double</label>
-            <p class="w-75"><%= request.getAttribute("matchType") %></p>
-            <p class="w-75"><%= match.getGender() %></p>
+                    <label>Catégorie</label>
+                    <input type="text" disabled="disabled" value="<%= request.getAttribute("matchType") %>" />
 
-            <label class="w-25" for="court">Court</label>
-            <select class="w-75" name="court" id="court" required="required">
-                <% for (Court court : courts) { %>
-                <% if (court.equals(match.getCourt())) { %>
-                <option value="<%= court %>" selected="selected"><%= court %></option>
-                <% } else { %>
-                <option value="<%= court %>"><%= court %></option>
-                <% } %>
-                <% } %>
-            </select>
+                    <label>Genre</label>
+                    <input type="text" disabled="disabled" value="<%= match.getGender().equals(Gender.MALE) ? "Homme" : "Femme" %>" />
 
-            <label class="w-25" for="startDate">Horaire</label>
-            <input type="datetime-local" name="startDate" id="startDate" required="required" value="<%= match.getStartDate().toString().substring(0, 16) %>" />
+                    <label for="matchCourt">Court</label>
+                    <select class="self-stretch" name="matchCourt" id="matchCourt" required="required">
+                        <% for (Court court : courts) { %>
+                        <% if (court.equals(match.getCourt())) { %>
+                        <option value="<%= court.getIdC() %>" selected="selected"><%= court %></option>
+                        <% } else { %>
+                        <option value="<%= court.getIdC() %>"><%= court %></option>
+                        <% } %>
+                        <% } %>
+                    </select>
 
-            <h3 class="w-100">Participants</h3>
+                    <label for="matchStartDate">Date et heure de début</label>
+                    <input type="datetime-local" name="matchStartDate" id="matchStartDate" required="required" value="<%= Utils.dateFormatHTMLInput.format(match.getStartDate()) %>" />
+                </div>
 
-            <% if (request.getAttribute("typeMatch").equals("Simple")) { %>
-            <% Single matchSingle = (Single) match; %>
-            <label class="w-25">Participant 1</label>
-            <p class="w-75"><%= matchSingle.getPlayerOne() %></p>
+                <hr />
 
-            <label class="w-25">Participant 2</label>
-            <p class="w-75"><%= matchSingle.getPlayerTwo() %></p>
-            <% } %>
+                <div class="flex-column justify-start items-center padding-1 gap-1">
+                    <h3 class="no-margin">Participants</h3>
 
-            <% if (request.getAttribute("typeMatch").equals("Double")) { %>
-            <% Double matchDouble = (Double) match; %>
-            <p class="w-100">Équipe 1</p>
+                    <% if (matchType.equals("Simple")) { %>
+                    <% Single matchSingle = (Single) match; %>
+                    <label>Participant 1</label>
+                    <input type="text" disabled="disabled" value="<%= matchSingle.getPlayerOne() %>" />
 
-            <label class="w-25">Participant 1</label>
-            <p class="w-75"><%= matchDouble.getTeamOnePlayerOne() %></p>
+                    <label>Participant 2</label>
+                    <input type="text" disabled="disabled" value="<%= matchSingle.getPlayerTwo() %>" />
+                    <% } %>
 
-            <label class="w-25">Participant 2</label>
-            <p class="w-75"><%= matchDouble.getTeamOnePlayerTwo() %></p>
+                    <% if (matchType.equals("Double")) { %>
+                    <% Double matchDouble = (Double) match; %>
+                    <p>Équipe 1</p>
 
-            <p class="w-100">Équipe 2</p>
+                    <label>Participant 1</label>
+                    <input type="text" disabled="disabled" value="<%= matchDouble.getTeamOnePlayerOne() %>" />
 
-            <label class="w-25">Participant 1</label>
-            <p class="w-75"><%= matchDouble.getTeamTwoPlayerOne() %></p>
+                    <label>Participant 2</label>
+                    <input type="text" disabled="disabled" value="<%= matchDouble.getTeamOnePlayerTwo() %>" />
 
-            <label class="w-25">Participant 2</label>
-            <p class="w-75"><%= matchDouble.getTeamTwoPlayerTwo() %></p>
-            <% } %>
+                    <p>Équipe 2</p>
 
-            <button class="btn-blue" type="submit">
-                Valider
-            </button>
+                    <label>Participant 1</label>
+                    <input type="text" disabled="disabled" value="<%= matchDouble.getTeamTwoPlayerOne() %>" />
+
+                    <label>Participant 2</label>
+                    <input type="text" disabled="disabled" value="<%= matchDouble.getTeamTwoPlayerTwo() %>" />
+                    <% } %>
+                </div>
+            </div>
+
+            <button class="btn-blue" type="submit">Valider</button>
         </form>
     </article>
 </main>

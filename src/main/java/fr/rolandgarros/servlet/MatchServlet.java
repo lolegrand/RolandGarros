@@ -52,13 +52,12 @@ public class MatchServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Role role = (Role) request.getSession().getAttribute("role");
         boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
-// TODO inverser la condition
         // Redirects the user if he is not permitted
-        if (isMatchEditor) {
+        if (! isMatchEditor) {
             response.sendRedirect("/Matches");
             return;
         }
@@ -73,7 +72,7 @@ public class MatchServlet extends HttpServlet {
             // check this match exists and is has not been played yet
             match = matchService.getMatchById(Integer.parseInt(matchId));
             if (match == null || match.isTimeEventPassed()) {
-                error = true;
+                throw new IllegalArgumentException("Match should exist and not be already passed.");
             }
         }
         // NumberFormatException is a subtype of IllegalArgumentException

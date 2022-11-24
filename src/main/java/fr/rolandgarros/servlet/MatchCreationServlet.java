@@ -1,5 +1,6 @@
 package fr.rolandgarros.servlet;
 
+import fr.rolandgarros.core.Utils;
 import fr.rolandgarros.model.*;
 import fr.rolandgarros.model.Double;
 import fr.rolandgarros.services.CourtService;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.List;
 
 public class MatchCreationServlet extends HttpServlet {
@@ -28,9 +30,8 @@ public class MatchCreationServlet extends HttpServlet {
         Role role = (Role) session.getAttribute("role");
         boolean isMatchEditor = role == Role.MATCH_EDITOR || role == Role.ADMINISTRATOR;
 
-// TODO inverser la condition
         // Redirects the user if he is not permitted
-        if (isMatchEditor) {
+        if (! isMatchEditor) {
             response.sendRedirect("/Matches");
             return;
         }
@@ -70,9 +71,8 @@ public class MatchCreationServlet extends HttpServlet {
         Role role = (Role) session.getAttribute("role");
         boolean isMatchEditor = role == Role.ADMINISTRATOR || role == Role.MATCH_EDITOR;
 
-// TODO inverser la condition
         // Redirects the user if he is not permitted
-        if (isMatchEditor) {
+        if (! isMatchEditor) {
             response.sendRedirect("/Matches");
             return;
         }
@@ -91,7 +91,7 @@ public class MatchCreationServlet extends HttpServlet {
             String matchCourt = request.getParameter("matchCourt");
             String matchStartDate = request.getParameter("matchStartDate");
 
-            if (matchType == null || matchGender == null || matchStartDate == null) {
+            if (matchType == null || matchGender == null || matchCourt == null || matchStartDate == null) {
                 error = true;
             }
             else if (!matchType.equals("Simple") && !matchType.equals("Double")) {
@@ -105,22 +105,22 @@ public class MatchCreationServlet extends HttpServlet {
                     // Get court and check is not null
                     court = courtService.getCourtById(Integer.parseInt(matchCourt));
                     if (court == null) {
-                        error = true;
+                        throw new IllegalArgumentException("This court does not exist.");
                     }
 
                     // The HTML input[type=datetime] has the ISO 8601 format yyyy-mm-ddThh:mm
-                    // But timestamp needs the yyyy-mm-dd hh:mm:ss format, so we convert it
-                    // By replacing the T by a space and adding default :00 for seconds
-                    ts = Timestamp.valueOf(matchStartDate.replace('T', ' ').concat(":00"));
+                    // But Timestamp needs the yyyy-mm-dd hh:mm:ss format or a long
+                    // So we convert the input to a long with a specific format parser
+                    ts = new Timestamp(Utils.dateFormatHTMLInput.parse(matchStartDate).getTime());
 
                     // Check no match is planned at this datetime and on the same court
                     Match match = matchService.getMatch(court, ts);
                     if (match != null) {
-                        error = true;
+                        throw new IllegalArgumentException("A match already exists at the same datetime and court.");
                     }
                 }
                 // NumberFormatException is a subtype of IllegalArgumentException
-                catch (IllegalArgumentException iae) {
+                catch (IllegalArgumentException | ParseException iae) {
                     error = true;
                 }
             }
