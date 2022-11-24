@@ -28,33 +28,21 @@ public class MatchDAOImpl implements MatchDAO {
     @Override
     public void createMatch(Match match) {
         PersistenceManager.runInTransaction(entityManager -> {
-            if (match instanceof Double) {
-                entityManager.merge((Double) match);
-            } else if (match instanceof Single) {
-                entityManager.merge((Single) match);
-            }
+            entityManager.persist(entityManager.merge(match));
             return null;
         });
     }
     @Override
     public void deleteMatch(Match match) {
         PersistenceManager.runInTransaction(entityManager -> {
-            if (match instanceof Double) {
-                entityManager.remove(entityManager.merge((Double) match));
-            } else if (match instanceof Single) {
-                entityManager.remove(entityManager.merge((Single) match));
-            }
+            entityManager.remove(entityManager.merge(match));
             return null;
         });
     }
     @Override
     public void modifyMatch(Match match) {
         PersistenceManager.runInTransaction(entityManager -> {
-            if (match instanceof Double) {
-                entityManager.merge((Double) match);
-            } else if (match instanceof Single) {
-                entityManager.merge((Single) match);
-            }
+            entityManager.merge(match);
             return null;
         });
     }

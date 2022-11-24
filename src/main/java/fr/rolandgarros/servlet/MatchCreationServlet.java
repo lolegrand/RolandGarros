@@ -112,6 +112,10 @@ public class MatchCreationServlet extends HttpServlet {
                     // But Timestamp needs the yyyy-mm-dd hh:mm:ss format or a long
                     // So we convert the input to a long with a specific format parser
                     ts = new Timestamp(Utils.dateFormatHTMLInput.parse(matchStartDate).getTime());
+                    Timestamp now = new Timestamp(System.currentTimeMillis());
+                    if (ts.before(now)) {
+                        throw new IllegalArgumentException("The match cannot be defined in the past.");
+                    }
 
                     // Check no match is planned at this datetime and on the same court
                     Match match = matchService.getMatch(court, ts);
@@ -152,15 +156,23 @@ public class MatchCreationServlet extends HttpServlet {
             String matchType = (String) session.getAttribute("tempMatchType");
 
             if (matchType.equals("Simple")) {
-                Player player1 = playerService.getPlayerById(Integer.parseInt(request.getParameter("player1")));
-                Player player2 = playerService.getPlayerById(Integer.parseInt(request.getParameter("player2")));
+                try {
+                    Player player1 = playerService.getPlayerById(Integer.parseInt(request.getParameter("player1")));
+                    Player player2 = playerService.getPlayerById(Integer.parseInt(request.getParameter("player2")));
 
-                matchService.createMatch(new Single(ts, gender, court, player1, player2));
+                    matchService.createMatch(new Single(ts, gender, court, player1, player2));
 
-                clearTemporaryData(session);
+                    clearTemporaryData(session);
 
-                // Then redirects the user to prevent resubmission
-                response.sendRedirect("/Matches");
+                    // Then redirects the user to prevent resubmission
+                    response.sendRedirect("/Matches");
+                }
+                catch (IllegalArgumentException iae) {
+                    session.setAttribute("tempCreationError", true);
+
+                    // Redirects the user to the same form to prevent resubmission
+                    response.sendRedirect("/MatchCreation");
+                }
             }
             else {
                 try {

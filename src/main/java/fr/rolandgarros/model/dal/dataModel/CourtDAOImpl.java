@@ -9,7 +9,7 @@ public class CourtDAOImpl implements CourtDAO {
     @Override
     public void createCourt(Court court) {
             PersistenceManager.runInTransaction(entityManager -> {
-                entityManager.persist(court);
+                entityManager.merge(court);
                 return null;
             });
     }

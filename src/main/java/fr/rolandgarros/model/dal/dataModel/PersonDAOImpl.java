@@ -11,7 +11,7 @@ public class PersonDAOImpl implements PersonDAO {
     @Override
     public void createPerson(Person person) {
         PersistenceManager.runInTransaction(entityManager -> {
-                entityManager.persist(person);
+                entityManager.merge(person);
                 return null;
             });
     }
@@ -49,7 +49,7 @@ public class PersonDAOImpl implements PersonDAO {
     }
     @Override
     public List<Person> getAllPerson() { // get all trainers
-        return PersistenceManager.runInTransaction(entityManager -> entityManager.createQuery( "FROM Person", Person.class ).getResultList());
+        return PersistenceManager.runInTransaction(entityManager -> entityManager.createQuery( "SELECT p FROM Person p WHERE p NOT IN (FROM Player)", Person.class ).getResultList());
     }
 
     @Override

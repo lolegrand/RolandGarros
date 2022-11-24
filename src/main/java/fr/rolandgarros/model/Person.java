@@ -42,8 +42,6 @@ public class Person {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-
-
     public Person(String lastname, String firstname, Date birthDate, String birthPlace,Gender gender) {
         this.lastname = lastname;
         this.firstname = firstname;

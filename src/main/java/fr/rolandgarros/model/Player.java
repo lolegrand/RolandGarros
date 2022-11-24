@@ -128,4 +128,11 @@ public class Player extends Person {
         return this.getFirstname() + " " + this.getLastname().toUpperCase(Locale.FRANCE);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return this.getId().equals(player.getId());
+    }
 }

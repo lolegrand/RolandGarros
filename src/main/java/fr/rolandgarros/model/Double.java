@@ -9,32 +9,29 @@ import java.util.List;
 @Entity
 @Table(name = "doubleGame")
 public class Double extends Match {
-
-
     @OneToOne (
             targetEntity = Player.class
     )
     @JoinColumn(name = "teamOnePlayerOneId")
-    private  Player teamOnePlayerOne;
+    private Player teamOnePlayerOne;
 
     @OneToOne (
             targetEntity = Player.class
     )
     @JoinColumn(name = "teamOnePlayerTwoId")
-    private  Player teamOnePlayerTwo;
+    private Player teamOnePlayerTwo;
 
     @OneToOne (targetEntity = Player.class,
             cascade = {CascadeType.REMOVE}
     )
     @JoinColumn(name = "teamTwoPlayerOneId")
-    private  Player teamTwoPlayerOne;
+    private Player teamTwoPlayerOne;
 
     @OneToOne (
             targetEntity = Player.class
     )
     @JoinColumn(name = "teamTwoPlayerTwoId")
-    private  Player teamTwoPlayerTwo;
-
+    private Player teamTwoPlayerTwo;
 
     public Double(Timestamp startDate,
                   Gender gender,
