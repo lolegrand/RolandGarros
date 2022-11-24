@@ -35,7 +35,7 @@ public abstract class TimeEvent {
     }
 
     public Boolean isTimeEventPassed() {
-        return endDate == null;
+        return endDate != null;
     }
 
     public Timestamp getEndDate() {

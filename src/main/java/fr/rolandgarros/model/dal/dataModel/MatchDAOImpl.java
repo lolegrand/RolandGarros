@@ -29,9 +29,9 @@ public class MatchDAOImpl implements MatchDAO {
     public void createMatch(Match match) {
         PersistenceManager.runInTransaction(entityManager -> {
             if (match instanceof Double) {
-                entityManager.persist((Double) match);
+                entityManager.merge((Double) match);
             } else if (match instanceof Single) {
-                entityManager.persist((Single) match);
+                entityManager.merge((Single) match);
             }
             return null;
         });

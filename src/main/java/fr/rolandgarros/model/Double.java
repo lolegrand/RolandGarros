@@ -47,9 +47,9 @@ public class Double extends Match {
         super(gender, startDate, court);
         if (
                 teamOnePlayerOne == null || teamOnePlayerTwo == null || teamTwoPlayerOne == null || teamTwoPlayerTwo == null
-                        || teamOnePlayerOne == teamOnePlayerTwo || teamOnePlayerOne == teamTwoPlayerOne || teamOnePlayerOne == teamTwoPlayerTwo
-                        || teamOnePlayerTwo == teamTwoPlayerOne || teamOnePlayerTwo == teamTwoPlayerTwo
-                        || teamTwoPlayerOne == teamTwoPlayerTwo
+                        || teamOnePlayerOne.equals(teamOnePlayerTwo) || teamOnePlayerOne.equals(teamTwoPlayerOne) || teamOnePlayerOne.equals(teamTwoPlayerTwo)
+                        || teamOnePlayerTwo.equals(teamTwoPlayerOne) || teamOnePlayerTwo.equals(teamTwoPlayerTwo)
+                        || teamTwoPlayerOne.equals(teamTwoPlayerTwo)
         ) {
             throw new IllegalArgumentException("Players must all be different");
         }

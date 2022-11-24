@@ -153,18 +153,18 @@ public class MatchEndServlet extends HttpServlet {
                         }
                         // If the score are not in any possible case, then they are wrong
                         else {
+                            scoresOne.add(scoreOne);
+                            scoresTwo.add(scoreTwo);
                             if (
                                     (scoreOne == 7 && (scoreTwo == 5 || scoreTwo == 6))
                                             || (scoreOne == 6 && 0 < scoreTwo && scoreTwo <= 4)
                             ) {
-                                scoresOne.add(scoreOne);
                                 playerOneSetsWon++;
                             }
                             else if (
                                     (scoreTwo == 7 && (scoreOne == 5 || scoreOne == 6))
                                             || (scoreTwo == 6 && 0 < scoreOne && scoreOne <= 4)
                             ) {
-                                scoresTwo.add(scoreTwo);
                                 playerTwoSetsWon++;
                             }
                             else {

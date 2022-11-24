@@ -9,10 +9,9 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Match extends TimeEvent {
-
     @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
-    private  Gender gender;
+    private Gender gender;
 
     @Column(name = "scoreOne")
     private String scoreOne;
@@ -24,7 +23,7 @@ public abstract class Match extends TimeEvent {
             targetEntity = Court.class
     )
     @JoinColumn(name = "courtId")
-    private  Court court;
+    private Court court;
 
     public Match(Gender gender, Timestamp startDate, Court court) {
         super(startDate);
@@ -51,7 +50,7 @@ public abstract class Match extends TimeEvent {
         }
 
         ArrayList<Integer> scoreOne = new ArrayList<>();
-        for (String s : this.scoreOne.replace("[","").replace("]","").split(",")) {
+        for (String s : this.scoreOne.replace("[","").replace("]","").split(", ")) {
             scoreOne.add(Integer.parseInt(s));
         }
         return scoreOne;
@@ -65,7 +64,7 @@ public abstract class Match extends TimeEvent {
             throw new RuntimeException("Match has not been passed yet");
         }
         ArrayList<Integer> scoreTwo = new ArrayList<>();
-        for (String s : this.scoreTwo.replace("[","").replace("]","").split(",")) {
+        for (String s : this.scoreTwo.replace("[","").replace("]","").split(", ")) {
             scoreTwo.add(Integer.parseInt(s));
         }
         return scoreTwo;

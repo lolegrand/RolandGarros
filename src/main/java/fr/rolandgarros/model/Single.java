@@ -23,11 +23,11 @@ public class Single extends Match {
     @JoinColumn(name = "playerTwoId")
     private Player playerTwo;
 
-    public Single( Timestamp startDate,Gender gender, Court court, Player playerOne, Player playerTwo) {
-        //if the two players are'nt the same we create the match
+    public Single(Timestamp startDate,Gender gender, Court court, Player playerOne, Player playerTwo) {
+        //if the two players aren't the same we create the match
         super(gender, startDate, court);
 
-        if (playerOne == playerTwo || playerOne == null || playerTwo == null) {
+        if (playerOne == null || playerTwo == null || playerOne.equals(playerTwo)) {
             throw new IllegalArgumentException("The two players can't be the same");
         }
 
